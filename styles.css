@@ -3257,6 +3257,16 @@ body::before {
     max-width: 12ch;
   }
 
+  .home-hero {
+    gap: 14px;
+  }
+
+  .home-hero-image {
+    order: -1;
+    min-height: 260px;
+    background-position: center top;
+  }
+
   .home-hero,
   .ride-page-hero,
   .courier-page-hero,
