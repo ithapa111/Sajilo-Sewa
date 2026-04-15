@@ -321,6 +321,135 @@ function renderServices(data) {
   applyStagger("#service-grid .animated-rise", 40, 110);
 }
 
+function renderRidesharingFocus(data) {
+  const currentTrip = data.rideshare.trips.find((trip) => trip.status === "in_progress") || data.rideshare.trips[0];
+  const activeRequest = data.rideshare.rideRequests[0];
+  const currentTier = data.rideshare.serviceTiers.find((tier) => tier.id === currentTrip?.tierId) || data.rideshare.serviceTiers[0];
+  const activeDriver = data.users.drivers.find((driver) => driver.id === currentTrip?.driverId) || data.users.drivers[0];
+  const activeVehicle = data.rideshare.vehicles.find((vehicle) => vehicle.id === currentTrip?.vehicleId);
+  const surgeRule = data.rideshare.surgeRules.find((rule) => rule.zoneId === activeDriver?.currentZoneId) || data.rideshare.surgeRules[0];
+  const cards = [
+    {
+      theme: "route",
+      eyebrow: "Ride option",
+      title: `${currentTier.name} keeps booking simple for daily city travel.`,
+      body: `Pickup, destination, seats, and fare details stay visible before the rider confirms the trip.`,
+      meta: `${currentTier.capacity} seats | ${currencyFormatter.format(currentTier.minimumFare)} minimum | ${currencyFormatter.format(currentTier.bookingFee)} booking fee`
+    },
+    {
+      theme: "live",
+      eyebrow: "Live trip",
+      title: `${currentTrip.pickup.address.split(",")[0]} to ${currentTrip.dropoff.address.split(",")[0]}`,
+      body: `${activeDriver.fullName} is assigned right now, and the rider can follow trip progress, ETA, and route details in one clear view.`,
+      meta: `${currentTrip.durationMinutes} min | ${currentTrip.distanceMiles} mi | ${currencyFormatter.format(currentTrip.fare.total)} total`
+    },
+    {
+      theme: "trust",
+      eyebrow: "Safety and trust",
+      title: "Safer rides should feel visible, not hidden inside the app.",
+      body: `Verified drivers, trip sharing, and status updates help the rider trust the trip before pickup and during the ride.`,
+      meta: `${data.rideshare.safetyEvents.length} safety records | ${data.users.drivers.length} verified drivers`
+    }
+  ];
+
+  document.querySelector("#rides-focus-grid").innerHTML = `
+    <article class="rides-focus-hero animated-rise">
+      <div class="rides-focus-copy">
+        <p class="label">Ride experience</p>
+        <h3>Request a ride in seconds, see the fare clearly, and track the trip without confusion.</h3>
+        <p>The ridesharing experience should feel fast, trustworthy, and polished on every device. This section keeps the booking path, live trip state, and trust details visible in one strong ride-first layout.</p>
+        <div class="rides-focus-pills">
+          <span>${activeRequest.pickup.address.split(",")[0]}</span>
+          <span>${activeRequest.dropoff.address.split(",")[0]}</span>
+          <span>${activeRequest.estimatedDurationMinutes} min ETA</span>
+        </div>
+        <div class="rides-focus-metrics">
+          <div class="rides-focus-metric">
+            <span class="metric-label">Open ride requests</span>
+            <strong>${numberFormatter.format(data.rideshare.rideRequests.length)}</strong>
+          </div>
+          <div class="rides-focus-metric">
+            <span class="metric-label">Active drivers</span>
+            <strong>${numberFormatter.format(data.analytics.adminDashboard.activeDrivers)}</strong>
+          </div>
+          <div class="rides-focus-metric">
+            <span class="metric-label">Average ETA</span>
+            <strong>${data.analytics.adminDashboard.avgRideEtaMinutes} min</strong>
+          </div>
+        </div>
+        <div class="rides-focus-actions">
+          <a class="button primary" href="./ride.html">Open ride page</a>
+          <a class="button secondary" href="#trust">View safety details</a>
+        </div>
+      </div>
+      <div class="rides-focus-visual">
+        <div class="rides-trip-card">
+          <div class="rides-trip-card-top">
+            <div>
+              <p class="label">Current trip</p>
+              <h4>${currentTier.name}</h4>
+            </div>
+            <span class="rides-trip-status">${formatStatus(currentTrip.status)}</span>
+          </div>
+          <div class="rides-route-list">
+            <div class="rides-route-stop">
+              <span class="rides-route-dot rides-route-dot-start"></span>
+              <div>
+                <strong>Pickup</strong>
+                <p>${currentTrip.pickup.address}</p>
+              </div>
+            </div>
+            <div class="rides-route-line"></div>
+            <div class="rides-route-stop">
+              <span class="rides-route-dot rides-route-dot-end"></span>
+              <div>
+                <strong>Dropoff</strong>
+                <p>${currentTrip.dropoff.address}</p>
+              </div>
+            </div>
+          </div>
+          <div class="rides-trip-meta">
+            <span>${activeDriver.fullName}</span>
+            <span>${activeVehicle ? `${activeVehicle.color} ${activeVehicle.make} ${activeVehicle.model}` : "Assigned vehicle"}</span>
+            <span>${activeVehicle?.plateNumber || "Plate pending"}</span>
+          </div>
+        </div>
+        <div class="rides-focus-steps">
+          <div class="rides-step"><span>1</span><p>Set pickup and destination</p></div>
+          <div class="rides-step"><span>2</span><p>Choose the best ride tier</p></div>
+          <div class="rides-step"><span>3</span><p>Track driver and route live</p></div>
+        </div>
+      </div>
+    </article>
+    <div class="rides-focus-cards">
+      ${cards
+        .map(
+          (card) => `
+            <article class="rides-focus-card rides-focus-card-${card.theme} animated-rise">
+              <p class="label">${card.eyebrow}</p>
+              <h3>${card.title}</h3>
+              <p>${card.body}</p>
+              <span class="rides-focus-meta">${card.meta}</span>
+            </article>
+          `
+        )
+        .join("")}
+      <article class="rides-focus-card rides-focus-card-pricing animated-rise">
+        <p class="label">Pricing and coverage</p>
+        <h3>Fare, surge, and city coverage stay easier to understand before booking.</h3>
+        <p>The app can show riders when demand is higher, what the starting fare looks like, and which ride option best fits the trip.</p>
+        <div class="rides-pricing-pills">
+          <span>${currencyFormatter.format(activeRequest.estimatedFare)} estimate</span>
+          <span>${activeRequest.surgeMultiplier.toFixed(1)}x current surge</span>
+          <span>${surgeRule.timeWindow} peak window</span>
+        </div>
+      </article>
+    </div>
+  `;
+
+  applyStagger("#rides-focus-grid .animated-rise", 20, 90);
+}
+
 function renderApiOverview() {
   const apiCards = [
     {
@@ -1293,6 +1422,7 @@ function bindActionForms() {
 function renderApp(data) {
   window.__SAJILO_DATA__ = data;
   renderHero(data);
+  renderRidesharingFocus(data);
   renderServices(data);
   renderApiOverview();
   renderTabs();

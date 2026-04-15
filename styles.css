@@ -45,10 +45,32 @@ body::before {
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent 75%);
 }
 
+.food-page-body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 157, 66, 0.16), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 112, 143, 0.12), transparent 20%),
+    linear-gradient(180deg, #fffaf4 0%, #fff3eb 45%, #fff8f3 100%);
+}
+
+.home-page-body {
+  background:
+    radial-gradient(circle at top left, rgba(86, 141, 255, 0.12), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 155, 84, 0.12), transparent 20%),
+    linear-gradient(180deg, #ffffff 0%, #f7f8fb 44%, #f2f4f8 100%);
+}
+
 .page-shell {
   width: min(1240px, calc(100% - 32px));
   margin: 0 auto;
   padding: 20px 0 48px;
+}
+
+.food-page-shell {
+  padding-bottom: 56px;
+}
+
+.home-page-shell {
+  padding-bottom: 32px;
 }
 
 .topbar,
@@ -444,6 +466,1475 @@ body::before {
 .service-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+.food-page-main {
+  display: grid;
+  gap: 22px;
+}
+
+.home-page-main {
+  display: grid;
+  gap: 22px;
+}
+
+.home-topbar {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 22px;
+  padding: 34px;
+  border: 1px solid rgba(19, 35, 31, 0.08);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at top right, rgba(255, 182, 108, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(245, 247, 252, 0.94));
+  box-shadow: var(--shadow);
+}
+
+.home-hero-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.home-hero-copy h2,
+.home-gateway-card h3 {
+  margin: 0;
+  color: #2d2d2d;
+}
+
+.home-hero-copy h2 {
+  font-size: clamp(2.4rem, 4.6vw, 4.4rem);
+  line-height: 0.98;
+  max-width: 11ch;
+}
+
+.home-hero-text,
+.home-gateway-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-hero-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.home-mini-card,
+.home-gateway-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.home-mini-card {
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.home-mini-card strong {
+  display: block;
+  margin-top: 8px;
+  color: #2d2d2d;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.home-gateway-section {
+  background:
+    radial-gradient(circle at top right, rgba(121, 182, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(248, 249, 252, 0.96), rgba(241, 243, 248, 0.92));
+}
+
+.home-gateway-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.home-gateway-card {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.home-gateway-card-ride {
+  background:
+    radial-gradient(circle at top right, rgba(75, 146, 255, 0.26), transparent 30%),
+    linear-gradient(180deg, #eef6ff 0%, #dcecff 100%);
+}
+
+.home-gateway-card-food {
+  background:
+    radial-gradient(circle at top right, rgba(255, 170, 84, 0.28), transparent 30%),
+    linear-gradient(180deg, #fff5ea 0%, #ffe4c9 100%);
+}
+
+.home-gateway-card-courier {
+  background:
+    radial-gradient(circle at top right, rgba(66, 191, 156, 0.28), transparent 30%),
+    linear-gradient(180deg, #ebfff9 0%, #d8f4eb 100%);
+}
+
+.home-gateway-card-ride h3 {
+  color: #0d4db7;
+}
+
+.home-gateway-card-food h3 {
+  color: #b24b10;
+}
+
+.home-gateway-card-courier h3 {
+  color: #0f6e58;
+}
+
+.food-topbar {
+  background: rgba(255, 252, 247, 0.92);
+}
+
+.food-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.95fr;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at top right, rgba(255, 173, 75, 0.16), transparent 26%),
+    linear-gradient(180deg, rgba(255, 249, 241, 0.96), rgba(255, 238, 222, 0.94));
+  box-shadow: 0 16px 40px rgba(224, 117, 55, 0.12);
+}
+
+.food-hero-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.food-hero-copy h2,
+.food-cta-card h2 {
+  margin: 0;
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #9d3d16;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.food-hero-text,
+.food-cta-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.food-hero-actions,
+.food-cta-actions,
+.food-showcase-meta,
+.food-meal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.food-hero-visual {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.food-hero-visual img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+}
+
+.food-highlights,
+.food-discovery-grid,
+.food-favorites-grid,
+.food-flow-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.food-highlights {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.food-highlight-card,
+.food-showcase-card,
+.food-meal-card,
+.food-flow-card,
+.food-cta-card {
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 34px rgba(224, 117, 55, 0.08);
+}
+
+.food-highlight-card,
+.food-showcase-card,
+.food-meal-card,
+.food-flow-card {
+  padding: 22px;
+}
+
+.food-highlight-card strong,
+.food-showcase-card h3,
+.food-meal-card h3,
+.food-flow-card h3 {
+  display: block;
+  margin: 8px 0 10px;
+  color: #9d3d16;
+}
+
+.food-highlight-card p,
+.food-showcase-card p,
+.food-meal-card p,
+.food-flow-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.food-category-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.food-search-bar,
+.food-results-list,
+.food-result-dishes {
+  display: grid;
+}
+
+.food-search-bar {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 138, 31, 0.14);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 177, 109, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(255, 240, 227, 0.9));
+  box-shadow: 0 18px 40px rgba(224, 117, 55, 0.1);
+}
+
+.food-search-copy h3 {
+  margin: 8px 0 10px;
+  color: #9d3d16;
+}
+
+.food-search-copy p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.food-search-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(255, 138, 31, 0.12);
+}
+
+.food-search-input {
+  min-height: 54px;
+  border: 1px solid rgba(255, 138, 31, 0.18);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 240, 0.94));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.food-search-input:focus {
+  outline: none;
+  border-color: rgba(214, 82, 22, 0.42);
+  box-shadow: 0 0 0 4px rgba(255, 138, 31, 0.12);
+}
+
+.food-search-button {
+  min-height: 54px;
+}
+
+.food-search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.food-search-suggestions span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #9d3d16;
+  background: rgba(255, 191, 113, 0.22);
+}
+
+.food-results-summary {
+  margin-bottom: 18px;
+}
+
+.food-results-card,
+.food-result-restaurant,
+.food-result-empty {
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 34px rgba(224, 117, 55, 0.08);
+}
+
+.food-results-card,
+.food-result-restaurant,
+.food-result-empty {
+  padding: 22px;
+}
+
+.food-results-card {
+  background:
+    radial-gradient(circle at top right, rgba(255, 184, 107, 0.2), transparent 34%),
+    linear-gradient(180deg, rgba(255, 251, 246, 0.98), rgba(255, 236, 219, 0.92));
+}
+
+.food-results-card-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.food-results-card-copy p:last-child {
+  max-width: 66ch;
+}
+
+.food-results-card-mark {
+  display: grid;
+  place-items: center;
+  min-width: 96px;
+  min-height: 96px;
+  padding: 12px;
+  border-radius: 24px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #fff8f1;
+  background: linear-gradient(135deg, #ff8a1f, #d65216);
+  box-shadow: 0 16px 30px rgba(214, 82, 22, 0.22);
+}
+
+.food-result-restaurant {
+  overflow: hidden;
+}
+
+.food-result-cover {
+  position: relative;
+  margin: -22px -22px 18px;
+  min-height: 188px;
+  overflow: hidden;
+  border-radius: 28px 28px 22px 22px;
+}
+
+.food-result-cover.is-momo {
+  background: linear-gradient(135deg, rgba(255, 151, 87, 0.3), rgba(214, 82, 22, 0.22));
+}
+
+.food-result-cover.is-thali {
+  background: linear-gradient(135deg, rgba(255, 190, 87, 0.32), rgba(181, 81, 21, 0.2));
+}
+
+.food-result-cover.is-curry {
+  background: linear-gradient(135deg, rgba(255, 167, 87, 0.3), rgba(255, 118, 61, 0.22));
+}
+
+.food-result-cover-image {
+  width: 100%;
+  height: 188px;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+
+.food-result-cover-overlay {
+  position: absolute;
+  inset: auto 16px 16px 16px;
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(110, 41, 12, 0.18), rgba(110, 41, 12, 0.74));
+  color: #fff8f1;
+  backdrop-filter: blur(8px);
+}
+
+.food-result-cover-overlay span {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  padding: 0 10px;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: rgba(255, 248, 241, 0.18);
+}
+
+.food-result-cover-overlay strong {
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.food-results-card h3,
+.food-result-restaurant h3,
+.food-result-empty h3 {
+  margin: 8px 0 10px;
+  color: #9d3d16;
+}
+
+.food-results-card p,
+.food-result-empty p,
+.food-result-dish p,
+.food-result-meta {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.food-results-list {
+  gap: 16px;
+}
+
+.food-result-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.food-result-brand {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.food-result-mark {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  font-weight: 900;
+  color: #fff8f1;
+  background: linear-gradient(135deg, #ff8a1f, #d65216);
+  box-shadow: 0 12px 24px rgba(214, 82, 22, 0.2);
+}
+
+.food-result-pills,
+.food-results-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.food-result-pills {
+  margin-top: 10px;
+}
+
+.food-result-pills span,
+.food-results-pills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #9d3d16;
+  background: rgba(255, 191, 113, 0.22);
+}
+
+.food-results-pills {
+  margin-top: 14px;
+}
+
+.food-results-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.food-results-metrics article {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.food-results-metrics strong {
+  color: #9d3d16;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.food-results-metrics span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.food-result-rating {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #9d3d16;
+  background: rgba(255, 191, 113, 0.24);
+}
+
+.food-result-meta {
+  margin: 10px 0 16px;
+}
+
+.food-result-dishes {
+  gap: 12px;
+}
+
+.food-result-dish {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 249, 241, 0.96), rgba(255, 239, 226, 0.92));
+}
+
+.food-result-dish-image {
+  width: 74px;
+  height: 74px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 228, 205, 0.95));
+  border: 1px solid rgba(255, 138, 31, 0.14);
+}
+
+.food-result-dish strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #9d3d16;
+}
+
+.food-result-price {
+  display: grid;
+  justify-items: end;
+  align-content: start;
+  gap: 6px;
+}
+
+.food-result-price span {
+  font-weight: 900;
+  color: #9d3d16;
+}
+
+.food-result-price small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.food-category-chip,
+.food-showcase-meta span,
+.food-meal-badge,
+.food-meal-footer span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.food-category-chip {
+  color: #9d3d16;
+  background: rgba(255, 138, 31, 0.14);
+}
+
+.food-discovery-grid,
+.food-favorites-grid,
+.food-flow-grid,
+.food-contact-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.food-showcase-meta span {
+  color: #b24b10;
+  background: rgba(255, 191, 113, 0.2);
+}
+
+.food-meal-card {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(255, 169, 87, 0.22), transparent 30%),
+    linear-gradient(180deg, rgba(255, 250, 244, 0.96), rgba(255, 236, 220, 0.92));
+}
+
+.food-contact-grid {
+  gap: 18px;
+}
+
+.food-contact-card {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at top right, rgba(255, 187, 117, 0.18), transparent 32%),
+    linear-gradient(180deg, rgba(255, 251, 246, 0.97), rgba(255, 236, 219, 0.92));
+  box-shadow: 0 14px 34px rgba(224, 117, 55, 0.08);
+  overflow: hidden;
+}
+
+.food-contact-card h3 {
+  margin: 0;
+  color: #9d3d16;
+}
+
+.food-contact-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.food-contact-card-accent {
+  background:
+    radial-gradient(circle at top right, rgba(255, 204, 145, 0.2), transparent 30%),
+    linear-gradient(180deg, rgba(255, 244, 230, 0.98), rgba(255, 227, 197, 0.94));
+}
+
+.food-contact-chat-card {
+  background:
+    radial-gradient(circle at top right, rgba(255, 152, 76, 0.2), transparent 26%),
+    linear-gradient(180deg, rgba(255, 246, 237, 0.98), rgba(255, 229, 206, 0.94));
+}
+
+.food-chat-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.food-chat-window {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 138, 31, 0.1);
+}
+
+.food-chat-bubble {
+  max-width: 88%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.food-chat-bubble.is-support {
+  color: #7d3412;
+  background: rgba(255, 214, 180, 0.78);
+}
+
+.food-chat-bubble.is-user {
+  margin-left: auto;
+  color: #fff8f1;
+  background: linear-gradient(135deg, #ff8a1f, #d65216);
+}
+
+.food-contact-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #9d3d16;
+  background: rgba(255, 191, 113, 0.24);
+}
+
+.food-meal-card::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: -42px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.food-meal-badge {
+  width: fit-content;
+  color: #fff;
+  background: linear-gradient(135deg, #ff8a1f, #ff5d36);
+}
+
+.food-meal-image {
+  width: calc(100% + 44px);
+  max-width: none;
+  height: 210px;
+  object-fit: cover;
+  margin: -22px -22px 4px;
+  display: block;
+  border-bottom: 1px solid rgba(255, 138, 31, 0.12);
+}
+
+.food-meal-footer span {
+  color: #9d3d16;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.food-flow-card {
+  display: grid;
+  gap: 10px;
+}
+
+.food-flow-step {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(135deg, #ff8a1f, #ff5d36);
+}
+
+.food-cta-section {
+  background:
+    radial-gradient(circle at top right, rgba(255, 120, 100, 0.14), transparent 25%),
+    linear-gradient(180deg, rgba(255, 246, 236, 0.94), rgba(255, 230, 213, 0.88));
+}
+
+.food-cta-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.7fr);
+  gap: 22px;
+  align-items: center;
+  padding: 30px;
+  border: 1px solid rgba(255, 138, 31, 0.14);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 184, 107, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(255, 249, 242, 0.98), rgba(255, 228, 206, 0.94));
+  box-shadow: 0 18px 42px rgba(214, 82, 22, 0.12);
+}
+
+.food-cta-copy h2 {
+  margin: 8px 0 10px;
+  color: #9d3d16;
+}
+
+.food-cta-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.food-cta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.food-cta-pills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #9d3d16;
+  background: rgba(255, 191, 113, 0.24);
+}
+
+.food-cta-side {
+  display: grid;
+  gap: 14px;
+}
+
+.food-cta-mark {
+  display: grid;
+  gap: 6px;
+  padding: 22px 20px;
+  border-radius: 24px;
+  color: #fff8f1;
+  background: linear-gradient(135deg, #ff8a1f, #d65216);
+  box-shadow: 0 16px 32px rgba(214, 82, 22, 0.2);
+}
+
+.food-cta-mark strong {
+  font-size: 1.4rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.food-cta-mark span {
+  font-weight: 700;
+  color: rgba(255, 248, 241, 0.86);
+}
+
+.food-cta-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.ride-page-body {
+  background:
+    radial-gradient(circle at top right, rgba(89, 156, 255, 0.12), transparent 26%),
+    linear-gradient(180deg, #f6fbff, #eaf3ff);
+}
+
+.ride-page-shell {
+  padding-bottom: 36px;
+}
+
+.ride-topbar {
+  margin-bottom: 18px;
+}
+
+.ride-page-main {
+  display: grid;
+  gap: 18px;
+}
+
+.ride-page-hero,
+.ride-info-card,
+.ride-tier-card,
+.ride-safety-card {
+  border: 1px solid rgba(27, 116, 255, 0.12);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 34px rgba(27, 116, 255, 0.08);
+}
+
+.ride-page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: 20px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(102, 170, 255, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(250, 253, 255, 0.98), rgba(234, 243, 255, 0.94));
+}
+
+.ride-page-hero-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.ride-page-hero-copy h2,
+.ride-info-card h3,
+.ride-tier-card h3,
+.ride-safety-card h3 {
+  margin: 0;
+  color: #0d4db7;
+}
+
+.ride-page-lead,
+.ride-info-card p,
+.ride-tier-card p,
+.ride-safety-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.ride-page-pills,
+.ride-tier-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ride-page-pills span,
+.ride-tier-pills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0d4db7;
+  background: rgba(27, 116, 255, 0.1);
+}
+
+.ride-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ride-page-hero-card {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(122, 191, 255, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(247, 251, 255, 0.98), rgba(228, 239, 255, 0.94));
+}
+
+.ride-page-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ride-page-status-row strong {
+  color: #0d4db7;
+  font-size: 1.1rem;
+}
+
+.ride-page-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #0d4db7;
+  background: rgba(27, 116, 255, 0.12);
+  text-transform: capitalize;
+}
+
+.ride-page-route {
+  display: grid;
+  gap: 0;
+}
+
+.ride-page-section {
+  background:
+    radial-gradient(circle at top right, rgba(91, 160, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(244, 249, 255, 0.94), rgba(232, 241, 255, 0.88));
+}
+
+.ride-booking-grid,
+.ride-tier-grid,
+.ride-safety-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.ride-booking-grid,
+.ride-tier-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ride-safety-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ride-info-card,
+.ride-tier-card,
+.ride-safety-card {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.ride-info-list {
+  display: grid;
+  gap: 12px;
+}
+
+.ride-info-list div {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(27, 116, 255, 0.06);
+}
+
+.ride-info-list span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ride-info-list strong {
+  color: #0d4db7;
+}
+
+.ride-steps-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.ride-tier-card.is-featured {
+  background:
+    radial-gradient(circle at top right, rgba(126, 194, 255, 0.2), transparent 30%),
+    linear-gradient(180deg, rgba(248, 252, 255, 0.98), rgba(228, 239, 255, 0.94));
+}
+
+.ride-safety-card-accent {
+  background:
+    radial-gradient(circle at top right, rgba(141, 204, 255, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(246, 251, 255, 0.98), rgba(232, 242, 255, 0.94));
+}
+
+.courier-page-body {
+  background:
+    radial-gradient(circle at top right, rgba(77, 191, 137, 0.12), transparent 26%),
+    linear-gradient(180deg, #f7fff9, #e9f8ef);
+}
+
+.courier-page-shell {
+  padding-bottom: 36px;
+}
+
+.courier-topbar {
+  margin-bottom: 18px;
+}
+
+.courier-page-main {
+  display: grid;
+  gap: 18px;
+}
+
+.courier-page-hero,
+.courier-info-card,
+.courier-status-card {
+  border: 1px solid rgba(27, 150, 95, 0.12);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 14px 34px rgba(27, 150, 95, 0.08);
+}
+
+.courier-page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: 20px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(110, 212, 163, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(251, 255, 252, 0.98), rgba(231, 247, 237, 0.94));
+}
+
+.courier-page-hero-copy,
+.courier-info-card,
+.courier-status-card {
+  display: grid;
+  gap: 14px;
+}
+
+.courier-page-hero-copy h2,
+.courier-page-hero-card h3,
+.courier-info-card h3,
+.courier-status-card h3 {
+  margin: 0;
+  color: #0d7c4f;
+}
+
+.courier-page-lead,
+.courier-info-card p,
+.courier-status-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.courier-page-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.courier-page-pills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0d7c4f;
+  background: rgba(27, 150, 95, 0.1);
+}
+
+.courier-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.courier-page-hero-card {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(135, 225, 182, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(248, 255, 250, 0.98), rgba(229, 245, 235, 0.94));
+}
+
+.courier-page-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.courier-page-status-row strong {
+  color: #0d7c4f;
+  font-size: 1.1rem;
+}
+
+.courier-page-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #0d7c4f;
+  background: rgba(27, 150, 95, 0.12);
+  text-transform: capitalize;
+}
+
+.courier-page-route {
+  display: grid;
+  gap: 0;
+}
+
+.courier-page-section {
+  background:
+    radial-gradient(circle at top right, rgba(87, 202, 148, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(245, 253, 248, 0.94), rgba(231, 246, 237, 0.88));
+}
+
+.courier-booking-grid,
+.courier-status-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.courier-booking-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.courier-status-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.courier-info-card,
+.courier-status-card {
+  padding: 22px;
+}
+
+.courier-info-list {
+  display: grid;
+  gap: 12px;
+}
+
+.courier-info-list div {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(27, 150, 95, 0.06);
+}
+
+.courier-info-list span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.courier-info-list strong {
+  color: #0d7c4f;
+}
+
+.courier-status-card-accent {
+  background:
+    radial-gradient(circle at top right, rgba(146, 230, 190, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(247, 255, 250, 0.98), rgba(232, 247, 238, 0.94));
+}
+
+.rides-focus-section {
+  background:
+    radial-gradient(circle at top right, rgba(70, 138, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(241, 248, 255, 0.94), rgba(230, 240, 255, 0.88));
+}
+
+.rides-focus-grid,
+.rides-focus-cards,
+.rides-focus-metrics {
+  display: grid;
+}
+
+.rides-focus-grid {
+  gap: 18px;
+}
+
+.rides-focus-hero {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid rgba(27, 116, 255, 0.12);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 14px 36px rgba(27, 116, 255, 0.08);
+}
+
+.rides-focus-copy h3,
+.rides-focus-card h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  line-height: 1.08;
+  color: #0d4db7;
+}
+
+.rides-focus-copy p,
+.rides-focus-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.rides-focus-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.rides-focus-pills,
+.rides-trip-meta,
+.rides-pricing-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rides-focus-pills span,
+.rides-trip-meta span,
+.rides-pricing-pills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0d4db7;
+  background: rgba(27, 116, 255, 0.1);
+}
+
+.rides-focus-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.rides-focus-metric {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(27, 116, 255, 0.08);
+}
+
+.rides-focus-metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.35rem;
+  color: #0d4db7;
+}
+
+.rides-focus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rides-focus-visual {
+  display: grid;
+  gap: 12px;
+}
+
+.rides-trip-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(121, 185, 255, 0.18), transparent 32%),
+    linear-gradient(180deg, rgba(248, 252, 255, 0.96), rgba(230, 240, 255, 0.92));
+  border: 1px solid rgba(27, 116, 255, 0.14);
+}
+
+.rides-trip-card-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rides-trip-card-top h4 {
+  margin: 8px 0 0;
+  font-size: 1.18rem;
+  color: #0d4db7;
+}
+
+.rides-trip-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: #0d4db7;
+  background: rgba(27, 116, 255, 0.12);
+}
+
+.rides-route-list {
+  display: grid;
+  gap: 0;
+}
+
+.rides-route-stop {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.rides-route-stop strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #0d4db7;
+}
+
+.rides-route-stop p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rides-focus-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.rides-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(27, 116, 255, 0.1), rgba(104, 168, 255, 0.08));
+}
+
+.rides-step span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(135deg, #1b74ff, #4c9dff);
+}
+
+.rides-step p {
+  margin: 0;
+  font-weight: 700;
+  color: #0d4db7;
+}
+
+.rides-focus-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rides-focus-card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(27, 116, 255, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 30px rgba(27, 116, 255, 0.08);
+}
+
+.rides-focus-card-live {
+  background: linear-gradient(180deg, rgba(236, 246, 255, 0.94), rgba(224, 239, 255, 0.92));
+}
+
+.rides-focus-card-route {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(243, 248, 255, 0.92));
+}
+
+.rides-focus-card-trust {
+  background: linear-gradient(180deg, rgba(238, 250, 255, 0.94), rgba(228, 244, 255, 0.92));
+}
+
+.rides-focus-card-pricing {
+  background: linear-gradient(180deg, rgba(241, 248, 255, 0.96), rgba(228, 240, 255, 0.92));
+}
+
+.rides-focus-meta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  width: fit-content;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0d4db7;
+  background: rgba(27, 116, 255, 0.1);
 }
 
 .api-grid {
@@ -1513,7 +3004,27 @@ body::before {
 }
 
 @media (max-width: 980px) {
+  .home-hero,
+  .home-gateway-grid,
+  .ride-page-hero,
+  .courier-page-hero,
+  .food-hero,
+  .food-highlights,
+  .ride-booking-grid,
+  .ride-tier-grid,
+  .ride-safety-grid,
+  .courier-booking-grid,
+  .courier-status-grid,
+  .food-discovery-grid,
+  .food-favorites-grid,
+  .food-flow-grid,
+  .food-search-bar,
+  .food-cta-card,
   .hero,
+  .rides-focus-hero,
+  .rides-focus-cards,
+  .rides-focus-metrics,
+  .rides-focus-visual,
   .operations-layout,
   .market-grid,
   .search-shell,
@@ -1534,6 +3045,10 @@ body::before {
     grid-auto-flow: row;
   }
 
+  .rides-focus-actions {
+    flex-direction: column;
+  }
+
   .topbar {
     align-items: start;
     flex-direction: column;
@@ -1550,7 +3065,11 @@ body::before {
     width: min(100% - 20px, 1240px);
   }
 
+  .home-hero,
+  .ride-page-hero,
+  .courier-page-hero,
   .hero,
+  .food-hero,
   .section {
     padding: 20px;
   }
@@ -1565,8 +3084,115 @@ body::before {
     padding: 16px;
   }
 
+  .food-highlight-card,
+  .food-showcase-card,
+  .food-meal-card,
+  .food-results-card,
+  .food-result-restaurant,
+  .food-result-empty,
+  .food-flow-card,
+  .ride-info-card,
+  .ride-tier-card,
+  .ride-safety-card,
+  .courier-info-card,
+  .courier-status-card,
+  .home-gateway-card,
+  .food-cta-card {
+    padding: 18px;
+  }
+
+  .ride-page-status-row,
+  .courier-page-status-row,
+  .ride-page-actions,
+  .home-hero-actions {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .courier-page-actions {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .food-result-dish {
+    grid-template-columns: 1fr;
+  }
+
+  .food-results-card-top,
+  .food-results-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .food-results-card-mark {
+    min-width: 0;
+    min-height: 64px;
+    border-radius: 18px;
+  }
+
+  .food-result-cover {
+    min-height: 168px;
+    margin: -18px -18px 16px;
+    border-radius: 24px 24px 20px 20px;
+  }
+
+  .food-result-cover-image {
+    height: 168px;
+  }
+
+  .food-result-brand {
+    grid-template-columns: 1fr;
+  }
+
+  .food-result-mark {
+    width: 48px;
+    height: 48px;
+  }
+
+  .food-result-dish-image {
+    width: 100%;
+    height: 160px;
+  }
+
+  .food-result-price {
+    justify-items: start;
+  }
+
+  .food-meal-image {
+    width: calc(100% + 36px);
+    height: 190px;
+    margin: -18px -18px 2px;
+  }
+
+  .rides-focus-hero,
+  .rides-focus-card {
+    padding: 18px;
+  }
+
+  .rides-trip-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .rides-trip-card-top {
+    flex-direction: column;
+  }
+
+  .rides-route-stop {
+    grid-template-columns: 1fr;
+  }
+
   .hero-lane h3 {
     font-size: 1.12rem;
+  }
+
+  .food-hero-copy h2,
+  .food-cta-card h2 {
+    font-size: 2rem;
+  }
+
+  .rides-focus-copy h3,
+  .rides-focus-card h3 {
+    font-size: 1.35rem;
   }
 
   .topnav {

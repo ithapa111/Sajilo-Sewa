@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sajilo Sewa Ridesharing</title>
+    <meta
+      name="description"
+      content="Sajilo Sewa Ridesharing keeps booking, live trip status, pricing, and safety details clear in one clean ride page."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="ride-page-body">
+    <div class="page-shell ride-page-shell">
+      <header class="topbar ride-topbar">
+        <div class="brand-lockup">
+          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <div>
+            <p class="eyebrow">Focused ridesharing page</p>
+            <h1>Sajilo Sewa Rides</h1>
+          </div>
+        </div>
+        <nav class="topnav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="#ride-booking">Booking</a>
+          <a href="#ride-tiers">Ride tiers</a>
+          <a href="#ride-safety">Safety</a>
+        </nav>
+      </header>
+
+      <main class="ride-page-main">
+        <section id="ride-page-hero" class="ride-page-hero"></section>
+
+        <section id="ride-booking" class="section ride-page-section">
+          <div class="section-heading">
+            <p class="eyebrow">Booking</p>
+            <h2>Neat ride information without extra noise</h2>
+          </div>
+          <div id="ride-booking-grid" class="ride-booking-grid"></div>
+        </section>
+
+        <section id="ride-tiers" class="section ride-page-section">
+          <div class="section-heading">
+            <p class="eyebrow">Ride tiers</p>
+            <h2>Pick the ride type that fits the trip</h2>
+          </div>
+          <div id="ride-tier-grid" class="ride-tier-grid"></div>
+        </section>
+
+        <section id="ride-safety" class="section ride-page-section">
+          <div class="section-heading">
+            <p class="eyebrow">Safety</p>
+            <h2>Important trust details, kept clean and visible</h2>
+          </div>
+          <div id="ride-safety-grid" class="ride-safety-grid"></div>
+        </section>
+      </main>
+    </div>
+    <script src="./data/sajilo-seed-data.js"></script>
+    <script type="module" src="./ride-page.js"></script>
+  </body>
+</html>
