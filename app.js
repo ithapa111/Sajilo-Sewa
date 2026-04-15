@@ -219,6 +219,7 @@ function renderTabs() {
     button.addEventListener("click", () => {
       state.activeView = button.dataset.view;
       renderTabs();
+      renderLiveMap(window.__SAJILO_DATA__);
       renderOperations(window.__SAJILO_DATA__);
     });
   });
@@ -242,6 +243,135 @@ function buildTimeline(timeline) {
         .join("")}
     </div>
   `;
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function createPoint(label, role, lat, lng) {
+  return { label, role, lat, lng };
+}
+
+function getMapData(data) {
+  if (state.activeView === "rides") {
+    const trip = data.rideshare.trips.find((item) => item.status === "in_progress");
+    const request = data.rideshare.rideRequests[0];
+    const rider = data.users.riders.find((item) => item.id === trip.riderId || item.id === request?.riderId);
+
+    return {
+      label: "Ride flow",
+      points: [
+        rider?.savedPlaces?.[0] ? createPoint("Rider home", "rider", rider.savedPlaces[0].lat, rider.savedPlaces[0].lng) : null,
+        trip ? createPoint("Driver pickup", "pickup", trip.pickup.lat, trip.pickup.lng) : null,
+        trip ? createPoint("Trip destination", "dropoff", trip.dropoff.lat, trip.dropoff.lng) : null,
+        request ? createPoint("Open request pickup", "request", request.pickup.lat, request.pickup.lng) : null
+      ].filter(Boolean)
+    };
+  }
+
+  if (state.activeView === "food") {
+    const order = data.foodDelivery.orders.find((item) => item.status === "on_the_way");
+    const restaurant = data.foodDelivery.restaurants.find((item) => item.id === order.restaurantId);
+    const customer = data.users.customers.find((item) => item.id === order.customerId);
+    const customerRider = data.users.riders.find((item) => item.email === customer?.email);
+
+    return {
+      label: "Food delivery",
+      points: [
+        restaurant ? createPoint("Restaurant", "restaurant", data.platform.cities[0].center.lat + 0.009, data.platform.cities[0].center.lng - 0.021) : null,
+        order ? createPoint("Customer", "customer", order.deliveryAddress.lat, order.deliveryAddress.lng) : null,
+        customerRider?.savedPlaces?.[0]
+          ? createPoint("Saved home", "customer-home", customerRider.savedPlaces[0].lat, customerRider.savedPlaces[0].lng)
+          : null
+      ].filter(Boolean)
+    };
+  }
+
+  const delivery = data.courierDelivery.deliveries[0];
+  const sender = data.users.riders.find((item) => item.id === delivery.senderUserId) || data.users.customers.find((item) => item.id === delivery.senderUserId);
+  const senderRider = data.users.riders.find((item) => item.id === delivery.senderUserId);
+
+  return {
+    label: "Courier route",
+    points: [
+      senderRider?.savedPlaces?.[1]
+        ? createPoint("Sender office", "sender", senderRider.savedPlaces[1].lat, senderRider.savedPlaces[1].lng)
+        : data.platform.cities[0].center
+          ? createPoint("Pickup zone", "pickup", data.platform.cities[0].center.lat, data.platform.cities[0].center.lng)
+          : null,
+      createPoint("Dropoff", "dropoff", data.platform.cities[0].center.lat + 0.014, data.platform.cities[0].center.lng + 0.02)
+    ].filter(Boolean)
+  };
+}
+
+function getMarkerColor(role) {
+  const colors = {
+    rider: "#18342d",
+    pickup: "#ff6b35",
+    dropoff: "#00a896",
+    request: "#ffb703",
+    restaurant: "#8f4ad0",
+    customer: "#0a5f56",
+    "customer-home": "#4f6d7a",
+    sender: "#18342d"
+  };
+
+  return colors[role] || "#18342d";
+}
+
+function renderLiveMap(data) {
+  const mapNode = document.querySelector("#live-map");
+  const legendNode = document.querySelector("#map-legend");
+  const modeNode = document.querySelector("#map-mode-label");
+
+  if (!mapNode || !legendNode || !modeNode) {
+    return;
+  }
+
+  const mapData = getMapData(data);
+  const cityCenter = data.platform.cities[0].center;
+  const bounds = {
+    minLat: cityCenter.lat - 0.12,
+    maxLat: cityCenter.lat + 0.12,
+    minLng: cityCenter.lng - 0.12,
+    maxLng: cityCenter.lng + 0.12
+  };
+
+  const markers = mapData.points
+    .map((point) => {
+      const x = clamp(((point.lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 100, 8, 92);
+      const y = clamp((1 - (point.lat - bounds.minLat) / (bounds.maxLat - bounds.minLat)) * 100, 10, 90);
+      const color = getMarkerColor(point.role);
+
+      return `
+        <div class="map-marker" style="left:${x}%;top:${y}%;">
+          <span class="map-pin" style="--marker-color:${color};"></span>
+          <div class="map-tooltip">
+            <strong>${point.label}</strong>
+            <span>${point.lat.toFixed(4)}, ${point.lng.toFixed(4)}</span>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  mapNode.innerHTML = `
+    <div class="map-grid-overlay"></div>
+    <div class="map-watermark">Chicago demo grid</div>
+    ${markers}
+  `;
+  modeNode.textContent = mapData.label;
+  legendNode.innerHTML = mapData.points
+    .map(
+      (point) => `
+        <div class="legend-item">
+          <span class="legend-dot" style="background:${getMarkerColor(point.role)};"></span>
+          <span>${point.label}</span>
+        </div>
+      `
+    )
+    .join("");
 }
 
 function renderRideOps(data) {
@@ -854,6 +984,7 @@ function renderApp(data) {
   renderHero(data);
   renderServices(data);
   renderTabs();
+  renderLiveMap(data);
   renderOperations(data);
   renderSidebar(data);
   renderMarketplace(data);

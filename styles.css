@@ -372,6 +372,105 @@ body::before {
   gap: 16px;
 }
 
+.map-card {
+  margin-bottom: 16px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 250, 242, 0.88), rgba(245, 239, 228, 0.82));
+  box-shadow: var(--shadow);
+}
+
+.live-map {
+  position: relative;
+  min-height: 320px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(24, 52, 45, 0.12);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.18), transparent 18%),
+    radial-gradient(circle at 80% 35%, rgba(0, 168, 150, 0.16), transparent 20%),
+    linear-gradient(180deg, #f7f1e8 0%, #efe5d4 100%);
+}
+
+.map-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(24, 52, 45, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 52, 45, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.7;
+}
+
+.map-watermark {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  color: rgba(19, 35, 31, 0.45);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.map-pin {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--marker-color);
+  box-shadow: 0 0 0 6px rgba(24, 52, 45, 0.12);
+}
+
+.map-tooltip {
+  position: absolute;
+  left: 14px;
+  top: -10px;
+  display: grid;
+  gap: 2px;
+  min-width: 126px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(24, 52, 45, 0.94);
+  color: #f4fff9;
+  box-shadow: 0 10px 24px rgba(24, 52, 45, 0.18);
+}
+
+.map-tooltip strong,
+.map-tooltip span {
+  font-size: 0.8rem;
+}
+
+.map-tooltip span {
+  color: rgba(244, 255, 249, 0.74);
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 14px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
 .ops-summary {
   padding: 20px;
   border-radius: var(--radius-lg);
