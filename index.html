@@ -31,13 +31,21 @@
       <main id="app">
         <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">One app for movement</p>
+            <p class="eyebrow">Local discovery for rides, food, and delivery</p>
             <h2 id="hero-title">Loading platform...</h2>
             <p id="hero-tagline" class="hero-text"></p>
-            <div class="hero-actions">
-              <a class="button primary" href="#services">Explore Services</a>
-              <a class="button secondary" href="#operations">See Live Ops</a>
+            <div class="search-shell">
+              <div class="search-group">
+                <label class="search-label" for="search-what">Find</label>
+                <input id="search-what" class="search-input" value="rides, momo delivery, courier jobs" readonly />
+              </div>
+              <div class="search-group">
+                <label class="search-label" for="search-where">Near</label>
+                <input id="search-where" class="search-input" value="Chicago, IL" readonly />
+              </div>
+              <a class="button primary search-button" href="#marketplace">Search</a>
             </div>
+            <div id="search-chip-row" class="search-chip-row"></div>
             <div class="hero-stats" id="hero-stats"></div>
           </div>
           <aside class="hero-panel">
@@ -60,8 +68,8 @@
 
         <section id="services" class="section">
           <div class="section-heading">
-            <p class="eyebrow">Core services</p>
-            <h2>Designed around the flows that matter</h2>
+            <p class="eyebrow">Popular Categories</p>
+            <h2>Browse the services people use most across the city</h2>
           </div>
           <div class="service-grid" id="service-grid"></div>
         </section>
@@ -97,21 +105,21 @@
 
         <section id="marketplace" class="section">
           <div class="section-heading">
-            <p class="eyebrow">Marketplace</p>
-            <h2>Restaurants, menus, couriers, and order states</h2>
+            <p class="eyebrow">Top Picks Near Downtown</p>
+            <h2>Restaurant-style listings, delivery context, and live operational detail</h2>
           </div>
           <div class="market-grid">
             <div class="panel-card">
               <div class="panel-header">
-                <h3>Featured restaurants</h3>
-                <span class="chip">Food delivery</span>
+                <h3>Featured places</h3>
+                <span class="chip">Open now</span>
               </div>
               <div id="restaurant-list" class="restaurant-list"></div>
             </div>
             <div class="panel-card">
               <div class="panel-header">
-                <h3>Top menu items</h3>
-                <span class="chip">Popular now</span>
+                <h3>Popular dishes</h3>
+                <span class="chip">Trending now</span>
               </div>
               <div id="menu-list" class="menu-list"></div>
             </div>

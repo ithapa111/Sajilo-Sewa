@@ -142,6 +142,22 @@ function signalCard(label, value) {
   `;
 }
 
+function ratingBadge(rating, reviewCount = 0) {
+  const rounded = Math.round((rating || 0) * 10) / 10;
+
+  return `
+    <div class="rating-row">
+      <div class="rating-stars" aria-hidden="true">
+        ${Array.from({ length: 5 }, (_, index) => {
+          const filled = rounded >= index + 1 || rounded > index + 0.4;
+          return `<span class="rating-star${filled ? " is-filled" : ""}"></span>`;
+        }).join("")}
+      </div>
+      <span class="rating-text">${rounded.toFixed(1)}${reviewCount ? ` (${numberFormatter.format(reviewCount)} reviews)` : ""}</span>
+    </div>
+  `;
+}
+
 function renderHero(data) {
   const { brand, cities } = data.platform;
   const kpis = data.analytics.adminDashboard;
@@ -163,6 +179,10 @@ function renderHero(data) {
     signalCard("Avg ride ETA", `${kpis.avgRideEtaMinutes} min`),
     signalCard("Food delivery", `${kpis.avgFoodDeliveryMinutes} min`)
   ].join("");
+
+  document.querySelector("#search-chip-row").innerHTML = ["Momos", "Airport rides", "Bike couriers", "Late-night food", "Top rated"]
+    .map((item) => `<span class="search-chip">${item}</span>`)
+    .join("");
 }
 
 function renderServices(data) {
@@ -176,13 +196,15 @@ function renderServices(data) {
             : `${data.courierDelivery.deliveries.length} courier jobs tracked`;
 
       return `
-        <article class="service-card animated-rise">
-          <p class="label">${service.status}</p>
-          <h3>${service.name}</h3>
-          <p class="service-meta">${service.description}</p>
-          <div class="meta-row">
-            <span class="tag">${meta}</span>
-            <span class="tag">Ready for API</span>
+        <article class="service-card listing-card animated-rise">
+          <div class="listing-body">
+            <p class="label">${service.status}</p>
+            <h3>${service.name}</h3>
+            <p class="service-meta">${service.description}</p>
+            <div class="meta-row">
+              <span class="tag">${meta}</span>
+              <span class="tag">Popular in Chicago</span>
+            </div>
           </div>
         </article>
       `;
@@ -545,17 +567,21 @@ function renderMarketplace(data) {
   document.querySelector("#restaurant-list").innerHTML = data.foodDelivery.restaurants
     .map(
       (restaurant) => `
-        <article class="restaurant-card animated-rise">
-          <div class="restaurant-head">
-            <div>
-              <p class="label">Rating ${restaurant.rating}</p>
-              <h3>${restaurant.name}</h3>
+        <article class="restaurant-card listing-card animated-rise">
+          <div class="listing-media">${restaurant.name.slice(0, 1)}</div>
+          <div class="listing-body">
+            <div class="restaurant-head">
+              <div>
+                <h3>${restaurant.name}</h3>
+                ${ratingBadge(restaurant.rating, Math.round(restaurant.rating * 128))}
+              </div>
+              <span class="chip">${restaurant.avgPrepTimeMinutes} min prep</span>
             </div>
-            <span class="chip">${restaurant.avgPrepTimeMinutes} min prep</span>
-          </div>
-          <p class="restaurant-meta">${restaurant.address} with a ${restaurant.deliveryRadiusMiles}-mile delivery radius.</p>
-          <div class="tags">
-            ${restaurant.cuisineTags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            <p class="listing-meta">${"$".repeat(restaurant.priceLevel)} • ${restaurant.cuisineTags.join(", ")} • ${restaurant.deliveryRadiusMiles} mi delivery</p>
+            <p class="restaurant-meta">${restaurant.address}</p>
+            <div class="tags">
+              ${restaurant.cuisineTags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            </div>
           </div>
         </article>
       `
@@ -567,18 +593,21 @@ function renderMarketplace(data) {
       const restaurant = data.foodDelivery.restaurants.find((entry) => entry.id === item.restaurantId);
 
       return `
-        <article class="menu-card animated-rise">
-          <div class="menu-head">
-            <div>
-              <p class="label">${restaurant.name}</p>
-              <h3>${item.name}</h3>
+        <article class="menu-card listing-card animated-rise">
+          <div class="listing-media food-media">${item.name.slice(0, 1)}</div>
+          <div class="listing-body">
+            <div class="menu-head">
+              <div>
+                <p class="label">${restaurant.name}</p>
+                <h3>${item.name}</h3>
+              </div>
+              <strong>${currencyFormatter.format(item.price)}</strong>
             </div>
-            <strong>${currencyFormatter.format(item.price)}</strong>
-          </div>
-          <p class="menu-meta">${item.description}</p>
-          <div class="menu-tags">
-            <span class="tag">${item.isPopular ? "Popular" : "Menu staple"}</span>
-            <span class="tag">${item.modifierGroupIds.length} modifier groups</span>
+            <p class="menu-meta">${item.description}</p>
+            <div class="menu-tags">
+              <span class="tag">${item.isPopular ? "Most loved" : "Neighborhood pick"}</span>
+              <span class="tag">${item.modifierGroupIds.length} custom options</span>
+            </div>
           </div>
         </article>
       `;
