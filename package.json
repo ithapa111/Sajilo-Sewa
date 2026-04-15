@@ -1,0 +1,11 @@
+{
+  "name": "sajilo-sewa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-service mobility and delivery starter app",
+  "scripts": {
+    "start": "node server.js",
+    "start:json": "node server.js",
+    "start:pg": "node server.js"
+  }
+}

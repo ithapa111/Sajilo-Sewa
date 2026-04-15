@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sajilo Sewa</title>
+    <meta
+      name="description"
+      content="Sajilo Sewa is a multi-service mobility and delivery platform for rides, meals, and packages."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <span class="brand-badge">SS</span>
+          <div>
+            <p class="eyebrow">Mobility + delivery</p>
+            <h1>Sajilo Sewa</h1>
+          </div>
+        </div>
+        <nav class="topnav" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#operations">Operations</a>
+          <a href="#marketplace">Marketplace</a>
+          <a href="#trust">Trust</a>
+        </nav>
+      </header>
+
+      <main id="app">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">One app for movement</p>
+            <h2 id="hero-title">Loading platform...</h2>
+            <p id="hero-tagline" class="hero-text"></p>
+            <div class="hero-actions">
+              <a class="button primary" href="#services">Explore Services</a>
+              <a class="button secondary" href="#operations">See Live Ops</a>
+            </div>
+            <div class="hero-stats" id="hero-stats"></div>
+          </div>
+          <aside class="hero-panel">
+            <div class="status-card">
+              <p class="label">Live market</p>
+              <h3 id="city-name">-</h3>
+              <p id="timezone-label"></p>
+            </div>
+            <div class="demo-card">
+              <p class="label">Demo flow</p>
+              <ol class="demo-list">
+                <li>Use the built-in demo session, or create an account.</li>
+                <li>Submit a ride, food, or courier request.</li>
+                <li>Review the live API response and refreshed dashboard.</li>
+              </ol>
+            </div>
+            <div class="signal-grid" id="signal-grid"></div>
+          </aside>
+        </section>
+
+        <section id="services" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Core services</p>
+            <h2>Designed around the flows that matter</h2>
+          </div>
+          <div class="service-grid" id="service-grid"></div>
+        </section>
+
+        <section id="operations" class="section operations-layout">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Operations</p>
+              <h2>Dispatch, pricing, and live movement in one surface</h2>
+            </div>
+            <div class="ops-tabs" id="ops-tabs" role="tablist" aria-label="Operations views"></div>
+            <div class="ops-panel" id="ops-panel"></div>
+          </div>
+          <aside class="ops-sidebar">
+            <div class="sidebar-card">
+              <p class="label">Demand zones</p>
+              <div id="zone-list"></div>
+            </div>
+            <div class="sidebar-card">
+              <p class="label">Promotions</p>
+              <div id="promo-list"></div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="marketplace" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Marketplace</p>
+            <h2>Restaurants, menus, couriers, and order states</h2>
+          </div>
+          <div class="market-grid">
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Featured restaurants</h3>
+                <span class="chip">Food delivery</span>
+              </div>
+              <div id="restaurant-list" class="restaurant-list"></div>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Top menu items</h3>
+                <span class="chip">Popular now</span>
+              </div>
+              <div id="menu-list" class="menu-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Account Access</p>
+            <h2>Choose an account before sending live requests</h2>
+          </div>
+          <div class="section-callout">
+            The demo works immediately with built-in tokens. Creating or logging into an account switches the forms to your saved session automatically.
+          </div>
+          <div class="market-grid">
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Create account</h3>
+                <span class="chip">New user</span>
+              </div>
+              <form id="signup-form" class="action-form">
+                <input name="fullName" placeholder="Full name" required />
+                <input name="email" type="email" placeholder="Email address" required />
+                <input name="password" type="password" placeholder="Password" required />
+                <select name="role" required>
+                  <option value="rider">Rider</option>
+                  <option value="customer">Customer</option>
+                  <option value="courier">Courier</option>
+                  <option value="driver">Driver</option>
+                </select>
+                <button class="button primary" type="submit">Create account</button>
+              </form>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Log in</h3>
+                <span class="chip">Existing user</span>
+              </div>
+              <form id="login-form" class="action-form">
+                <input name="email" type="email" placeholder="Email address" required />
+                <input name="password" type="password" placeholder="Password" required />
+                <button class="button primary" type="submit">Log in</button>
+              </form>
+              <div id="auth-session" class="session-card">
+                <p class="label">Current access</p>
+                <strong id="session-role">Demo session</strong>
+                <p id="session-user">Create or log into an account to use a saved personal token.</p>
+                <button id="logout-button" class="button secondary" type="button">Clear session</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Create Requests</p>
+            <h2>Submit rides, food orders, and courier jobs</h2>
+          </div>
+          <div class="section-callout">
+            Each form shows which account role can use it. If the current account cannot submit, the form explains why before any API call is made.
+          </div>
+          <div class="market-grid">
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Request a ride</h3>
+                <span class="chip">Rider access</span>
+              </div>
+              <form id="ride-form" class="action-form">
+                <input name="riderId" value="rider_001" placeholder="Rider ID" required />
+                <input name="requestedTierId" value="tier_go" placeholder="Tier ID" required />
+                <input name="pickupAddress" placeholder="Pickup address" required />
+                <input name="dropoffAddress" placeholder="Dropoff address" required />
+                <button class="button primary" type="submit">Create ride request</button>
+                <p id="ride-form-note" class="form-note"></p>
+              </form>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header">
+                <h3>Place food order</h3>
+                <span class="chip">Customer access</span>
+              </div>
+              <form id="food-form" class="action-form">
+                <input name="customerId" value="cust_001" placeholder="Customer ID" required />
+                <input name="restaurantId" value="rest_001" placeholder="Restaurant ID" required />
+                <input name="deliveryAddress" placeholder="Delivery address" required />
+                <button class="button primary" type="submit">Create food order</button>
+                <p id="food-form-note" class="form-note"></p>
+              </form>
+            </div>
+          </div>
+          <div class="panel-card action-panel">
+            <div class="panel-header">
+              <h3>Book courier delivery</h3>
+              <span class="chip">Rider or customer access</span>
+            </div>
+            <form id="courier-form" class="action-form action-form-wide">
+              <input name="senderUserId" value="rider_001" placeholder="Sender user ID" required />
+              <input name="packageTypeId" value="pkg_small" placeholder="Package type ID" required />
+              <input name="pickupAddress" placeholder="Pickup address" required />
+              <input name="dropoffAddress" placeholder="Dropoff address" required />
+              <button class="button primary" type="submit">Create courier job</button>
+            </form>
+            <p id="courier-form-note" class="form-note"></p>
+            <div class="result-header">
+              <p class="label">Live response</p>
+              <strong id="action-result-title">Waiting for a request</strong>
+            </div>
+            <pre id="action-result" class="action-result">Submit a form to create new data.</pre>
+          </div>
+        </section>
+
+        <section class="section insights-layout">
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3>Platform performance</h3>
+              <span class="chip">Daily KPIs</span>
+            </div>
+            <div id="kpi-grid" class="kpi-grid"></div>
+          </div>
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3>Support and trust</h3>
+              <span class="chip">Critical paths</span>
+            </div>
+            <div id="support-list" class="support-list"></div>
+          </div>
+        </section>
+
+        <section id="trust" class="section trust-grid">
+          <div class="section-heading">
+            <p class="eyebrow">Trust and safety</p>
+            <h2>Verification, incident reporting, and rider confidence</h2>
+          </div>
+          <div id="safety-panel" class="safety-panel"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./data/sajilo-seed-data.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
