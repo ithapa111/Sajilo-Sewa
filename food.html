@@ -24,71 +24,80 @@
         <nav class="topnav" aria-label="Primary">
           <a href="./index.html">Home</a>
           <a href="#discover">Discover</a>
+          <a href="#results">Restaurants</a>
           <a href="#favorites">Favorites</a>
-          <a href="#delivery-flow">Delivery flow</a>
         </nav>
       </header>
 
       <main class="food-page-main">
         <section class="food-hero">
           <div class="food-hero-copy">
-            <p class="eyebrow">Order food with clarity</p>
-            <h2>From momo and thali to curries and tandoori plates, the whole food experience feels rich, local, and premium.</h2>
+            <p class="eyebrow">Restaurant discovery, delivery, pickup, and dine-in</p>
+            <h2>Find great Nepali and Indian restaurants, check the details fast, and decide how you want to order.</h2>
             <p class="food-hero-text">
-              Browse Nepali and Indian restaurants, discover signature dishes, follow prep and delivery progress, and
-              place an order without friction. This page stays focused on the food product so it feels warmer,
-              culturally relevant, and more customer-friendly.
+              Browse menus, compare ratings, photos, price range, takeout, delivery, waitlist, and reservation options,
+              then move into a cleaner order or dine-in flow.
             </p>
+            <div class="food-service-modes" aria-label="Service modes">
+              <span class="food-service-mode is-active">Delivery</span>
+              <span class="food-service-mode">Pickup</span>
+              <span class="food-service-mode">Dine-in</span>
+            </div>
             <div class="food-hero-actions">
-              <a class="button primary" href="#discover">Start ordering</a>
-              <a class="button secondary" href="#favorites">See featured meals</a>
+              <a class="button primary" href="#discover">Find restaurants</a>
+              <a class="button secondary" href="#results">Browse top results</a>
             </div>
             <div class="food-highlights">
               <article class="food-highlight-card">
-                <span class="metric-label">Delivery promise</span>
-                <strong>Fast local dropoff</strong>
-                <p>Track prep time, courier movement, and final handoff in one clean flow.</p>
+                <span class="metric-label">Clear search</span>
+                <strong>Find restaurants fast</strong>
+                <p>Search by dish, restaurant, and location without extra steps.</p>
               </article>
               <article class="food-highlight-card">
-                <span class="metric-label">Customer comfort</span>
-                <strong>Easy to explore</strong>
-                <p>Restaurant discovery, favorite dishes, and ordering details stay readable on every device.</p>
-              </article>
-              <article class="food-highlight-card">
-                <span class="metric-label">Checkout flow</span>
-                <strong>Built for confidence</strong>
-                <p>Clear fees, item totals, and delivery details reduce hesitation before checkout.</p>
+                <span class="metric-label">Easy choice</span>
+                <strong>Compare the details that matter</strong>
+                <p>Ratings, price, service mode, and top dishes stay in one clean card.</p>
               </article>
             </div>
           </div>
           <div class="food-hero-visual">
-            <img src="./assets/food-hero.svg" alt="Illustrated Nepali and Indian meal spread" />
+            <div class="food-hero-photo-stack">
+              <img class="food-hero-photo is-primary" src="./assets/Momo.1.jpg" alt="Plate of momo" />
+              <img class="food-hero-photo is-secondary" src="./assets/Chowein.1.webp" alt="Plate of chowmein" />
+            </div>
           </div>
         </section>
 
         <section id="discover" class="section food-discovery-section">
           <div class="section-heading">
             <p class="eyebrow">Discover</p>
-            <h2>Find Nepali and Indian restaurants and dishes that feel exciting, local, and easy to order</h2>
+            <h2>Search by restaurant, dish, and location</h2>
           </div>
           <div class="food-search-bar">
-            <div class="food-search-copy">
-              <p class="label">Nearby search</p>
-              <h3>Find the best Nepali and Indian food near you</h3>
-              <p>Search by area, street, restaurant, or dish and get a focused local list fast.</p>
-            </div>
             <div class="food-search-panel">
-              <div class="search-group">
-                <label class="search-label" for="food-location-search">Search location</label>
-                <input
-                  id="food-location-search"
-                  class="search-input food-search-input"
-                  type="text"
-                  value="Chicago, IL"
-                  placeholder="Search Downtown Loop, North Side, West Corridor..."
-                />
+              <div class="food-search-fields">
+                <div class="search-group">
+                  <label class="search-label" for="food-restaurant-search">Restaurant or dish</label>
+                  <input
+                    id="food-restaurant-search"
+                    class="search-input food-search-input"
+                    type="text"
+                    value=""
+                    placeholder="Momo, biryani, tandoori, Himalayan Spice..."
+                  />
+                </div>
+                <div class="search-group">
+                  <label class="search-label" for="food-location-search">Near</label>
+                  <input
+                    id="food-location-search"
+                    class="search-input food-search-input"
+                    type="text"
+                    value="Chicago, IL"
+                    placeholder="Downtown Loop, North Side, West Corridor..."
+                  />
+                </div>
               </div>
-              <button id="food-location-button" class="button primary food-search-button" type="button">Find nearby dishes</button>
+              <button id="food-location-button" class="button primary food-search-button" type="button">Find restaurants</button>
               <div class="food-search-suggestions">
                 <span>Downtown Loop</span>
                 <span>North Side</span>
@@ -99,54 +108,21 @@
               </div>
             </div>
           </div>
-          <div class="food-category-row">
-            <span class="food-category-chip">Nepali favorites</span>
-            <span class="food-category-chip">Indian curries</span>
-            <span class="food-category-chip">Momo specials</span>
-            <span class="food-category-chip">Tandoori plates</span>
-            <span class="food-category-chip">Lassi and chai</span>
-          </div>
-          <div class="food-discovery-grid">
-            <article class="food-showcase-card">
-              <p class="label">Featured restaurant</p>
-              <h3>Himalayan Spice House</h3>
-              <p>Comforting Nepali and North Indian dishes with reliable prep timing and a menu that works for solo meals and family ordering.</p>
-              <div class="food-showcase-meta">
-                <span>4.8 rating</span>
-                <span>22 min prep</span>
-                <span>Free delivery over $25</span>
-              </div>
-            </article>
-            <article class="food-showcase-card">
-              <p class="label">Most loved dish</p>
-              <h3>Chicken momo combo</h3>
-              <p>Steamed momo, achar, and a satisfying portion that feels like a real neighborhood favorite.</p>
-              <div class="food-showcase-meta">
-                <span>Best seller</span>
-                <span>Custom spice level</span>
-                <span>Popular at lunch</span>
-              </div>
-            </article>
-            <article class="food-showcase-card">
-              <p class="label">Delivery area</p>
-              <h3>Downtown to North Side</h3>
-              <p>Coverage zones stay visible so customers understand where orders move quickly and where timing may vary.</p>
-              <div class="food-showcase-meta">
-                <span>Live courier coverage</span>
-                <span>Peak-hour alerts</span>
-                <span>Zone-based pricing</span>
-              </div>
-            </article>
+          <div class="food-filter-row" aria-label="Restaurant filters">
+            <span class="food-filter-chip is-active">Open now</span>
+            <span class="food-filter-chip">Delivery</span>
+            <span class="food-filter-chip">Pickup</span>
+            <span class="food-filter-chip">4.5+</span>
           </div>
         </section>
 
-        <section class="section food-results-section">
+        <section id="results" class="section food-results-section">
           <div class="section-heading">
             <p class="eyebrow">Near your location</p>
-            <h2>All Nepali and Indian dishes near the searched location</h2>
+            <h2>Choose a restaurant with confidence</h2>
           </div>
           <div class="section-callout">
-            Search by city area, neighborhood, or address keyword. The results below only show Nepali and Indian food options near the location you enter.
+            Each card shows the essentials first: rating, price, location, service mode, and top dishes.
           </div>
           <div id="food-results-summary" class="food-results-summary"></div>
           <div id="food-results-list" class="food-results-list"></div>
@@ -155,11 +131,11 @@
         <section id="favorites" class="section food-favorites-section">
           <div class="section-heading">
             <p class="eyebrow">Customer favorites</p>
-            <h2>Colorful Nepali and Indian meal cards that make ordering feel immediate and appetizing</h2>
+            <h2>Popular dishes customers order again and again</h2>
           </div>
           <div class="food-favorites-grid">
             <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/meal-burger.svg" alt="Illustrated Nepali thali meal" />
+              <img class="food-meal-image" src="./assets/Chowein.1.webp" alt="Plate of chowmein" />
               <div class="food-meal-badge">Most ordered</div>
               <h3>Classic Nepali thali set</h3>
               <p>Rice, dal, tarkari, achar, and greens presented as a complete comforting meal.</p>
@@ -169,7 +145,7 @@
               </div>
             </article>
             <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/meal-momo.svg" alt="Illustrated momo meal" />
+              <img class="food-meal-image" src="./assets/Momo.1.jpg" alt="Plate of momo" />
               <div class="food-meal-badge">Local favorite</div>
               <h3>Momo feast set</h3>
               <p>Steamed dumplings, spicy chutney, and a warm meal profile that feels unmistakably local and memorable.</p>
@@ -179,7 +155,7 @@
               </div>
             </article>
             <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/meal-bowl.svg" alt="Illustrated paneer tikka plate" />
+              <img class="food-meal-image" src="./assets/Chowein.1.webp" alt="Plate of chowmein noodles" />
               <div class="food-meal-badge">Chef pick</div>
               <h3>Paneer tikka plate</h3>
               <p>Smoky paneer, naan, chutney, and masala onion sides in a plate that feels vibrant and indulgent.</p>
@@ -191,34 +167,10 @@
           </div>
         </section>
 
-        <section id="delivery-flow" class="section food-flow-section">
-          <div class="section-heading">
-            <p class="eyebrow">Delivery flow</p>
-            <h2>Customers should understand where the order is at every step</h2>
-          </div>
-          <div class="food-flow-grid">
-            <article class="food-flow-card">
-              <span class="food-flow-step">1</span>
-              <h3>Choose restaurant and dishes</h3>
-              <p>Menus, modifiers, and price details stay easy to compare before checkout.</p>
-            </article>
-            <article class="food-flow-card">
-              <span class="food-flow-step">2</span>
-              <h3>Restaurant starts preparing</h3>
-              <p>Prep timing, queue status, and item totals stay visible without confusion.</p>
-            </article>
-            <article class="food-flow-card">
-              <span class="food-flow-step">3</span>
-              <h3>Courier picks up and delivers</h3>
-              <p>Customers see progress, route movement, and estimated arrival in one place.</p>
-            </article>
-          </div>
-        </section>
-
         <section class="section food-contact-section">
           <div class="section-heading">
-            <p class="eyebrow">Quick contact</p>
-            <h2>Call or message support fast when a customer needs help</h2>
+            <p class="eyebrow">Support</p>
+            <h2>Need help with an order?</h2>
           </div>
           <div class="food-contact-grid">
             <article class="food-contact-card">
@@ -248,31 +200,6 @@
               <p>Customer support stays open from 9:00 AM to 11:00 PM for food delivery help.</p>
               <span class="food-contact-status">Support active</span>
             </article>
-          </div>
-        </section>
-
-        <section id="order-now" class="section food-cta-section">
-          <div class="food-cta-card">
-            <div class="food-cta-copy">
-              <p class="eyebrow">Ready to order</p>
-              <h2>Make Nepali and Indian food delivery feel premium, colorful, and effortless.</h2>
-              <p>This dedicated page gives food delivery a stronger identity with local dishes, cleaner browsing, better search, and faster customer support.</p>
-              <div class="food-cta-pills">
-                <span>Momo and thali favorites</span>
-                <span>Fast local delivery</span>
-                <span>Quick customer support</span>
-              </div>
-            </div>
-            <div class="food-cta-side">
-              <div class="food-cta-mark">
-                <strong>FAST</strong>
-                <span>Fresh local delivery</span>
-              </div>
-              <div class="food-cta-actions">
-                <a class="button primary" href="#discover">Browse food</a>
-                <a class="button secondary" href="#delivery-flow">View delivery flow</a>
-              </div>
-            </div>
           </div>
         </section>
       </main>

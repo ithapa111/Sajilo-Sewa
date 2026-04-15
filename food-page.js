@@ -13,72 +13,108 @@ const curatedRestaurants = [
     name: "Everest Thakali Kitchen",
     cuisineTags: ["Nepali", "Thakali", "Thali"],
     rating: 4.9,
+    reviewCount: 412,
     priceLevel: 2,
     address: "1128 W Taylor St, Chicago, IL",
     zoneId: "zone_west",
     deliveryRadiusMiles: 5.2,
     avgPrepTimeMinutes: 25,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: true,
+    hasReservations: true,
+    hasWaitlist: true
   },
   {
     id: "rest_nep_003",
     name: "Momo Ghar Express",
     cuisineTags: ["Nepali", "Momo", "Sekuwa"],
     rating: 4.8,
+    reviewCount: 355,
     priceLevel: 2,
     address: "946 W Diversey Pkwy, Chicago, IL",
     zoneId: "zone_north",
     deliveryRadiusMiles: 4.8,
     avgPrepTimeMinutes: 21,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: false,
+    hasReservations: false,
+    hasWaitlist: false
   },
   {
     id: "rest_ind_001",
     name: "Curry Mahal",
     cuisineTags: ["Indian", "Curries", "Biryani"],
     rating: 4.8,
+    reviewCount: 528,
     priceLevel: 2,
     address: "230 W Monroe St, Chicago, IL",
     zoneId: "zone_loop",
     deliveryRadiusMiles: 4.2,
     avgPrepTimeMinutes: 24,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: true,
+    hasReservations: true,
+    hasWaitlist: true
   },
   {
     id: "rest_ind_002",
     name: "Tandoori Junction",
     cuisineTags: ["Indian", "Tandoori", "Naan"],
     rating: 4.7,
+    reviewCount: 286,
     priceLevel: 2,
     address: "945 W Belmont Ave, Chicago, IL",
     zoneId: "zone_north",
     deliveryRadiusMiles: 5.1,
     avgPrepTimeMinutes: 23,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: true,
+    hasReservations: true,
+    hasWaitlist: false
   },
   {
     id: "rest_ind_003",
     name: "Biryani Bazaar",
     cuisineTags: ["Indian", "Biryani", "Kebab"],
     rating: 4.8,
+    reviewCount: 471,
     priceLevel: 2,
     address: "201 E Grand Ave, Chicago, IL",
     zoneId: "zone_loop",
     deliveryRadiusMiles: 4.6,
     avgPrepTimeMinutes: 26,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: true,
+    hasReservations: true,
+    hasWaitlist: true
   },
   {
     id: "rest_ind_004",
     name: "Chai Chaat Corner",
     cuisineTags: ["Indian", "Chaat", "Street Food"],
     rating: 4.6,
+    reviewCount: 194,
     priceLevel: 1,
     address: "1458 N Milwaukee Ave, Chicago, IL",
     zoneId: "zone_west",
     deliveryRadiusMiles: 4.9,
     avgPrepTimeMinutes: 19,
-    isOpen: true
+    isOpen: true,
+    offersDelivery: true,
+    offersPickup: true,
+    offersDineIn: false,
+    hasReservations: false,
+    hasWaitlist: false
   }
 ];
 
@@ -220,6 +256,20 @@ function getMenuSearchText(item) {
   return [item.name, item.description || ""].join(" ").toLowerCase();
 }
 
+function formatPriceLevel(priceLevel = 2) {
+  return "$".repeat(priceLevel);
+}
+
+function getServiceModes(restaurant) {
+  return [
+    restaurant.offersDelivery ? "Delivery" : null,
+    restaurant.offersPickup ? "Pickup" : null,
+    restaurant.offersDineIn ? "Dine-in" : null,
+    restaurant.hasReservations ? "Reservations" : null,
+    restaurant.hasWaitlist ? "Waitlist" : null
+  ].filter(Boolean);
+}
+
 function buildFoodDataset() {
   const data = window.SAJILO_SEED_DATA;
   const zoneMap = getZoneMap(data);
@@ -264,20 +314,20 @@ function getDishArtwork(item) {
 
   if (name.includes("momo")) {
     return {
-      src: "./assets/meal-momo.svg",
+      src: "./assets/Momo.1.jpg",
       alt: "Momo dish"
     };
   }
 
   if (name.includes("thali") || name.includes("khana") || name.includes("sekuwa")) {
     return {
-      src: "./assets/meal-burger.svg",
-      alt: "Nepali thali dish"
+      src: "./assets/Chowein.1.webp",
+      alt: "Nepali dish"
     };
   }
 
   return {
-    src: "./assets/meal-bowl.svg",
+    src: "./assets/Chowein.1.webp",
     alt: "Indian dish"
   };
 }
@@ -287,7 +337,7 @@ function getRestaurantCover(restaurant) {
 
   if (tags.includes("momo")) {
     return {
-      src: "./assets/meal-momo.svg",
+      src: "./assets/Momo.1.jpg",
       alt: `${restaurant.name} momo selection`,
       themeClass: "is-momo"
     };
@@ -295,14 +345,14 @@ function getRestaurantCover(restaurant) {
 
   if (tags.includes("thali") || tags.includes("thakali")) {
     return {
-      src: "./assets/meal-burger.svg",
+      src: "./assets/Chowein.1.webp",
       alt: `${restaurant.name} Nepali thali selection`,
       themeClass: "is-thali"
     };
   }
 
   return {
-    src: "./assets/meal-bowl.svg",
+    src: "./assets/Chowein.1.webp",
     alt: `${restaurant.name} Indian food selection`,
     themeClass: "is-curry"
   };
@@ -315,6 +365,9 @@ function buildRestaurantCards(restaurants, itemsByRestaurant, zoneMap) {
       const items = itemsByRestaurant.get(restaurant.id) || [];
       const cuisineBadge = getCuisineBadge(restaurant);
       const cover = getRestaurantCover(restaurant);
+      const serviceModes = getServiceModes(restaurant);
+      const reviewCount = restaurant.reviewCount || Math.round(restaurant.rating * 80);
+      const priceLabel = formatPriceLevel(restaurant.priceLevel);
 
       return `
         <article class="food-result-restaurant">
@@ -335,12 +388,22 @@ function buildRestaurantCards(restaurants, itemsByRestaurant, zoneMap) {
                   <span>${cuisineBadge}</span>
                   <span>${zone?.name || "Chicago"}</span>
                   <span>${restaurant.isOpen ? "Open now" : "Closed"}</span>
+                  <span>${priceLabel}</span>
                 </div>
               </div>
             </div>
-            <span class="food-result-rating">${restaurant.rating.toFixed(1)} rating</span>
+            <span class="food-result-rating">${restaurant.rating.toFixed(1)} stars • ${numberFormatter.format(reviewCount)} reviews</span>
           </div>
           <p class="food-result-meta">${restaurant.address} | ${zone?.name || "Chicago"} | ${restaurant.avgPrepTimeMinutes} min prep | ${restaurant.deliveryRadiusMiles} mi delivery</p>
+          <div class="food-result-service-row">
+            ${serviceModes.map((mode) => `<span>${mode}</span>`).join("")}
+          </div>
+          <div class="food-result-action-row">
+            ${restaurant.offersDelivery ? `<a class="button primary food-result-action" href="#order-now">Order delivery</a>` : ""}
+            ${restaurant.offersPickup ? `<a class="button secondary food-result-action" href="#order-now">Pickup</a>` : ""}
+            ${restaurant.hasReservations ? `<a class="button secondary food-result-action" href="#restaurant-tools">Reserve table</a>` : ""}
+            ${restaurant.hasWaitlist ? `<a class="button secondary food-result-action" href="#restaurant-tools">Join waitlist</a>` : ""}
+          </div>
           <div class="food-result-dishes">
             ${items
               .map((item) => {
@@ -369,6 +432,7 @@ function buildRestaurantCards(restaurants, itemsByRestaurant, zoneMap) {
 }
 
 function renderFoodResults() {
+  const searchInput = document.querySelector("#food-restaurant-search");
   const locationInput = document.querySelector("#food-location-search");
   const summaryNode = document.querySelector("#food-results-summary");
   const listNode = document.querySelector("#food-results-list");
@@ -378,7 +442,9 @@ function renderFoodResults() {
   }
 
   const { data, zoneMap, restaurants, menuItems } = buildFoodDataset();
-  const query = locationInput.value.trim().toLowerCase();
+  const locationQuery = locationInput.value.trim().toLowerCase();
+  const searchQuery = searchInput?.value.trim().toLowerCase() || "";
+  const query = [searchQuery, locationQuery].filter(Boolean).join(" ");
 
   const restaurantsWithItems = restaurants
     .map((restaurant) => {
@@ -391,8 +457,11 @@ function renderFoodResults() {
           return true;
         }
 
-        const restaurantMatch = getRestaurantSearchText(data, restaurant, zoneMap).includes(query);
-        const itemMatch = getMenuSearchText(item).includes(query);
+        const restaurantSearchText = getRestaurantSearchText(data, restaurant, zoneMap);
+        const restaurantMatch =
+          (!searchQuery || restaurantSearchText.includes(searchQuery) || getMenuSearchText(item).includes(searchQuery)) &&
+          (!locationQuery || restaurantSearchText.includes(locationQuery));
+        const itemMatch = getMenuSearchText(item).includes(searchQuery);
         return restaurantMatch || itemMatch;
       });
 
@@ -407,14 +476,17 @@ function renderFoodResults() {
   const itemsByRestaurant = new Map(restaurantsWithItems.map(({ restaurant, items }) => [restaurant.id, items]));
   const totalItems = restaurantsWithItems.reduce((sum, entry) => sum + entry.items.length, 0);
   const searchLabel = locationInput.value.trim() || "all nearby areas";
+  const searchTermLabel = searchInput?.value.trim() || "all restaurants";
+  const reservationCount = filteredRestaurants.filter((restaurant) => restaurant.hasReservations).length;
+  const waitlistCount = filteredRestaurants.filter((restaurant) => restaurant.hasWaitlist).length;
 
   summaryNode.innerHTML = `
     <article class="food-results-card">
       <div class="food-results-card-top">
         <div class="food-results-card-copy">
           <p class="label">Search results</p>
-          <h3>${filteredRestaurants.length > 0 ? `Showing ${numberFormatter.format(totalItems)} Nepali and Indian dishes near ${searchLabel}` : "No Nepali or Indian dishes found near that location"}</h3>
-          <p>${filteredRestaurants.length > 0 ? `${numberFormatter.format(filteredRestaurants.length)} restaurants and their full matching dish lists are shown below. Results stay limited to Nepali and Indian cuisine only.` : "Try Chicago, Downtown Loop, North Side, West Corridor, Belmont, Randolph, Taylor, or Milwaukee."}</p>
+          <h3>${filteredRestaurants.length > 0 ? `Showing ${numberFormatter.format(filteredRestaurants.length)} restaurants and ${numberFormatter.format(totalItems)} dishes for ${searchTermLabel}` : "No Nepali or Indian restaurants matched that search"}</h3>
+          <p>${filteredRestaurants.length > 0 ? `Results near ${searchLabel} include restaurant discovery details, service modes, and menu highlights. The list stays limited to Nepali and Indian cuisine.` : "Try Chicago, Downtown Loop, North Side, West Corridor, momo, biryani, tandoori, Taylor, or Milwaukee."}</p>
         </div>
         <div class="food-results-card-mark">${filteredRestaurants.length > 0 ? "NEARBY" : "SEARCH"}</div>
       </div>
@@ -423,7 +495,8 @@ function renderFoodResults() {
           ? `<div class="food-results-pills">
                <span>${numberFormatter.format(filteredRestaurants.length)} nearby restaurants</span>
                <span>${numberFormatter.format(totalItems)} matching dishes</span>
-               <span>Nepali and Indian only</span>
+               <span>${numberFormatter.format(reservationCount)} with reservations</span>
+               <span>${numberFormatter.format(waitlistCount)} with waitlist</span>
              </div>
              <div class="food-results-metrics">
                <article>
@@ -448,18 +521,23 @@ function renderFoodResults() {
     ? buildRestaurantCards(filteredRestaurants, itemsByRestaurant, zoneMap)
     : `
         <article class="food-result-empty">
-          <h3>No nearby Nepali or Indian food found</h3>
-          <p>Try searching by city, neighborhood, street, restaurant, or dish name such as Chicago, Downtown Loop, momo, biryani, or thali.</p>
+          <h3>No nearby Nepali or Indian restaurant found</h3>
+          <p>Try searching by city, neighborhood, restaurant, or dish name such as Chicago, Downtown Loop, momo, biryani, or thali.</p>
         </article>
       `;
 }
 
 const locationButton = document.querySelector("#food-location-button");
 const locationInput = document.querySelector("#food-location-search");
+const restaurantSearchInput = document.querySelector("#food-restaurant-search");
 
 if (locationButton && locationInput) {
   locationButton.addEventListener("click", renderFoodResults);
   locationInput.addEventListener("input", renderFoodResults);
+}
+
+if (restaurantSearchInput) {
+  restaurantSearchInput.addEventListener("input", renderFoodResults);
 }
 
 renderFoodResults();
