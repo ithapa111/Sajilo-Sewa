@@ -77,7 +77,12 @@ function serveFile(res, filePath) {
     ".js": "application/javascript; charset=utf-8",
     ".json": "application/json; charset=utf-8",
     ".md": "text/markdown; charset=utf-8",
-    ".svg": "image/svg+xml"
+    ".svg": "image/svg+xml",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".jfif": "image/jpeg",
+    ".webp": "image/webp"
   };
 
   res.writeHead(200, {

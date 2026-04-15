@@ -8,7 +8,7 @@ Sajilo Sewa is a multi-service platform demo that brings three product lines int
 
 The current app includes:
 
-- a polished landing page with distinct ridesharing, food delivery, and courier sections
+- a polished landing page with mobile-friendly service navigation and distinct ridesharing, food delivery, and courier sections
 - service-specific API paths and request flows
 - operational dashboards, live map views, and themed request forms
 - JSON and PostgreSQL storage options for seeded platform data
@@ -19,7 +19,6 @@ The content is inspired by modern mobility and delivery product flows, but it do
 
 - `index.html`: app entry point
 - `styles.css`: visual system and responsive layout
-- `app.js`: UI rendering logic
 - `data/sajilo-seed-data.json`: seed-ready reference data for the app
 - `data/sajilo-seed-data.js`: browser-ready seed data for direct HTML loading
 - `docs/reference-model.md`: explanation of the important entities and how to use them
