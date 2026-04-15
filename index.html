@@ -8,15 +8,16 @@
       name="description"
       content="Sajilo Sewa is a multi-service mobility and delivery platform for rides, meals, and packages."
     />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="topbar">
         <div class="brand-lockup">
-          <span class="brand-badge">SS</span>
+          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
           <div>
-            <p class="eyebrow">Mobility + delivery</p>
+            <p class="eyebrow">Multi-service platform</p>
             <h1>Sajilo Sewa</h1>
           </div>
         </div>
@@ -24,6 +25,7 @@
           <a href="#services">Services</a>
           <a href="#operations">Operations</a>
           <a href="#marketplace">Marketplace</a>
+          <a href="#api-overview">API</a>
           <a href="#trust">Trust</a>
         </nav>
       </header>
@@ -34,6 +36,7 @@
             <p class="eyebrow">Local discovery for rides, food, and delivery</p>
             <h2 id="hero-title">Loading platform...</h2>
             <p id="hero-tagline" class="hero-text"></p>
+            <div id="hero-lanes" class="hero-lanes"></div>
             <div class="search-shell">
               <div class="search-group">
                 <label class="search-label" for="search-what">Find</label>
@@ -43,21 +46,21 @@
                 <label class="search-label" for="search-where">Near</label>
                 <input id="search-where" class="search-input" value="Chicago, IL" readonly />
               </div>
-              <a class="button primary search-button" href="#marketplace">Search</a>
+              <a class="button primary search-button" href="#marketplace">Explore</a>
             </div>
             <div id="search-chip-row" class="search-chip-row"></div>
             <div class="hero-stats" id="hero-stats"></div>
           </div>
           <aside class="hero-panel">
             <div class="status-card">
-              <p class="label">Live market</p>
+              <p class="label">Active city</p>
               <h3 id="city-name">-</h3>
               <p id="timezone-label"></p>
             </div>
             <div class="demo-card">
-              <p class="label">Demo flow</p>
+              <p class="label">How it works</p>
               <ol class="demo-list">
-                <li>Use the built-in demo session, or create an account.</li>
+                <li>Start with built-in access, or create an account.</li>
                 <li>Submit a ride, food, or courier request.</li>
                 <li>Review the live API response and refreshed dashboard.</li>
               </ol>
@@ -68,10 +71,24 @@
 
         <section id="services" class="section">
           <div class="section-heading">
-            <p class="eyebrow">Popular Categories</p>
-            <h2>Browse the services people use most across the city</h2>
+            <p class="eyebrow">Three Product Lines</p>
+            <h2>Ridesharing, food ordering and delivery, and courier in one clear platform</h2>
+          </div>
+          <div class="section-callout">
+            Each product has its own customer flow, operating model, API path, role access, and fulfillment requirements. The homepage now makes those differences explicit so the platform reads like a serious multi-service app instead of a generic demo.
           </div>
           <div class="service-grid" id="service-grid"></div>
+        </section>
+
+        <section id="api-overview" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Service APIs</p>
+            <h2>Three clear APIs so rides, food, and courier flows stay separate</h2>
+          </div>
+          <div class="section-callout">
+            Each service has its own base path and request flow. The page keeps the names simple so developers and demo viewers can follow the product without guessing.
+          </div>
+          <div id="api-grid" class="api-grid"></div>
         </section>
 
         <section id="operations" class="section operations-layout">
@@ -105,21 +122,44 @@
 
         <section id="marketplace" class="section">
           <div class="section-heading">
-            <p class="eyebrow">Top Picks Near Downtown</p>
-            <h2>Restaurant-style listings, delivery context, and live operational detail</h2>
+            <p class="eyebrow">Food Marketplace</p>
+            <h2>Discover restaurants, dishes, and delivery coverage with clear local context</h2>
+          </div>
+          <div class="section-callout">
+            Search by restaurant name and area to find nearby options faster and understand where delivery coverage is strongest.
+          </div>
+          <div class="market-search-bar">
+            <div class="search-group">
+              <label class="search-label" for="restaurant-name-search">Restaurant name</label>
+              <input
+                id="restaurant-name-search"
+                class="search-input"
+                type="text"
+                placeholder="Search Himalayan, Burger House, momo..."
+              />
+            </div>
+            <div class="search-group">
+              <label class="search-label" for="restaurant-location-search">Location</label>
+              <input
+                id="restaurant-location-search"
+                class="search-input"
+                type="text"
+                placeholder="Search Downtown, Loop, North Side..."
+              />
+            </div>
           </div>
           <div class="market-grid">
             <div class="panel-card">
               <div class="panel-header">
                 <h3>Featured places</h3>
-                <span class="chip">Open now</span>
+                <span class="chip">Curated list</span>
               </div>
               <div id="restaurant-list" class="restaurant-list"></div>
             </div>
             <div class="panel-card">
               <div class="panel-header">
                 <h3>Popular dishes</h3>
-                <span class="chip">Trending now</span>
+                <span class="chip">Most ordered</span>
               </div>
               <div id="menu-list" class="menu-list"></div>
             </div>
@@ -129,10 +169,10 @@
         <section class="section">
           <div class="section-heading">
             <p class="eyebrow">Account Access</p>
-            <h2>Choose an account before sending live requests</h2>
+            <h2>Sign in before sending live service requests</h2>
           </div>
           <div class="section-callout">
-            The demo works immediately with built-in tokens. Creating or logging into an account switches the forms to your saved session automatically.
+            Built-in access works immediately. Creating or logging into an account switches the request forms to your saved session automatically.
           </div>
           <div class="market-grid">
             <div class="panel-card">
@@ -164,10 +204,10 @@
                 <button class="button primary" type="submit">Log in</button>
               </form>
               <div id="auth-session" class="session-card">
-                <p class="label">Current access</p>
-                <strong id="session-role">Demo session</strong>
-                <p id="session-user">Create or log into an account to use a saved personal token.</p>
-                <button id="logout-button" class="button secondary" type="button">Clear session</button>
+                <p class="label">Current session</p>
+                <strong id="session-role">Built-in access</strong>
+                <p id="session-user">Create or log into an account to switch from built-in access to a saved personal session.</p>
+                <button id="logout-button" class="button secondary" type="button">Sign out</button>
               </div>
             </div>
           </div>
@@ -175,8 +215,8 @@
 
         <section class="section">
           <div class="section-heading">
-            <p class="eyebrow">Create Requests</p>
-            <h2>Submit rides, food orders, and courier jobs</h2>
+            <p class="eyebrow">Service Actions</p>
+            <h2>Create rides, food deliveries, and courier requests from one workspace</h2>
           </div>
           <div class="section-callout">
             Each form shows which account role can use it. If the current account cannot submit, the form explains why before any API call is made.
@@ -184,48 +224,71 @@
           <div class="market-grid">
             <div class="panel-card">
               <div class="panel-header">
-                <h3>Request a ride</h3>
-                <span class="chip">Rider access</span>
+                <h3>Create a ride request</h3>
+                <span class="chip">/api/rideshare</span>
               </div>
-              <form id="ride-form" class="action-form">
+              <form id="ride-form" class="action-form themed-form themed-form-ride">
+                <div class="route-header">
+                  <strong>Start to destination</strong>
+                  <span>Enter the exact pickup and dropoff locations for the ride.</span>
+                </div>
                 <input name="riderId" value="rider_001" placeholder="Rider ID" required />
                 <input name="requestedTierId" value="tier_go" placeholder="Tier ID" required />
-                <input name="pickupAddress" placeholder="Pickup address" required />
-                <input name="dropoffAddress" placeholder="Dropoff address" required />
-                <button class="button primary" type="submit">Create ride request</button>
+                <label class="field-label" for="ride-pickup-address">Start location</label>
+                <input id="ride-pickup-address" name="pickupAddress" placeholder="Example: 875 N Michigan Ave, Chicago, IL" required />
+                <label class="field-label" for="ride-dropoff-address">Destination location</label>
+                <input id="ride-dropoff-address" name="dropoffAddress" placeholder="Example: 233 S Wacker Dr, Chicago, IL" required />
+                <div id="ride-route-preview" class="route-preview">
+                  <div class="route-stop">
+                    <span class="route-dot route-dot-start"></span>
+                    <div>
+                      <strong>Start</strong>
+                      <p>Pickup point will appear here.</p>
+                    </div>
+                  </div>
+                  <div class="route-line"></div>
+                  <div class="route-stop">
+                    <span class="route-dot route-dot-end"></span>
+                    <div>
+                      <strong>Destination</strong>
+                      <p>Dropoff point will appear here.</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="button primary" type="submit">Request ride</button>
                 <p id="ride-form-note" class="form-note"></p>
               </form>
             </div>
             <div class="panel-card">
               <div class="panel-header">
-                <h3>Place food order</h3>
-                <span class="chip">Customer access</span>
+                <h3>Create a food order</h3>
+                <span class="chip">/api/food-delivery</span>
               </div>
-              <form id="food-form" class="action-form">
+              <form id="food-form" class="action-form themed-form themed-form-food">
                 <input name="customerId" value="cust_001" placeholder="Customer ID" required />
                 <input name="restaurantId" value="rest_001" placeholder="Restaurant ID" required />
                 <input name="deliveryAddress" placeholder="Delivery address" required />
-                <button class="button primary" type="submit">Create food order</button>
+                <button class="button primary" type="submit">Place order</button>
                 <p id="food-form-note" class="form-note"></p>
               </form>
             </div>
           </div>
           <div class="panel-card action-panel">
             <div class="panel-header">
-              <h3>Book courier delivery</h3>
-              <span class="chip">Rider or customer access</span>
+              <h3>Create a courier request</h3>
+              <span class="chip">/api/courier</span>
             </div>
-            <form id="courier-form" class="action-form action-form-wide">
+            <form id="courier-form" class="action-form action-form-wide themed-form themed-form-courier">
               <input name="senderUserId" value="rider_001" placeholder="Sender user ID" required />
               <input name="packageTypeId" value="pkg_small" placeholder="Package type ID" required />
               <input name="pickupAddress" placeholder="Pickup address" required />
               <input name="dropoffAddress" placeholder="Dropoff address" required />
-              <button class="button primary" type="submit">Create courier job</button>
+              <button class="button primary" type="submit">Request courier</button>
             </form>
             <p id="courier-form-note" class="form-note"></p>
             <div class="result-header">
               <p class="label">Live response</p>
-              <strong id="action-result-title">Waiting for a request</strong>
+              <strong id="action-result-title">Ready for the next request</strong>
             </div>
             <pre id="action-result" class="action-result">Submit a form to create new data.</pre>
           </div>
@@ -235,14 +298,14 @@
           <div class="panel-card">
             <div class="panel-header">
               <h3>Platform performance</h3>
-              <span class="chip">Daily KPIs</span>
+              <span class="chip">Live KPIs</span>
             </div>
             <div id="kpi-grid" class="kpi-grid"></div>
           </div>
           <div class="panel-card">
             <div class="panel-header">
               <h3>Support and trust</h3>
-              <span class="chip">Critical paths</span>
+              <span class="chip">Service readiness</span>
             </div>
             <div id="support-list" class="support-list"></div>
           </div>
@@ -256,6 +319,22 @@
           <div id="safety-panel" class="safety-panel"></div>
         </section>
       </main>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img class="footer-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <div>
+            <strong>Sajilo Sewa</strong>
+            <p>Mobility, food delivery, and courier demos in one clear platform.</p>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <p class="footer-note">&copy; 2026 Sajilo Sewa. All rights reserved.</p>
+      </footer>
     </div>
 
     <script src="./data/sajilo-seed-data.js"></script>

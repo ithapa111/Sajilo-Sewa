@@ -1,12 +1,19 @@
-# Sajilo Sewa Reference Data
+# Sajilo Sewa
 
-This repository now contains a starter reference dataset for building a multi-service platform with:
+Sajilo Sewa is a multi-service platform demo that brings three product lines into one app:
 
 - ridesharing
 - food ordering
 - courier delivery
 
-The content is Uber-inspired at the product-flow level, but it does not copy Uber branding, names, or proprietary data.
+The current app includes:
+
+- a polished landing page with distinct ridesharing, food delivery, and courier sections
+- service-specific API paths and request flows
+- operational dashboards, live map views, and themed request forms
+- JSON and PostgreSQL storage options for seeded platform data
+
+The content is inspired by modern mobility and delivery product flows, but it does not copy third-party branding, names, or proprietary data.
 
 ## Files
 
@@ -19,22 +26,23 @@ The content is Uber-inspired at the product-flow level, but it does not copy Ube
 
 ## Run
 
-Open `index.html` in a browser.
+Open `index.html` in a browser for a static preview.
 
 The page reads from `data/sajilo-seed-data.js` first, so it can load directly even without a dev server.
 
-To run the API-backed version:
+To run the full API-backed app:
 
 1. `npm start`
 2. Open `http://localhost:3000`
 
-## Demo Flow
+## App Flow
 
 1. Start the app with `npm start`.
 2. Open `http://localhost:3000`.
-3. Use the built-in demo session immediately, or create/log into an account.
-4. Submit a ride, food, or courier request.
-5. Review the live API response and refreshed operational dashboard.
+3. Start with built-in access, or create/log into an account.
+4. Explore the three product areas: ridesharing, food ordering and delivery, and courier.
+5. Submit a ride, food, or courier request.
+6. Review the live API response, themed operations view, and refreshed platform data.
 
 ## Deploy On Render
 
@@ -45,11 +53,11 @@ This repository includes [`render.yaml`](C:\Users\Indra\OneDrive\Desktop\Sajilo-
 3. Confirm the service settings from `render.yaml`.
 4. Deploy and open the generated Render URL.
 
-Current demo deployment notes:
+Current deployment notes:
 
 - The Render config uses `STORAGE_DRIVER=json` so the app runs without any extra infrastructure.
 - New signups and submitted requests write to local JSON files.
-- On Render, that filesystem is not durable across restarts or redeploys, so this is suitable for demos, not durable production data.
+- On Render, that filesystem is not durable across restarts or redeploys, so this setup is suitable for demos, not durable production data.
 
 For PostgreSQL-backed API reads and writes:
 
@@ -61,19 +69,31 @@ For PostgreSQL-backed API reads and writes:
 
 ## API
 
+Service-specific APIs are separated so each product line is easier to understand and extend:
+
 - `GET /api/health`
+- `GET /api/services`
 - `GET /api/auth/config`
 - `GET /api/auth/me`
 - `POST /api/auth/signup`
 - `POST /api/auth/login`
 - `GET /api/overview`
 - `GET /api/platform`
-- `GET /api/rides`
-- `GET /api/food`
-- `GET /api/courier`
+- `GET /api/rideshare/overview`
+- `POST /api/rideshare/requests`
+- `GET /api/food-delivery/overview`
+- `POST /api/food-delivery/orders`
+- `GET /api/courier/overview`
+- `POST /api/courier/requests`
 - `GET /api/seed`
+
+Legacy aliases still work for compatibility:
+
+- `GET /api/rides`
 - `POST /api/rides/requests`
+- `GET /api/food`
 - `POST /api/food/orders`
+- `GET /api/courier`
 - `POST /api/courier/deliveries`
 
 ## Database
@@ -84,13 +104,14 @@ For PostgreSQL-backed API reads and writes:
 
 ## Intended Use
 
-Use this data as a foundation for:
+Use this project as a foundation for:
 
 - database schema design
-- admin dashboards
-- mobile app mock APIs
+- admin and operations dashboards
+- mobile or web product mock APIs
 - pricing and dispatch logic
 - onboarding and support flows
+- multi-service product demos and portfolio projects
 
 ## Notes
 
@@ -98,4 +119,4 @@ Use this data as a foundation for:
 - Pricing values are examples and should be adjusted for your market.
 - JSON storage supports account signup, login, and token resolution through `data/auth-users.json`.
 - PostgreSQL storage currently supports the platform data and service write APIs, but not persisted account signup/login yet.
-- If you want, the next step can be turning this into a real backend schema for Supabase, Firebase, PostgreSQL, or a full React/Next.js app.
+- A natural next step is turning this into a production app with a real frontend framework, persistent auth, and durable infrastructure.

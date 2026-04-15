@@ -8,6 +8,18 @@ const { createStore } = require("./lib/store");
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const store = createStore(ROOT);
+const API_ALIASES = {
+  "/api/rides": "/api/rideshare/overview",
+  "/api/rides/requests": "/api/rideshare/requests",
+  "/api/food": "/api/food-delivery/overview",
+  "/api/food/orders": "/api/food-delivery/orders",
+  "/api/courier": "/api/courier/overview",
+  "/api/courier/deliveries": "/api/courier/requests"
+};
+
+function normalizeApiPath(pathname) {
+  return API_ALIASES[pathname] || pathname;
+}
 
 function sendJson(res, statusCode, payload) {
   res.writeHead(statusCode, {
@@ -64,7 +76,8 @@ function serveFile(res, filePath) {
     ".css": "text/css; charset=utf-8",
     ".js": "application/javascript; charset=utf-8",
     ".json": "application/json; charset=utf-8",
-    ".md": "text/markdown; charset=utf-8"
+    ".md": "text/markdown; charset=utf-8",
+    ".svg": "image/svg+xml"
   };
 
   res.writeHead(200, {
@@ -85,7 +98,7 @@ function resolveStaticPath(pathname) {
 }
 
 async function handleApiRead(parsedUrl, auth) {
-  const pathname = parsedUrl.pathname;
+  const pathname = normalizeApiPath(parsedUrl.pathname);
 
   if (pathname === "/api/health") {
     return { statusCode: 200, payload: await store.getHealth() };
@@ -121,19 +134,42 @@ async function handleApiRead(parsedUrl, auth) {
     return { statusCode: 200, payload: await store.getOverview() };
   }
 
+  if (pathname === "/api/services") {
+    return {
+      statusCode: 200,
+      payload: {
+        rideshare: {
+          label: "Ridesharing API",
+          basePath: "/api/rideshare",
+          endpoints: ["GET /api/rideshare/overview", "POST /api/rideshare/requests"]
+        },
+        foodDelivery: {
+          label: "Food Delivery API",
+          basePath: "/api/food-delivery",
+          endpoints: ["GET /api/food-delivery/overview", "POST /api/food-delivery/orders"]
+        },
+        courier: {
+          label: "Courier API",
+          basePath: "/api/courier",
+          endpoints: ["GET /api/courier/overview", "POST /api/courier/requests"]
+        }
+      }
+    };
+  }
+
   if (pathname === "/api/platform") {
     return { statusCode: 200, payload: await store.getPlatform() };
   }
 
-  if (pathname === "/api/rides") {
+  if (pathname === "/api/rideshare/overview") {
     return { statusCode: 200, payload: await store.getRides() };
   }
 
-  if (pathname === "/api/food") {
+  if (pathname === "/api/food-delivery/overview") {
     return { statusCode: 200, payload: await store.getFood() };
   }
 
-  if (pathname === "/api/courier") {
+  if (pathname === "/api/courier/overview") {
     return { statusCode: 200, payload: await store.getCourier() };
   }
 
@@ -141,9 +177,10 @@ async function handleApiRead(parsedUrl, auth) {
 }
 
 async function handleApiWrite(req, parsedUrl) {
+  const pathname = normalizeApiPath(parsedUrl.pathname);
   const payload = await readJsonBody(req);
 
-  if (parsedUrl.pathname === "/api/auth/signup") {
+  if (pathname === "/api/auth/signup") {
     if (typeof store.signup !== "function") {
       return { statusCode: 501, payload: { error: "Signup is not supported by the active storage driver" } };
     }
@@ -151,7 +188,7 @@ async function handleApiWrite(req, parsedUrl) {
     return store.signup(payload);
   }
 
-  if (parsedUrl.pathname === "/api/auth/login") {
+  if (pathname === "/api/auth/login") {
     if (typeof store.login !== "function") {
       return { statusCode: 501, payload: { error: "Login is not supported by the active storage driver" } };
     }
@@ -159,15 +196,15 @@ async function handleApiWrite(req, parsedUrl) {
     return store.login(payload);
   }
 
-  if (parsedUrl.pathname === "/api/rides/requests") {
+  if (pathname === "/api/rideshare/requests") {
     return store.createRideRequest(payload);
   }
 
-  if (parsedUrl.pathname === "/api/food/orders") {
+  if (pathname === "/api/food-delivery/orders") {
     return store.createFoodOrder(payload);
   }
 
-  if (parsedUrl.pathname === "/api/courier/deliveries") {
+  if (pathname === "/api/courier/requests") {
     return store.createCourierDelivery(payload);
   }
 
@@ -175,19 +212,20 @@ async function handleApiWrite(req, parsedUrl) {
 }
 
 function authorizeForPath(req, pathname) {
-  if (pathname === "/api/auth/signup" || pathname === "/api/auth/login") {
+  const normalizedPath = normalizeApiPath(pathname);
+  if (normalizedPath === "/api/auth/signup" || normalizedPath === "/api/auth/login") {
     return Promise.resolve({ ok: true, auth: null });
   }
 
-  if (pathname === "/api/rides/requests") {
+  if (normalizedPath === "/api/rideshare/requests") {
     return authorize(req, store, ["admin", "rider"]);
   }
 
-  if (pathname === "/api/food/orders") {
+  if (normalizedPath === "/api/food-delivery/orders") {
     return authorize(req, store, ["admin", "customer"]);
   }
 
-  if (pathname === "/api/courier/deliveries") {
+  if (normalizedPath === "/api/courier/requests") {
     return authorize(req, store, ["admin", "rider", "customer"]);
   }
 

@@ -3,7 +3,11 @@ const SESSION_STORAGE_KEY = "sajilo-session";
 const state = {
   activeView: "rides",
   authConfig: null,
-  session: loadSession()
+  session: loadSession(),
+  marketplaceSearch: {
+    name: "",
+    location: ""
+  }
 };
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -31,8 +35,8 @@ const REQUEST_FORM_CONFIG = {
   ride: {
     formSelector: "#ride-form",
     noteSelector: "#ride-form-note",
-    endpoint: "./api/rides/requests",
-    defaultButtonLabel: "Create ride request",
+    endpoint: "./api/rideshare/requests",
+    defaultButtonLabel: "Request ride",
     demoRole: "rider",
     allowedRoles: ["admin", "rider"],
     sessionRoleForDefaultId: "rider",
@@ -42,8 +46,8 @@ const REQUEST_FORM_CONFIG = {
   food: {
     formSelector: "#food-form",
     noteSelector: "#food-form-note",
-    endpoint: "./api/food/orders",
-    defaultButtonLabel: "Create food order",
+    endpoint: "./api/food-delivery/orders",
+    defaultButtonLabel: "Place order",
     demoRole: "customer",
     allowedRoles: ["admin", "customer"],
     sessionRoleForDefaultId: "customer",
@@ -53,8 +57,8 @@ const REQUEST_FORM_CONFIG = {
   courier: {
     formSelector: "#courier-form",
     noteSelector: "#courier-form-note",
-    endpoint: "./api/courier/deliveries",
-    defaultButtonLabel: "Create courier job",
+    endpoint: "./api/courier/requests",
+    defaultButtonLabel: "Request courier",
     demoRole: "rider",
     allowedRoles: ["admin", "rider", "customer"],
     sessionRoleForDefaultId: null,
@@ -158,14 +162,61 @@ function ratingBadge(rating, reviewCount = 0) {
   `;
 }
 
+function applyStagger(selector, start = 0, step = 80) {
+  document.querySelectorAll(selector).forEach((node, index) => {
+    node.style.animationDelay = `${start + index * step}ms`;
+  });
+}
+
+function animateSwap(node, className = "is-swapping") {
+  if (!node) {
+    return;
+  }
+
+  node.classList.remove(className);
+  void node.offsetWidth;
+  node.classList.add(className);
+}
+
 function renderHero(data) {
   const { brand, cities } = data.platform;
   const kpis = data.analytics.adminDashboard;
+  const heroLanes = [
+    {
+      theme: "ride",
+      eyebrow: "Ridesharing",
+      title: "Book city rides with live dispatch and safer trip visibility.",
+      meta: `${data.rideshare.serviceTiers.length} tiers | ${numberFormatter.format(data.analytics.adminDashboard.activeDrivers)} active drivers`
+    },
+    {
+      theme: "food",
+      eyebrow: "Food Delivery",
+      title: "Order meals with restaurant search, prep timing, and delivery tracking.",
+      meta: `${data.foodDelivery.restaurants.length} restaurants | ${numberFormatter.format(data.analytics.adminDashboard.dailyFoodOrders)} daily orders`
+    },
+    {
+      theme: "courier",
+      eyebrow: "Courier",
+      title: "Send parcels across the city with quoted pricing and route updates.",
+      meta: `${numberFormatter.format(data.courierDelivery.deliveries.length)} tracked jobs | ${numberFormatter.format(data.analytics.adminDashboard.activeCouriers)} active couriers`
+    }
+  ];
 
   document.querySelector("#hero-title").textContent = brand.name;
   document.querySelector("#hero-tagline").textContent = brand.tagline;
   document.querySelector("#city-name").textContent = cities[0].name;
   document.querySelector("#timezone-label").textContent = brand.timezone;
+  document.querySelector("#hero-lanes").innerHTML = heroLanes
+    .map(
+      (lane) => `
+        <article class="hero-lane hero-lane-${lane.theme} animated-rise">
+          <p class="label">${lane.eyebrow}</p>
+          <h3>${lane.title}</h3>
+          <span class="hero-lane-meta">${lane.meta}</span>
+        </article>
+      `
+    )
+    .join("");
 
   document.querySelector("#hero-stats").innerHTML = [
     metricCard("Completed rides", formatCompact(kpis.dailyCompletedRides)),
@@ -183,53 +234,151 @@ function renderHero(data) {
   document.querySelector("#search-chip-row").innerHTML = ["Momos", "Airport rides", "Bike couriers", "Late-night food", "Top rated"]
     .map((item) => `<span class="search-chip">${item}</span>`)
     .join("");
+
+  applyStagger("#hero-lanes .animated-rise", 60, 90);
+  applyStagger("#hero-stats .animated-rise", 180, 70);
+  applyStagger("#signal-grid .animated-rise", 260, 60);
 }
 
 function renderServices(data) {
-  const serviceMarkup = data.platform.serviceCategories
-    .map((service) => {
-      const meta =
-        service.id === "svc_ride"
-          ? `${data.rideshare.serviceTiers.length} ride tiers live`
-          : service.id === "svc_food"
-            ? `${data.foodDelivery.restaurants.length} restaurants seeded`
-            : `${data.courierDelivery.deliveries.length} courier jobs tracked`;
+  const serviceCards = [
+    {
+      theme: "ride",
+      icon: "R",
+      title: "Ridesharing",
+      subtitle: "Fast city trips with dispatch, fare logic, live route visibility, and rider safety.",
+      status: "live mobility product",
+      countLabel: `${data.rideshare.serviceTiers.length} ride tiers`,
+      apiPath: "/api/rideshare",
+      access: "Admin and rider access",
+      requirements: [
+        "Driver assignment and trip matching",
+        "Pickup and destination capture",
+        "Fare estimate, surge, and booking fee logic",
+        "Trip timeline, route visibility, and safety events"
+      ]
+    },
+    {
+      theme: "food",
+      icon: "F",
+      title: "Food Ordering and Delivery",
+      subtitle: "Restaurant discovery, menu browsing, checkout, prep timing, and doorstep fulfillment.",
+      status: "live commerce product",
+      countLabel: `${data.foodDelivery.restaurants.length} restaurants`,
+      apiPath: "/api/food-delivery",
+      access: "Admin and customer access",
+      requirements: [
+        "Restaurant search and location filtering",
+        "Menu items, modifiers, and order pricing",
+        "Delivery address capture and courier dispatch",
+        "Order status tracking from placed to delivered"
+      ]
+    },
+    {
+      theme: "courier",
+      icon: "C",
+      title: "Courier Delivery",
+      subtitle: "Reliable package movement for documents, parcels, and same-day city dropoffs.",
+      status: "live logistics product",
+      countLabel: `${data.courierDelivery.deliveries.length} active courier jobs`,
+      apiPath: "/api/courier",
+      access: "Admin, rider, and customer access",
+      requirements: [
+        "Package type and sender job creation",
+        "Pickup and dropoff address handling",
+        "Quoted pricing and courier assignment",
+        "Scheduled delivery flow and status tracking"
+      ]
+    }
+  ];
 
-      return `
-        <article class="service-card listing-card animated-rise">
-          <div class="listing-body">
-            <p class="label">${service.status}</p>
-            <h3>${service.name}</h3>
-            <p class="service-meta">${service.description}</p>
-            <div class="meta-row">
-              <span class="tag">${meta}</span>
-              <span class="tag">Popular in Chicago</span>
+  const serviceMarkup = serviceCards
+    .map(
+      (service) => `
+        <article class="service-card service-pillar service-pillar-${service.theme} animated-rise">
+          <div class="service-card-top">
+            <div class="service-title-lockup">
+              <span class="service-icon">${service.icon}</span>
+              <p class="label">${service.status}</p>
             </div>
+            <span class="service-badge">${service.countLabel}</span>
+          </div>
+          <h3>${service.title}</h3>
+          <p class="service-summary">${service.subtitle}</p>
+          <div class="service-detail-row">
+            <span class="service-detail"><strong>API</strong> ${service.apiPath}</span>
+            <span class="service-detail"><strong>Access</strong> ${service.access}</span>
+          </div>
+          <div class="service-requirements">
+            ${service.requirements.map((item) => `<div class="requirement-item">${item}</div>`).join("")}
           </div>
         </article>
-      `;
-    })
+      `
+    )
     .join("");
 
   document.querySelector("#service-grid").innerHTML = serviceMarkup;
+  applyStagger("#service-grid .animated-rise", 40, 110);
+}
+
+function renderApiOverview() {
+  const apiCards = [
+    {
+      title: "Ridesharing API",
+      basePath: "/api/rideshare",
+      description: "For ride demand, trip overview, and live rider requests.",
+      endpoints: ["GET /api/rideshare/overview", "POST /api/rideshare/requests"]
+    },
+    {
+      title: "Food Delivery API",
+      basePath: "/api/food-delivery",
+      description: "For restaurants, menus, orders, and delivery tracking.",
+      endpoints: ["GET /api/food-delivery/overview", "POST /api/food-delivery/orders"]
+    },
+    {
+      title: "Courier API",
+      basePath: "/api/courier",
+      description: "For parcel jobs, sender requests, and courier operations.",
+      endpoints: ["GET /api/courier/overview", "POST /api/courier/requests"]
+    }
+  ];
+
+  document.querySelector("#api-grid").innerHTML = apiCards
+    .map(
+      (card) => `
+        <article class="api-card animated-rise">
+          <p class="label">Base path</p>
+          <h3>${card.title}</h3>
+          <code class="api-base">${card.basePath}</code>
+          <p class="service-meta">${card.description}</p>
+          <div class="api-endpoints">
+            ${card.endpoints.map((endpoint) => `<code class="api-endpoint">${endpoint}</code>`).join("")}
+          </div>
+        </article>
+      `
+    )
+    .join("");
+
+  applyStagger("#api-grid .animated-rise", 40, 90);
 }
 
 function renderTabs() {
   const tabs = [
-    { id: "rides", label: "Rides" },
-    { id: "food", label: "Food" },
-    { id: "courier", label: "Courier" }
+    { id: "rides", label: "Rides", theme: "ride" },
+    { id: "food", label: "Food", theme: "food" },
+    { id: "courier", label: "Courier", theme: "courier" }
   ];
 
   document.querySelector("#ops-tabs").innerHTML = tabs
     .map(
       (tab) => `
         <button
-          class="tab-button"
+          class="tab-button tab-button-${tab.theme}"
           type="button"
           role="tab"
           aria-selected="${state.activeView === tab.id}"
           data-view="${tab.id}"
+          data-theme="${tab.theme}"
         >
           ${tab.label}
         </button>
@@ -346,8 +495,9 @@ function renderLiveMap(data) {
   const mapNode = document.querySelector("#live-map");
   const legendNode = document.querySelector("#map-legend");
   const modeNode = document.querySelector("#map-mode-label");
+  const mapCardNode = document.querySelector(".map-card");
 
-  if (!mapNode || !legendNode || !modeNode) {
+  if (!mapNode || !legendNode || !modeNode || !mapCardNode) {
     return;
   }
 
@@ -383,6 +533,9 @@ function renderLiveMap(data) {
     <div class="map-watermark">Chicago demo grid</div>
     ${markers}
   `;
+  mapCardNode.dataset.theme = state.activeView;
+  mapNode.dataset.theme = state.activeView;
+  animateSwap(mapNode, "is-map-swapping");
   modeNode.textContent = mapData.label;
   legendNode.innerHTML = mapData.points
     .map(
@@ -394,6 +547,7 @@ function renderLiveMap(data) {
       `
     )
     .join("");
+  animateSwap(legendNode);
 }
 
 function renderRideOps(data) {
@@ -425,15 +579,32 @@ function renderRideOps(data) {
 
   return `
     <article class="ops-summary animated-rise">
-      <p class="label">Live trip</p>
+      <p class="label">Live route</p>
       <div class="panel-header">
         <h3>${currentTrip.pickup.address.split(",")[0]} to ${currentTrip.dropoff.address.split(",")[0]}</h3>
         <span class="status-badge">${formatStatus(currentTrip.status)}</span>
       </div>
-      <p>Driver ${currentDriver.fullName} is running a ${currentTier.name} trip with live safety sharing enabled.</p>
+      <p>Driver ${currentDriver.fullName} is taking the rider from the start location to the final destination in a ${currentTier.name} trip.</p>
+      <div class="route-preview route-preview-static">
+        <div class="route-stop">
+          <span class="route-dot route-dot-start"></span>
+          <div>
+            <strong>Start location</strong>
+            <p>${currentTrip.pickup.address}</p>
+          </div>
+        </div>
+        <div class="route-line"></div>
+        <div class="route-stop">
+          <span class="route-dot route-dot-end"></span>
+          <div>
+            <strong>Destination location</strong>
+            <p>${currentTrip.dropoff.address}</p>
+          </div>
+        </div>
+      </div>
       <div class="ops-data-grid">
         <article class="fare-card">
-          <p class="label">Trip estimate</p>
+          <p class="label">Trip summary</p>
           <div class="price-row"><span>Distance</span><strong>${currentTrip.distanceMiles} mi</strong></div>
           <div class="price-row"><span>Duration</span><strong>${currentTrip.durationMinutes} min</strong></div>
           <div class="price-row"><span>Total fare</span><strong>${currencyFormatter.format(currentTrip.fare.total)}</strong></div>
@@ -442,12 +613,12 @@ function renderRideOps(data) {
       </div>
     </article>
     <article class="ops-summary animated-rise">
-      <p class="label">Open demand</p>
+      <p class="label">New ride request</p>
       <div class="panel-header">
-        <h3>Searching request</h3>
+        <h3>Waiting for driver confirmation</h3>
         <span class="status-badge">${activeRequest.status}</span>
       </div>
-      <p>${activeRequest.pickup.address.split(",")[0]} to ${activeRequest.dropoff.address.split(",")[0]}, ETA ${activeRequest.estimatedDurationMinutes} minutes with surge x${activeRequest.surgeMultiplier}.</p>
+      <p>The rider wants to travel from ${activeRequest.pickup.address.split(",")[0]} to ${activeRequest.dropoff.address.split(",")[0]}. Estimated trip time is ${activeRequest.estimatedDurationMinutes} minutes with surge x${activeRequest.surgeMultiplier}.</p>
     </article>
     <div class="ops-data-grid">${tiers}</div>
   `;
@@ -522,15 +693,14 @@ function renderOperations(data) {
 
   if (state.activeView === "rides") {
     panel.innerHTML = renderRideOps(data);
-    return;
-  }
-
-  if (state.activeView === "food") {
+  } else if (state.activeView === "food") {
     panel.innerHTML = renderFoodOps(data);
-    return;
+  } else {
+    panel.innerHTML = renderCourierOps(data);
   }
 
-  panel.innerHTML = renderCourierOps(data);
+  animateSwap(panel);
+  applyStagger("#ops-panel .animated-rise", 20, 80);
 }
 
 function renderSidebar(data) {
@@ -547,6 +717,7 @@ function renderSidebar(data) {
       `
     )
     .join("");
+  applyStagger("#zone-list .animated-rise", 20, 60);
 
   document.querySelector("#promo-list").innerHTML = data.platform.promotions
     .map(
@@ -561,36 +732,68 @@ function renderSidebar(data) {
       `
     )
     .join("");
+  applyStagger("#promo-list .animated-rise", 50, 70);
 }
 
-function renderMarketplace(data) {
-  document.querySelector("#restaurant-list").innerHTML = data.foodDelivery.restaurants
-    .map(
-      (restaurant) => `
-        <article class="restaurant-card listing-card animated-rise">
-          <div class="listing-media">${restaurant.name.slice(0, 1)}</div>
-          <div class="listing-body">
-            <div class="restaurant-head">
-              <div>
-                <h3>${restaurant.name}</h3>
-                ${ratingBadge(restaurant.rating, Math.round(restaurant.rating * 128))}
+
+function renderMarketplaceView(data) {
+  const nameQuery = state.marketplaceSearch.name.trim().toLowerCase();
+  const locationQuery = state.marketplaceSearch.location.trim().toLowerCase();
+  const cityName = data.platform.cities[0]?.name?.toLowerCase() || "";
+  const filteredRestaurants = data.foodDelivery.restaurants.filter((restaurant) => {
+    const zone = data.platform.zones.find((item) => item.id === restaurant.zoneId);
+    const locationText = [restaurant.address, zone?.name || "", cityName].join(" ").toLowerCase();
+    const matchesName = !nameQuery || restaurant.name.toLowerCase().includes(nameQuery);
+    const matchesLocation = !locationQuery || locationText.includes(locationQuery);
+
+    return matchesName && matchesLocation;
+  });
+
+  document.querySelector("#restaurant-list").innerHTML = filteredRestaurants.length > 0
+    ? filteredRestaurants
+        .map(
+          (restaurant) => `
+            <article class="restaurant-card listing-card animated-rise">
+              <div class="listing-media">${restaurant.name.slice(0, 1)}</div>
+              <div class="listing-body">
+                <div class="restaurant-head">
+                  <div>
+                    <h3>${restaurant.name}</h3>
+                    ${ratingBadge(restaurant.rating, Math.round(restaurant.rating * 128))}
+                  </div>
+                  <span class="chip">${restaurant.avgPrepTimeMinutes} min prep</span>
+                </div>
+                <p class="listing-meta">${"$".repeat(restaurant.priceLevel)} | ${restaurant.cuisineTags.join(", ")} | ${restaurant.deliveryRadiusMiles} mi delivery</p>
+                <p class="restaurant-meta">${restaurant.address}</p>
+                <div class="tags">
+                  ${restaurant.cuisineTags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+                </div>
               </div>
-              <span class="chip">${restaurant.avgPrepTimeMinutes} min prep</span>
-            </div>
-            <p class="listing-meta">${"$".repeat(restaurant.priceLevel)} • ${restaurant.cuisineTags.join(", ")} • ${restaurant.deliveryRadiusMiles} mi delivery</p>
-            <p class="restaurant-meta">${restaurant.address}</p>
-            <div class="tags">
-              ${restaurant.cuisineTags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-            </div>
-          </div>
+            </article>
+          `
+        )
+        .join("")
+    : `
+        <article class="empty-state">
+          <h3>No restaurants found</h3>
+          <p>Try a broader restaurant name or a nearby area like Downtown Loop, North Side, or Chicago.</p>
         </article>
-      `
-    )
-    .join("");
+      `;
 
   document.querySelector("#menu-list").innerHTML = data.foodDelivery.menuItems
     .map((item) => {
       const restaurant = data.foodDelivery.restaurants.find((entry) => entry.id === item.restaurantId);
+      const modifierGroups = Array.isArray(item.modifierGroupIds) ? item.modifierGroupIds : [];
+
+      if (!restaurant) {
+        return null;
+      }
+
+      const isVisible = filteredRestaurants.some((entry) => entry.id === restaurant.id);
+
+      if (!isVisible) {
+        return null;
+      }
 
       return `
         <article class="menu-card listing-card animated-rise">
@@ -606,13 +809,89 @@ function renderMarketplace(data) {
             <p class="menu-meta">${item.description}</p>
             <div class="menu-tags">
               <span class="tag">${item.isPopular ? "Most loved" : "Neighborhood pick"}</span>
-              <span class="tag">${item.modifierGroupIds.length} custom options</span>
+              <span class="tag">${modifierGroups.length} custom options</span>
             </div>
           </div>
         </article>
       `;
     })
+    .filter(Boolean)
     .join("");
+
+  applyStagger("#restaurant-list .animated-rise", 20, 90);
+  applyStagger("#menu-list .animated-rise", 50, 70);
+}
+
+function bindMarketplaceSearch() {
+  const nameInput = document.querySelector("#restaurant-name-search");
+  const locationInput = document.querySelector("#restaurant-location-search");
+
+  if (!nameInput || !locationInput) {
+    return;
+  }
+
+  nameInput.value = state.marketplaceSearch.name;
+  locationInput.value = state.marketplaceSearch.location;
+
+  if (nameInput.dataset.bound === "true") {
+    return;
+  }
+
+  function updateSearch() {
+    state.marketplaceSearch.name = nameInput.value;
+    state.marketplaceSearch.location = locationInput.value;
+    renderMarketplaceView(window.__SAJILO_DATA__);
+  }
+
+  nameInput.addEventListener("input", updateSearch);
+  locationInput.addEventListener("input", updateSearch);
+
+  nameInput.dataset.bound = "true";
+  locationInput.dataset.bound = "true";
+}
+
+function bindRideRoutePreview() {
+  const pickupInput = document.querySelector("#ride-pickup-address");
+  const dropoffInput = document.querySelector("#ride-dropoff-address");
+  const previewNode = document.querySelector("#ride-route-preview");
+
+  if (!pickupInput || !dropoffInput || !previewNode) {
+    return;
+  }
+
+  function renderPreview() {
+    const pickupValue = pickupInput.value.trim() || "Pickup point will appear here.";
+    const dropoffValue = dropoffInput.value.trim() || "Dropoff point will appear here.";
+
+    previewNode.innerHTML = `
+      <div class="route-stop">
+        <span class="route-dot route-dot-start"></span>
+        <div>
+          <strong>Start</strong>
+          <p>${pickupValue}</p>
+        </div>
+      </div>
+      <div class="route-line"></div>
+      <div class="route-stop">
+        <span class="route-dot route-dot-end"></span>
+        <div>
+          <strong>Destination</strong>
+          <p>${dropoffValue}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  if (pickupInput.dataset.previewBound === "true") {
+    renderPreview();
+    return;
+  }
+
+  pickupInput.addEventListener("input", renderPreview);
+  dropoffInput.addEventListener("input", renderPreview);
+  pickupInput.dataset.previewBound = "true";
+  dropoffInput.dataset.previewBound = "true";
+  renderPreview();
 }
 
 function renderInsights(data) {
@@ -636,6 +915,7 @@ function renderInsights(data) {
       `
     )
     .join("");
+  applyStagger("#kpi-grid .animated-rise", 20, 60);
 
   document.querySelector("#support-list").innerHTML = data.platform.supportIssueTypes
     .slice(0, 6)
@@ -649,6 +929,7 @@ function renderInsights(data) {
       `
     )
     .join("");
+  applyStagger("#support-list .animated-rise", 60, 60);
 }
 
 function renderSafety(data) {
@@ -685,6 +966,7 @@ function renderSafety(data) {
       `
     )
     .join("");
+  applyStagger("#safety-panel .animated-rise", 40, 80);
 }
 
 function getEffectiveToken(url) {
@@ -722,7 +1004,7 @@ function getRouteAccess(config) {
       canSubmit: true,
       usingDemo: true,
       tone: "info",
-      note: `No account selected. This form will use the built-in ${config.demoRole} demo session.`,
+      note: `No account selected. This form will use the built-in ${config.demoRole} access profile.`,
       allowedRoles
     };
   }
@@ -734,7 +1016,7 @@ function getRouteAccess(config) {
       canSubmit: true,
       usingDemo: false,
       tone: "success",
-      note: `Signed in as ${currentRole}. You can submit this form.`,
+      note: `Signed in as ${currentRole}. This request can be submitted from your current account.`,
       allowedRoles
     };
   }
@@ -743,7 +1025,7 @@ function getRouteAccess(config) {
     canSubmit: false,
     usingDemo: false,
     tone: "blocked",
-    note: `Signed in as ${currentRole}. Allowed roles: ${formatRoleList(allowedRoles)}. Switch accounts or clear the session to use demo access.`,
+    note: `Signed in as ${currentRole}. Allowed roles: ${formatRoleList(allowedRoles)}. Switch accounts or sign out to return to built-in access.`,
     allowedRoles
   };
 }
@@ -814,8 +1096,8 @@ function renderSessionCard() {
     sessionUser.textContent = `${state.session.user.fullName || state.session.user.email} (${state.session.user.userId})`;
     logoutButton.disabled = false;
   } else {
-    sessionRole.textContent = "Demo session";
-    sessionUser.textContent = "Create or log into an account to use a saved personal token.";
+    sessionRole.textContent = "Built-in access";
+    sessionUser.textContent = "Create or log into an account to switch from built-in access to a saved personal session.";
     logoutButton.disabled = true;
   }
 }
@@ -867,7 +1149,7 @@ function bindAuthForms() {
     renderSessionCard();
     syncFormDefaults();
     syncActionFormPermissions();
-    setActionResult("Account session updated", body);
+    setActionResult("Session updated", body);
   }
 
   signupForm.addEventListener("submit", async (event) => {
@@ -882,7 +1164,7 @@ function bindAuthForms() {
         role: form.get("role")
       });
     } catch (error) {
-      setActionResult("Account action failed", error.message);
+      setActionResult("Account request failed", error.message);
     }
   });
 
@@ -896,7 +1178,7 @@ function bindAuthForms() {
         password: form.get("password")
       });
     } catch (error) {
-      setActionResult("Account action failed", error.message);
+      setActionResult("Account request failed", error.message);
     }
   });
 
@@ -905,7 +1187,7 @@ function bindAuthForms() {
     renderSessionCard();
     syncFormDefaults();
     syncActionFormPermissions();
-    setActionResult("Session cleared", "Forms are back on the built-in demo session.");
+    setActionResult("Signed out", "Forms are back on the built-in access profile.");
   });
 
   signupForm.dataset.bound = "true";
@@ -942,7 +1224,7 @@ function bindActionForms() {
       throw new Error(body.error || "Request failed");
     }
 
-    setActionResult("Request completed", body);
+    setActionResult("Request submitted", body);
     const refreshed = await loadData();
     renderApp(refreshed);
   }
@@ -952,7 +1234,7 @@ function bindActionForms() {
     const form = new FormData(event.currentTarget);
 
     try {
-      await submitJson("./api/rides/requests", {
+      await submitJson("./api/rideshare/requests", {
         riderId: form.get("riderId"),
         requestedTierId: form.get("requestedTierId"),
         pickup: { address: form.get("pickupAddress"), lat: 41.88, lng: -87.63 },
@@ -968,7 +1250,7 @@ function bindActionForms() {
     const form = new FormData(event.currentTarget);
 
     try {
-      await submitJson("./api/food/orders", {
+      await submitJson("./api/food-delivery/orders", {
         customerId: form.get("customerId"),
         restaurantId: form.get("restaurantId"),
         deliveryAddress: { address: form.get("deliveryAddress"), lat: 41.88, lng: -87.64 },
@@ -991,7 +1273,7 @@ function bindActionForms() {
     const form = new FormData(event.currentTarget);
 
     try {
-      await submitJson("./api/courier/deliveries", {
+      await submitJson("./api/courier/requests", {
         senderUserId: form.get("senderUserId"),
         packageTypeId: form.get("packageTypeId"),
         pickupAddress: form.get("pickupAddress"),
@@ -1012,11 +1294,14 @@ function renderApp(data) {
   window.__SAJILO_DATA__ = data;
   renderHero(data);
   renderServices(data);
+  renderApiOverview();
   renderTabs();
   renderLiveMap(data);
   renderOperations(data);
   renderSidebar(data);
-  renderMarketplace(data);
+  renderMarketplaceView(data);
+  bindMarketplaceSearch();
+  bindRideRoutePreview();
   renderInsights(data);
   renderSafety(data);
   bindAuthForms();
