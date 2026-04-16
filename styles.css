@@ -3612,9 +3612,15 @@ body::before {
 }
 
 @media (max-width: 820px) {
+  .home-topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   .home-hero {
     gap: 16px;
-    padding: 122px 22px 22px;
+    min-height: 560px;
+    padding: 112px 22px 22px;
   }
 
   .hero-service-band {
@@ -3661,6 +3667,8 @@ body::before {
   .home-header-actions {
     width: 100%;
     gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .home-service-menu {
@@ -3772,13 +3780,68 @@ body::before {
     height: 28px;
   }
 
-  .home-hero-copy h2 {
-    max-width: 12ch;
+  .home-topbar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .home-topbar .brand-lockup {
+    width: 100%;
+  }
+
+  .home-header-actions {
+    width: 100%;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .home-topbar .home-header-link,
+  .home-topbar .home-location-chip,
+  .home-topbar .home-header-button {
+    min-height: 28px;
+    font-size: 0.76rem;
+  }
+
+  .yelp-logo {
+    font-size: 3.4rem;
+    margin-bottom: 18px;
   }
 
   .home-hero {
     gap: 14px;
-    padding: 130px 20px 20px;
+    min-height: 520px;
+    padding: 106px 20px 20px;
+  }
+
+  .yelp-search-container {
+    flex-direction: column;
+    width: min(100%, 420px);
+    border-radius: 18px;
+  }
+
+  .yelp-input-group {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .yelp-input-group:first-child::after {
+    right: 16px;
+    left: 16px;
+    top: auto;
+    bottom: 0;
+    width: auto;
+    height: 1px;
+  }
+
+  .yelp-input {
+    padding: 18px 0;
+    font-size: 1rem;
+  }
+
+  .yelp-search-button {
+    width: 100%;
+    min-height: 52px;
+    padding: 0;
   }
 
   .hero-service-band {
@@ -3958,5 +4021,51 @@ body::before {
   .service-detail-row {
     display: grid;
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-header {
+    position: relative;
+  }
+
+  .home-main {
+    padding-top: 0;
+  }
+
+  .home-topbar {
+    padding: 10px;
+  }
+
+  .home-topbar .brand-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home-topbar .brand-name-logo {
+    width: 132px;
+    height: 24px;
+  }
+
+  .home-topbar .home-header-link,
+  .home-topbar .home-location-chip,
+  .home-topbar .home-header-button {
+    min-height: 27px;
+    padding: 0 7px;
+    font-size: 0.72rem;
+  }
+
+  .home-hero {
+    min-height: 500px;
+    padding: 26px 16px 16px;
+  }
+
+  .yelp-logo {
+    font-size: 2.9rem;
+  }
+
+  .yelp-label {
+    font-size: 0.8rem;
+    margin-right: 10px;
   }
 }
