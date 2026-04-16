@@ -85,7 +85,7 @@ body::before {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 24px 32px;
+  padding: 0;
 }
 
 .home-header-link {
@@ -131,7 +131,73 @@ body::before {
     url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat;
   color: white;
   text-align: center;
-  padding: 0 24px;
+  padding: 104px 24px 0;
+}
+
+.hero-service-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 110;
+  padding: 0 18px;
+  transform: translateY(-50%);
+}
+
+.hero-service-strip {
+  display: flex;
+  gap: 8px 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-x: visible;
+  overflow-y: visible;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+.hero-service-strip-header {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-service-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-service-strip .home-service-menu {
+  flex: 0 0 auto;
+}
+
+.hero-service-strip .home-service-pill {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(17, 17, 17, 0.32);
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.96);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.hero-service-strip .home-service-menu:hover .home-service-pill,
+.hero-service-strip .home-service-menu[open] .home-service-pill,
+.hero-service-strip .home-service-menu:focus-within .home-service-pill {
+  color: #ffffff;
+  background: #000000;
+  border-color: #000000;
+}
+
+.hero-service-strip .home-service-menu-panel {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .yelp-logo {
@@ -323,6 +389,9 @@ body::before {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  margin: -42px 0 60px;
+  max-width: none;
+  padding: 0;
 }
 
 .home-service-card {
@@ -422,10 +491,18 @@ body::before {
 }
 
 .home-service-nav {
-  display: flex;
-  flex-wrap: wrap;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
+  display: none;
   gap: 10px;
-  padding: 0;
+  padding: 12px;
+  min-width: 220px;
+  border: 1px solid rgba(180, 27, 27, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 251, 250, 0.98);
+  box-shadow: 0 14px 28px rgba(121, 36, 36, 0.1);
 }
 
 .home-service-menu {
@@ -444,23 +521,23 @@ body::before {
 .home-service-menu:hover .home-service-pill,
 .home-service-menu[open] .home-service-pill,
 .home-service-menu:focus-within .home-service-pill {
-  border-color: rgba(211, 35, 35, 0.18);
-  background: #ffffff;
+  border-color: rgba(211, 35, 35, 0.22);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .home-service-menu-panel {
   position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 5;
+  top: -6px;
+  left: calc(100% + 10px);
+  z-index: 40;
   display: none;
   min-width: 230px;
   gap: 6px;
   padding: 10px;
-  border: 1px solid rgba(24, 52, 45, 0.1);
+  border: 1px solid rgba(180, 27, 27, 0.12);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 14px 28px rgba(24, 52, 45, 0.08);
+  background: rgba(255, 252, 250, 0.99);
+  box-shadow: 0 14px 28px rgba(121, 36, 36, 0.1);
 }
 
 .home-service-menu:hover .home-service-menu-panel,
@@ -527,11 +604,13 @@ body::before {
 .home-service-pill {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid rgba(24, 52, 45, 0.08);
+  border-radius: 14px;
+  background: rgba(248, 250, 252, 0.92);
   color: var(--text);
   font-size: 0.92rem;
   font-weight: 700;
@@ -548,7 +627,7 @@ body::before {
 
 .home-service-pill.is-soon {
   color: var(--muted);
-  background: transparent;
+  background: rgba(245, 247, 249, 0.92);
 }
 
 .topbar,
@@ -966,29 +1045,129 @@ body::before {
   gap: 18px;
 }
 
+.home-main {
+  display: grid;
+  padding-top: 84px;
+}
+
+.home-menu-root {
+  position: relative;
+}
+
+.home-header-menu {
+  margin-left: -4px;
+  margin-top: 0;
+  width: fit-content;
+}
+
+.home-menu-root summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.home-menu-root summary::-webkit-details-marker {
+  display: none;
+}
+
+.home-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 44px;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid rgba(180, 27, 27, 0.14);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 250, 249, 0.98), rgba(252, 243, 241, 0.98));
+  color: #8f2020;
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: none;
+}
+
+.home-menu-trigger-image {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.home-menu-root:hover .home-menu-trigger,
+.home-menu-root[open] .home-menu-trigger,
+.home-menu-root:focus-within .home-menu-trigger {
+  border-color: rgba(211, 35, 35, 0.24);
+  background: #ffffff;
+  color: var(--accent);
+}
+
+.home-menu-root:hover .home-service-nav,
+.home-menu-root[open] .home-service-nav,
+.home-menu-root:focus-within .home-service-nav {
+  display: grid;
+}
+
 .home-topbar {
-  background: rgba(255, 255, 255, 0.95);
-  margin-bottom: 0;
-  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(243, 233, 225, 0.88), rgba(238, 224, 214, 0.7));
+  padding: 12px 18px;
+  align-items: flex-start;
+  box-shadow: none;
 }
 
 .home-topbar .brand-lockup {
-  gap: 10px;
+  gap: 8px;
+  position: relative;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.brand-stack {
+  display: grid;
+  gap: 0;
+  min-width: 0;
 }
 
 .home-topbar .brand-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
 }
 
 .home-topbar .eyebrow {
-  font-size: 0.66rem;
+  font-size: 0.6rem;
 }
 
 .home-topbar .brand-name-logo {
-  width: 180px;
-  height: 32px;
+  width: 138px;
+  height: 26px;
+}
+
+.home-topbar .home-header-link,
+.home-topbar .home-location-chip {
+  min-height: 30px;
+  padding: 0 8px;
+  font-size: 0.78rem;
+}
+
+.home-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.home-topbar .home-header-button {
+  min-height: 30px;
+  padding: 0 11px;
+  font-size: 0.78rem;
 }
 
 .food-topbar {
@@ -3435,7 +3614,23 @@ body::before {
 @media (max-width: 820px) {
   .home-hero {
     gap: 16px;
-    padding: 22px;
+    padding: 122px 22px 22px;
+  }
+
+  .hero-service-band {
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 0 18px;
+  }
+
+  .hero-service-strip {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero-service-strip .home-service-pill {
+    font-size: 0.8rem;
   }
 
   .home-hero::after {
@@ -3447,9 +3642,10 @@ body::before {
   }
 
   .home-service-nav {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 0;
+    left: 0;
+    right: auto;
+    min-width: min(100%, 360px);
   }
 
   .home-topbar {
@@ -3582,7 +3778,23 @@ body::before {
 
   .home-hero {
     gap: 14px;
-    padding: 20px;
+    padding: 130px 20px 20px;
+  }
+
+  .hero-service-band {
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 0 14px;
+  }
+
+  .hero-service-strip {
+    gap: 8px;
+  }
+
+  .hero-service-strip .home-service-menu-panel {
+    left: 0;
+    transform: none;
   }
 
   .home-hero::after {
