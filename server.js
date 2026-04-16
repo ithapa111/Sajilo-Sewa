@@ -1,10 +1,12 @@
 const http = require("http");
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const url = require("url");
 const { authorize, authenticateRequestWithStore, getAuthConfig } = require("./lib/auth");
 const { createStore } = require("./lib/store");
 
+const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const store = createStore(ROOT);
@@ -276,6 +278,29 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Sajilo Sewa running at http://localhost:${PORT} using ${store.driver} storage`);
+function getLanAddress() {
+  const interfaces = os.networkInterfaces();
+
+  for (const networkGroup of Object.values(interfaces)) {
+    for (const network of networkGroup || []) {
+      if (network.family === "IPv4" && !network.internal) {
+        return network.address;
+      }
+    }
+  }
+
+  return null;
+}
+
+server.listen(PORT, HOST, () => {
+  const lanAddress = getLanAddress();
+  const urls = [`http://localhost:${PORT}`];
+
+  if (HOST === "0.0.0.0" && lanAddress) {
+    urls.push(`http://${lanAddress}:${PORT}`);
+  } else if (HOST !== "0.0.0.0") {
+    urls.push(`http://${HOST}:${PORT}`);
+  }
+
+  console.log(`Sajilo Sewa running at ${urls.join(" and ")} using ${store.driver} storage`);
 });

@@ -368,62 +368,55 @@ function buildRestaurantCards(restaurants, itemsByRestaurant, zoneMap) {
       const serviceModes = getServiceModes(restaurant);
       const reviewCount = restaurant.reviewCount || Math.round(restaurant.rating * 80);
       const priceLabel = formatPriceLevel(restaurant.priceLevel);
+      
+      // Select a nice Unsplash image based on cuisine
+      let unsplashUrl = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop";
+      const tags = (restaurant.cuisineTags || []).join(" ").toLowerCase();
+      if (tags.includes("momo")) unsplashUrl = "https://images.unsplash.com/photo-1534422298391-e4f8c170db06?q=80&w=800&auto=format&fit=crop";
+      else if (tags.includes("biryani") || tags.includes("indian")) unsplashUrl = "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=800&auto=format&fit=crop";
+      else if (tags.includes("tandoori")) unsplashUrl = "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?q=80&w=800&auto=format&fit=crop";
 
       return `
-        <article class="food-result-restaurant">
-          <div class="food-result-cover ${cover.themeClass}">
-            <img class="food-result-cover-image" src="${cover.src}" alt="${cover.alt}" />
-            <div class="food-result-cover-overlay">
-              <span>${cuisineBadge}</span>
-              <strong>${restaurant.name}</strong>
+        <article class="home-service-card" style="display: flex; flex-direction: column; height: 100%;">
+          <div class="home-service-media" style="position: relative;">
+            <img src="${unsplashUrl}" alt="${restaurant.name}" style="height: 240px;" />
+            <div style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.9); padding: 4px 12px; border-radius: 20px; font-weight: 800; color: var(--accent); font-size: 0.9rem; box-shadow: var(--shadow-sm);">
+              ★ ${restaurant.rating.toFixed(1)}
             </div>
           </div>
-          <div class="food-result-header">
-            <div class="food-result-brand">
-              <div class="food-result-mark">${restaurant.name.slice(0, 2).toUpperCase()}</div>
-              <div>
-                <p class="label">${(restaurant.cuisineTags || []).join(" | ")}</p>
-                <h3>${restaurant.name}</h3>
-                <div class="food-result-pills">
-                  <span>${cuisineBadge}</span>
-                  <span>${zone?.name || "Chicago"}</span>
-                  <span>${restaurant.isOpen ? "Open now" : "Closed"}</span>
-                  <span>${priceLabel}</span>
-                </div>
-              </div>
+          
+          <div style="padding: 24px; flex-grow: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3 style="padding: 0; font-size: 1.6rem; font-weight: 900; color: #111;">${restaurant.name}</h3>
+              <span style="color: var(--muted); font-weight: 700; font-size: 0.9rem;">${priceLabel}</span>
             </div>
-            <span class="food-result-rating">${restaurant.rating.toFixed(1)} stars • ${numberFormatter.format(reviewCount)} reviews</span>
-          </div>
-          <p class="food-result-meta">${restaurant.address} | ${zone?.name || "Chicago"} | ${restaurant.avgPrepTimeMinutes} min prep | ${restaurant.deliveryRadiusMiles} mi delivery</p>
-          <div class="food-result-service-row">
-            ${serviceModes.map((mode) => `<span>${mode}</span>`).join("")}
-          </div>
-          <div class="food-result-action-row">
-            ${restaurant.offersDelivery ? `<a class="button primary food-result-action" href="#order-now">Order delivery</a>` : ""}
-            ${restaurant.offersPickup ? `<a class="button secondary food-result-action" href="#order-now">Pickup</a>` : ""}
-            ${restaurant.hasReservations ? `<a class="button secondary food-result-action" href="#restaurant-tools">Reserve table</a>` : ""}
-            ${restaurant.hasWaitlist ? `<a class="button secondary food-result-action" href="#restaurant-tools">Join waitlist</a>` : ""}
-          </div>
-          <div class="food-result-dishes">
-            ${items
-              .map((item) => {
-                const artwork = getDishArtwork(item);
+            
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; font-weight: 500;">
+              ${(restaurant.cuisineTags || []).join(" • ")}
+            </p>
+            
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+              <span style="background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700;">${cuisineBadge}</span>
+              <span style="background: #f0f0f0; color: #555; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700;">${zone?.name || "Chicago"}</span>
+              <span style="background: ${restaurant.isOpen ? "#e7f6f2" : "#fff1f1"}; color: ${restaurant.isOpen ? "#0b856f" : "#d32323"}; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700;">
+                ${restaurant.isOpen ? "Open Now" : "Closed"}
+              </span>
+            </div>
 
-                return `
-                  <article class="food-result-dish">
-                    <img class="food-result-dish-image" src="${artwork.src}" alt="${artwork.alt}" />
-                    <div>
-                      <strong>${item.name}</strong>
-                      <p>${item.description}</p>
-                    </div>
-                    <div class="food-result-price">
-                      <span>${currencyFormatter.format(item.price)}</span>
-                      <small>${item.isPopular ? "Popular choice" : "Available now"}</small>
-                    </div>
-                  </article>
-                `;
-              })
-              .join("")}
+            <div style="border-top: 1px solid var(--line); padding-top: 16px; margin-bottom: 24px;">
+               <p style="font-size: 0.85rem; color: #777; margin-bottom: 8px; font-weight: 600;">TOP DISHES</p>
+               ${items.slice(0, 2).map(item => `
+                 <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                   <span style="font-size: 0.95rem; font-weight: 600; color: #333;">${item.name}</span>
+                   <span style="font-size: 0.95rem; font-weight: 800; color: var(--accent);">${currencyFormatter.format(item.price)}</span>
+                 </div>
+               `).join("")}
+            </div>
+          </div>
+          
+          <div style="padding: 0 24px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <a class="button primary" href="#order" style="min-height: 44px; font-size: 0.9rem; border-radius: 8px;">Delivery</a>
+            <a class="button secondary" href="#details" style="min-height: 44px; font-size: 0.9rem; border-radius: 8px;">View Menu</a>
           </div>
         </article>
       `;

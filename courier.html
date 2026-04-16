@@ -3,51 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sajilo Sewa Courier</title>
-    <meta
-      name="description"
-      content="Sajilo Sewa Courier keeps pickup, dropoff, package details, quotes, and courier status clean in one focused page."
-    />
+    <title>Sajilo Courier | Premium Local Delivery</title>
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="courier-page-body">
-    <div class="page-shell courier-page-shell">
-      <header class="topbar courier-topbar">
+    <!-- Premium Header -->
+    <header class="home-header" style="position: relative; background: #fff; border-bottom: 1px solid var(--line);">
+      <div class="home-topbar">
         <div class="brand-lockup">
-          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
-          <div>
-            <p class="eyebrow">Focused courier page</p>
-            <h1>Sajilo Sewa Courier</h1>
-          </div>
+          <a href="./index.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo logo" />
+            <div style="margin-left: 10px;">
+              <h1 style="margin: 0; font-family: inherit; font-size: 1.45rem; color: var(--text);">Sajilo Sewa</h1>
+              <p class="eyebrow" style="margin: 0; font-size: 0.66rem; color: var(--muted);">Multi-service Platform</p>
+            </div>
+          </a>
+          <span style="font-weight: 800; font-size: 1.2rem; color: #10a37f; margin-left: 20px; border-left: 2px solid var(--line); padding-left: 20px;">Courier</span>
         </div>
-        <nav class="topnav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="#courier-booking">Booking</a>
-          <a href="#courier-status">Tracking</a>
-        </nav>
-      </header>
+        <div class="home-header-actions">
+          <a class="home-header-link" style="color: var(--text);" href="./index.html">Home</a>
+          <a class="home-header-link" style="color: var(--text);" href="#courier-status">Tracking</a>
+          <a class="home-header-link" style="color: var(--text);" href="#signin">Log In</a>
+          <a class="button primary home-header-button" style="background: #10a37f;" href="#signup">Sign Up</a>
+        </div>
+      </div>
+    </header>
 
-      <main class="courier-page-main">
-        <section id="courier-page-hero" class="courier-page-hero"></section>
+    <main class="courier-page-main" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+      
+      <!-- Courier Specific Hero -->
+      <section id="courier-page-hero" class="courier-page-hero" style="padding: 60px 0; border: none; background: transparent; box-shadow: none; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <!-- Injected by JS -->
+      </section>
 
-        <section id="courier-booking" class="section courier-page-section">
-          <div class="section-heading">
-            <p class="eyebrow">Booking</p>
-            <h2>Simple courier information without extra noise</h2>
-          </div>
-          <div id="courier-booking-grid" class="courier-booking-grid"></div>
-        </section>
+      <!-- Booking Grid -->
+      <section id="courier-booking" style="padding: 60px 0; border-top: 1px solid var(--line);">
+        <div style="margin-bottom: 32px;">
+          <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; color: #111;">Shipment Details</h2>
+          <p style="color: var(--muted); font-size: 1.1rem;">Manage your packages and delivery routes.</p>
+        </div>
+        <div id="courier-booking-grid" class="courier-booking-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <!-- Injected by JS -->
+        </div>
+      </section>
 
-        <section id="courier-status" class="section courier-page-section">
-          <div class="section-heading">
-            <p class="eyebrow">Status</p>
-            <h2>Clear courier tracking and pricing details</h2>
-          </div>
-          <div id="courier-status-grid" class="courier-status-grid"></div>
-        </section>
-      </main>
-    </div>
+      <!-- Tracking Section -->
+      <section id="courier-status" style="padding: 60px 0; background: #f0fffb; margin: 0 -100px; padding: 60px 100px; border-radius: 40px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; color: #111;">Live Tracking</h2>
+          <p style="color: var(--muted); font-size: 1.1rem;">Real-time status of your local deliveries.</p>
+        </div>
+        
+        <div id="courier-status-grid" class="courier-status-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+          <!-- Injected by JS -->
+        </div>
+      </section>
+
+      <!-- Support Section -->
+      <section style="padding: 80px 0; text-align: center;">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Courier Support</h2>
+        <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.1rem;">Dedicated help for your urgent parcel deliveries.</p>
+        <div style="display: flex; justify-content: center; gap: 16px;">
+          <a class="button primary" style="background: #10a37f; min-width: 180px;" href="tel:+13125550101">Call Courier Support</a>
+          <a class="button secondary" style="min-width: 180px; border-color: #10a37f; color: #10a37f;" href="#chat">Live Tracking Chat</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;">
+      <div class="footer-social" style="display: flex; gap: 20px;">
+        <a href="#facebook" style="color: var(--text); font-weight: 700; text-decoration: none;">Facebook</a>
+        <a href="#twitter" style="color: var(--text); font-weight: 700; text-decoration: none;">Twitter</a>
+        <a href="#instagram" style="color: var(--text); font-weight: 700; text-decoration: none;">Instagram</a>
+      </div>
+      <div class="footer-links" style="display: flex; gap: 20px;">
+        <a href="#about" style="color: var(--text); font-weight: 700; text-decoration: none;">About</a>
+        <a href="#careers" style="color: var(--text); font-weight: 700; text-decoration: none;">Careers</a>
+        <a href="#press" style="color: var(--text); font-weight: 700; text-decoration: none;">Press</a>
+        <a href="#privacy" style="color: var(--text); font-weight: 700; text-decoration: none;">Privacy</a>
+        <a href="#terms" style="color: var(--text); font-weight: 700; text-decoration: none;">Terms</a>
+      </div>
+      <div class="footer-note" style="color: var(--muted); font-size: 0.9rem;">
+        &copy; 2026 Sajilo Sewa. All rights reserved.
+      </div>
+    </footer>
+
     <script src="./data/sajilo-seed-data.js"></script>
     <script type="module" src="./courier-page.js"></script>
   </body>

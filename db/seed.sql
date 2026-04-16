@@ -6,15 +6,15 @@ INSERT INTO zones (id, city_id, name, zone_type, surge_eligible) VALUES
   ('zone_north', 'city_chi', 'North Side', 'residential-mixed', TRUE),
   ('zone_west', 'city_chi', 'West Corridor', 'airport-connector', TRUE);
 
-INSERT INTO platform_users (id, role, full_name, phone, email, rating, wallet_balance, online_status, current_zone_id) VALUES
-  ('rider_001', 'rider', 'Maya Thompson', '+1-312-555-0101', 'maya@example.com', 4.90, 18.50, NULL, NULL),
-  ('rider_002', 'rider', 'Daniel Brooks', '+1-312-555-0103', 'daniel@example.com', 4.80, 6.25, NULL, NULL),
-  ('driver_001', 'driver', 'Jorge Alvarez', '+1-312-555-0201', NULL, 4.96, NULL, 'online', 'zone_loop'),
-  ('driver_002', 'driver', 'Aisha Patel', '+1-312-555-0202', NULL, 4.91, NULL, 'busy', 'zone_north'),
-  ('cust_001', 'customer', 'Maya Thompson', '+1-312-555-0101', 'maya@example.com', NULL, NULL, NULL, NULL),
-  ('cust_002', 'customer', 'Elena Cruz', '+1-312-555-0301', 'elena@example.com', NULL, NULL, NULL, NULL),
-  ('courier_001', 'courier', 'Samir Khan', '+1-312-555-0401', NULL, 4.88, NULL, 'online', 'zone_loop'),
-  ('courier_002', 'courier', 'Lena Morris', '+1-312-555-0402', NULL, 4.93, NULL, 'online', 'zone_north');
+INSERT INTO platform_users (id, role, full_name, phone, email, password_hash, password_salt, rating, wallet_balance, online_status, current_zone_id) VALUES
+  ('rider_001', 'rider', 'Maya Thompson', '+1-312-555-0101', 'maya@example.com', NULL, NULL, 4.90, 18.50, NULL, NULL),
+  ('rider_002', 'rider', 'Daniel Brooks', '+1-312-555-0103', 'daniel@example.com', NULL, NULL, 4.80, 6.25, NULL, NULL),
+  ('driver_001', 'driver', 'Jorge Alvarez', '+1-312-555-0201', NULL, NULL, NULL, 4.96, NULL, 'online', 'zone_loop'),
+  ('driver_002', 'driver', 'Aisha Patel', '+1-312-555-0202', NULL, NULL, NULL, 4.91, NULL, 'busy', 'zone_north'),
+  ('cust_001', 'customer', 'Maya Thompson', '+1-312-555-0101', 'maya@example.com', NULL, NULL, NULL, NULL, NULL, NULL),
+  ('cust_002', 'customer', 'Elena Cruz', '+1-312-555-0301', 'elena@example.com', NULL, NULL, NULL, NULL, NULL, NULL),
+  ('courier_001', 'courier', 'Samir Khan', '+1-312-555-0401', NULL, NULL, NULL, 4.88, NULL, 'online', 'zone_loop'),
+  ('courier_002', 'courier', 'Lena Morris', '+1-312-555-0402', NULL, NULL, NULL, 4.93, NULL, 'online', 'zone_north');
 
 INSERT INTO api_tokens (token, user_id, role, label, is_active) VALUES
   ('dev-admin-token', 'driver_001', 'admin', 'Development admin token', TRUE),

@@ -3,207 +3,180 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sajilo Sewa Nepali and Indian Food Delivery</title>
-    <meta
-      name="description"
-      content="Sajilo Sewa Food Delivery focuses on Nepali and Indian cuisine with colorful discovery, simple ordering, and fast local delivery."
-    />
+    <title>Sajilo Food | Nepali & Indian Delivery</title>
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="food-page-body">
-    <div class="page-shell food-page-shell">
-      <header class="topbar food-topbar">
+    <!-- Premium Header -->
+    <header class="home-header" style="position: relative; background: #fff; border-bottom: 1px solid var(--line);">
+      <div class="home-topbar">
         <div class="brand-lockup">
-          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
-          <div>
-            <p class="eyebrow">Nepali and Indian food ordering</p>
-            <h1>Sajilo Sewa Food</h1>
+          <a href="./index.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo logo" />
+            <div style="margin-left: 10px;">
+              <h1 style="margin: 0; font-family: inherit; font-size: 1.45rem; color: var(--text);">Sajilo Sewa</h1>
+              <p class="eyebrow" style="margin: 0; font-size: 0.66rem; color: var(--muted);">Multi-service Platform</p>
+            </div>
+          </a>
+          <span style="font-weight: 800; font-size: 1.2rem; color: var(--accent); margin-left: 20px; border-left: 2px solid var(--line); padding-left: 20px;">Food</span>
+        </div>
+        <div class="home-header-actions">
+          <a class="home-header-link" style="color: var(--text);" href="./index.html">Home</a>
+          <a class="home-header-link" style="color: var(--text);" href="#results">Restaurants</a>
+          <a class="home-header-link" style="color: var(--text);" href="#signin">Log In</a>
+          <a class="button primary home-header-button" href="#signup">Sign Up</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="food-page-main" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+      
+      <!-- Food Specific Hero -->
+      <section class="food-hero-refined" style="padding: 60px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <div class="food-hero-copy">
+          <p class="label" style="color: var(--accent); margin-bottom: 12px;">Premium Nepali & Indian Cuisine</p>
+          <h1 style="font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 24px; color: #111;">Delicious meals, delivered to your door.</h1>
+          <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 32px;">Browse the best local Nepali and Indian restaurants in Chicago. From spicy Momos to comforting Thali, find your next favorite meal.</p>
+          
+          <!-- Integrated Search -->
+          <div class="yelp-search-container" style="box-shadow: var(--shadow-md); border: 1px solid var(--line); margin-bottom: 24px;">
+            <div class="yelp-input-group">
+              <span class="yelp-label">Find</span>
+              <input id="food-restaurant-search" class="yelp-input" type="text" placeholder="momo, biryani, tandoori..." />
+            </div>
+            <div class="yelp-input-group">
+              <span class="yelp-label">Near</span>
+              <input id="food-location-search" class="yelp-input" type="text" value="Chicago, IL" />
+            </div>
+            <button id="food-location-button" class="yelp-search-button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </div>
+          
+          <div class="food-service-modes" style="display: flex; gap: 12px;">
+            <span class="food-service-mode is-active" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: var(--accent); color: white;">Delivery</span>
+            <span class="food-service-mode" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: white; border: 1px solid var(--line);">Pickup</span>
+            <span class="food-service-mode" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: white; border: 1px solid var(--line);">Dine-in</span>
           </div>
         </div>
-        <nav class="topnav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="#discover">Discover</a>
-          <a href="#results">Restaurants</a>
-          <a href="#favorites">Favorites</a>
-        </nav>
-      </header>
-
-      <main class="food-page-main">
-        <section class="food-hero">
-          <div class="food-hero-copy">
-            <p class="eyebrow">Restaurant discovery, delivery, pickup, and dine-in</p>
-            <h2>Find great Nepali and Indian restaurants, check the details fast, and decide how you want to order.</h2>
-            <p class="food-hero-text">
-              Browse menus, compare ratings, photos, price range, takeout, delivery, waitlist, and reservation options,
-              then move into a cleaner order or dine-in flow.
-            </p>
-            <div class="food-service-modes" aria-label="Service modes">
-              <span class="food-service-mode is-active">Delivery</span>
-              <span class="food-service-mode">Pickup</span>
-              <span class="food-service-mode">Dine-in</span>
-            </div>
-            <div class="food-hero-actions">
-              <a class="button primary" href="#discover">Find restaurants</a>
-              <a class="button secondary" href="#results">Browse top results</a>
-            </div>
-            <div class="food-highlights">
-              <article class="food-highlight-card">
-                <span class="metric-label">Clear search</span>
-                <strong>Find restaurants fast</strong>
-                <p>Search by dish, restaurant, and location without extra steps.</p>
-              </article>
-              <article class="food-highlight-card">
-                <span class="metric-label">Easy choice</span>
-                <strong>Compare the details that matter</strong>
-                <p>Ratings, price, service mode, and top dishes stay in one clean card.</p>
-              </article>
+        
+        <div class="food-hero-visual" style="position: relative;">
+          <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1000&auto=format&fit=crop" alt="Biryani" style="width: 100%; border-radius: 24px; box-shadow: var(--shadow-lg);" />
+          <div style="position: absolute; bottom: -20px; right: -20px; background: white; padding: 20px; border-radius: 20px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px;">
+            <div style="background: var(--accent-soft); color: var(--accent); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 900;">★</div>
+            <div>
+              <p style="margin: 0; font-weight: 800; font-size: 1.1rem;">4.8 Rating</p>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">Top local choice</p>
             </div>
           </div>
-          <div class="food-hero-visual">
-            <div class="food-hero-photo-stack">
-              <img class="food-hero-photo is-primary" src="./assets/Momo.1.jpg" alt="Plate of momo" />
-              <img class="food-hero-photo is-secondary" src="./assets/Chowein.1.webp" alt="Plate of chowmein" />
+        </div>
+      </section>
+
+      <!-- Restaurant Results -->
+      <section id="results" style="padding: 60px 0; border-top: 1px solid var(--line);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px;">
+          <div>
+            <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; color: #111;">Top Restaurants near you</h2>
+            <p style="color: var(--muted); font-size: 1.1rem;">Hand-picked Nepali and Indian spots in Chicago.</p>
+          </div>
+          <div class="food-filter-row" style="display: flex; gap: 10px;">
+            <span class="food-filter-chip is-active" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: var(--accent-soft); color: var(--accent);">Open now</span>
+            <span class="food-filter-chip" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: white; border: 1px solid var(--line);">4.5+ Rating</span>
+            <span class="food-filter-chip" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: white; border: 1px solid var(--line);">$$ Price</span>
+          </div>
+        </div>
+        
+        <div id="food-results-list" class="food-results-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px;">
+          <!-- Restaurants will be injected here by JS -->
+        </div>
+      </section>
+
+      <!-- Popular Dishes Section -->
+      <section id="favorites" style="padding: 60px 0; background: var(--accent-soft); margin: 0 -100px; padding: 60px 100px; border-radius: 40px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; color: #111;">Popular dishes in your area</h2>
+          <p style="color: var(--muted); font-size: 1.1rem;">The most ordered Nepali and Indian specialties.</p>
+        </div>
+        
+        <div class="food-favorites-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <article class="home-service-card" style="background: white;">
+            <div class="home-service-media">
+              <img src="./assets/Chowein.1.webp" alt="Chowmein" style="height: 200px;" />
             </div>
-          </div>
-        </section>
-
-        <section id="discover" class="section food-discovery-section">
-          <div class="section-heading">
-            <p class="eyebrow">Discover</p>
-            <h2>Search by restaurant, dish, and location</h2>
-          </div>
-          <div class="food-search-bar">
-            <div class="food-search-panel">
-              <div class="food-search-fields">
-                <div class="search-group">
-                  <label class="search-label" for="food-restaurant-search">Restaurant or dish</label>
-                  <input
-                    id="food-restaurant-search"
-                    class="search-input food-search-input"
-                    type="text"
-                    value=""
-                    placeholder="Momo, biryani, tandoori, Himalayan Spice..."
-                  />
-                </div>
-                <div class="search-group">
-                  <label class="search-label" for="food-location-search">Near</label>
-                  <input
-                    id="food-location-search"
-                    class="search-input food-search-input"
-                    type="text"
-                    value="Chicago, IL"
-                    placeholder="Downtown Loop, North Side, West Corridor..."
-                  />
-                </div>
-              </div>
-              <button id="food-location-button" class="button primary food-search-button" type="button">Find restaurants</button>
-              <div class="food-search-suggestions">
-                <span>Downtown Loop</span>
-                <span>North Side</span>
-                <span>West Corridor</span>
-                <span>Momo</span>
-                <span>Biryani</span>
-                <span>Thali</span>
-              </div>
+            <p class="label">Most Ordered</p>
+            <h3>Classic Nepali Thali Set</h3>
+            <p style="padding: 0 20px 20px; color: var(--muted); line-height: 1.5;">Authentic Nepali platter with dal, rice, and tarkari.</p>
+            <span class="home-service-link" style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Order Now</span>
+              <span style="font-weight: 800;">$15.40</span>
+            </span>
+          </article>
+          
+          <article class="home-service-card" style="background: white;">
+            <div class="home-service-media">
+              <img src="./assets/Momo.1.jpg" alt="Momo" style="height: 200px;" />
             </div>
-          </div>
-          <div class="food-filter-row" aria-label="Restaurant filters">
-            <span class="food-filter-chip is-active">Open now</span>
-            <span class="food-filter-chip">Delivery</span>
-            <span class="food-filter-chip">Pickup</span>
-            <span class="food-filter-chip">4.5+</span>
-          </div>
-        </section>
+            <p class="label">Local Favorite</p>
+            <h3>Steamed Chicken Momo</h3>
+            <p style="padding: 0 20px 20px; color: var(--muted); line-height: 1.5;">Handmade dumplings with spicy tomato chutney.</p>
+            <span class="home-service-link" style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Order Now</span>
+              <span style="font-weight: 800;">$12.50</span>
+            </span>
+          </article>
+          
+          <article class="home-service-card" style="background: white;">
+            <div class="home-service-media">
+              <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop" alt="Paneer" style="height: 200px;" />
+            </div>
+            <p class="label">Chef Pick</p>
+            <h3>Paneer Tikka Masala</h3>
+            <p style="padding: 0 20px 20px; color: var(--muted); line-height: 1.5;">Creamy tomato curry with grilled paneer cubes.</p>
+            <span class="home-service-link" style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Order Now</span>
+              <span style="font-weight: 800;">$14.60</span>
+            </span>
+          </article>
+        </div>
+      </section>
 
-        <section id="results" class="section food-results-section">
-          <div class="section-heading">
-            <p class="eyebrow">Near your location</p>
-            <h2>Choose a restaurant with confidence</h2>
-          </div>
-          <div class="section-callout">
-            Each card shows the essentials first: rating, price, location, service mode, and top dishes.
-          </div>
-          <div id="food-results-summary" class="food-results-summary"></div>
-          <div id="food-results-list" class="food-results-list"></div>
-        </section>
+      <!-- Support Section -->
+      <section style="padding: 80px 0; text-align: center;">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Need help with your order?</h2>
+        <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.1rem;">Our dedicated food support team is available 9:00 AM - 11:00 PM every day.</p>
+        <div style="display: flex; justify-content: center; gap: 16px;">
+          <a class="button primary" href="tel:+13125550101" style="min-width: 180px;">Call Support</a>
+          <a class="button secondary" href="#chat" style="min-width: 180px;">Live Chat</a>
+        </div>
+      </section>
 
-        <section id="favorites" class="section food-favorites-section">
-          <div class="section-heading">
-            <p class="eyebrow">Customer favorites</p>
-            <h2>Popular dishes customers order again and again</h2>
-          </div>
-          <div class="food-favorites-grid">
-            <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/Chowein.1.webp" alt="Plate of chowmein" />
-              <div class="food-meal-badge">Most ordered</div>
-              <h3>Classic Nepali thali set</h3>
-              <p>Rice, dal, tarkari, achar, and greens presented as a complete comforting meal.</p>
-              <div class="food-meal-footer">
-                <span>$15.40</span>
-                <span>21 min prep</span>
-              </div>
-            </article>
-            <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/Momo.1.jpg" alt="Plate of momo" />
-              <div class="food-meal-badge">Local favorite</div>
-              <h3>Momo feast set</h3>
-              <p>Steamed dumplings, spicy chutney, and a warm meal profile that feels unmistakably local and memorable.</p>
-              <div class="food-meal-footer">
-                <span>$12.50</span>
-                <span>20 min prep</span>
-              </div>
-            </article>
-            <article class="food-meal-card">
-              <img class="food-meal-image" src="./assets/Chowein.1.webp" alt="Plate of chowmein noodles" />
-              <div class="food-meal-badge">Chef pick</div>
-              <h3>Paneer tikka plate</h3>
-              <p>Smoky paneer, naan, chutney, and masala onion sides in a plate that feels vibrant and indulgent.</p>
-              <div class="food-meal-footer">
-                <span>$14.60</span>
-                <span>19 min prep</span>
-              </div>
-            </article>
-          </div>
-        </section>
+    </main>
 
-        <section class="section food-contact-section">
-          <div class="section-heading">
-            <p class="eyebrow">Support</p>
-            <h2>Need help with an order?</h2>
-          </div>
-          <div class="food-contact-grid">
-            <article class="food-contact-card">
-              <p class="label">Phone support</p>
-              <h3>Talk directly for urgent order issues</h3>
-              <p>Use a quick call for delivery delays, address problems, or pickup coordination.</p>
-              <a class="button primary" href="tel:+13125550101">Call now</a>
-            </article>
-            <article class="food-contact-card food-contact-chat-card">
-              <div class="food-chat-head">
-                <div>
-                  <p class="label">Live message</p>
-                  <h3>Chat with support in seconds</h3>
-                </div>
-                <span class="food-contact-status">Online</span>
-              </div>
-              <div class="food-chat-window">
-                <div class="food-chat-bubble is-support">Hi Maya, your momo order is on the way.</div>
-                <div class="food-chat-bubble is-user">Please call when you arrive outside.</div>
-                <div class="food-chat-bubble is-support">Noted. Driver will call before dropoff.</div>
-              </div>
-              <a class="button secondary" href="sms:+13125550101">Send message</a>
-            </article>
-            <article class="food-contact-card food-contact-card-accent">
-              <p class="label">Support hours</p>
-              <h3>Available every day</h3>
-              <p>Customer support stays open from 9:00 AM to 11:00 PM for food delivery help.</p>
-              <span class="food-contact-status">Support active</span>
-            </article>
-          </div>
-        </section>
-      </main>
-    </div>
+    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;">
+      <div class="footer-social" style="display: flex; gap: 20px;">
+        <a href="#facebook" style="color: var(--text); font-weight: 700; text-decoration: none;">Facebook</a>
+        <a href="#twitter" style="color: var(--text); font-weight: 700; text-decoration: none;">Twitter</a>
+        <a href="#instagram" style="color: var(--text); font-weight: 700; text-decoration: none;">Instagram</a>
+      </div>
+      <div class="footer-links" style="display: flex; gap: 20px;">
+        <a href="#about" style="color: var(--text); font-weight: 700; text-decoration: none;">About</a>
+        <a href="#careers" style="color: var(--text); font-weight: 700; text-decoration: none;">Careers</a>
+        <a href="#press" style="color: var(--text); font-weight: 700; text-decoration: none;">Press</a>
+        <a href="#privacy" style="color: var(--text); font-weight: 700; text-decoration: none;">Privacy</a>
+        <a href="#terms" style="color: var(--text); font-weight: 700; text-decoration: none;">Terms</a>
+      </div>
+      <div class="footer-note" style="color: var(--muted); font-size: 0.9rem;">
+        &copy; 2026 Sajilo Sewa. All rights reserved.
+      </div>
+    </footer>
+
     <script src="./data/sajilo-seed-data.js"></script>
     <script type="module" src="./food-page.js"></script>
   </body>

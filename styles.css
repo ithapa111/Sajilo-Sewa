@@ -1,22 +1,26 @@
 :root {
-  --bg: #f5f5f5;
-  --bg-deep: #d32323;
-  --surface: rgba(255, 255, 255, 0.96);
+  --bg: #f8f9fa;
+  --bg-deep: #b41b1b; /* Sophisticated Ruby Red */
+  --surface: rgba(255, 255, 255, 0.98);
   --surface-strong: #ffffff;
-  --text: #2d2d2d;
-  --muted: #6b6b6b;
-  --line: rgba(19, 35, 31, 0.08);
-  --accent: #d32323;
-  --accent-soft: #fde3e3;
+  --text: #1a1a1a;
+  --muted: #5e666f; /* Slate Gray */
+  --line: rgba(0, 0, 0, 0.06);
+  --accent: #d32323; /* Primary Yelp Red */
+  --accent-hover: #b41b1b;
+  --accent-soft: rgba(211, 35, 35, 0.05);
   --highlight: #11856f;
-  --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  --radius-xl: 30px;
-  --radius-lg: 22px;
-  --radius-md: 16px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 34px rgba(0,0,0,0.12);
+  --radius-xl: 12px;
+  --radius-lg: 8px;
+  --radius-md: 6px;
 }
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -27,10 +31,13 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  font-family: "Aptos", "Segoe UI Variable Display", "Trebuchet MS", sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(211, 35, 35, 0.12), transparent 26%),
-    linear-gradient(180deg, #ffffff 0%, #f7f7f7 42%, #f1f1f1 100%);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(211, 35, 35, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 102, 255, 0.02) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(17, 133, 111, 0.02) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
 body::before {
@@ -73,96 +80,233 @@ body::before {
 }
 
 .home-header {
-  display: grid;
-  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 32px;
 }
 
-.home-main {
-  display: grid;
-  gap: 16px;
+.home-header-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+
+.home-header-link:hover {
+  opacity: 0.8;
+}
+
+.home-header-button {
+  background: var(--bg-deep);
+  color: white;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.home-header-button:hover {
+  transform: translateY(-1px);
+  background: var(--accent-hover);
 }
 
 .home-hero {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  align-items: stretch;
-  padding: 28px;
-  overflow: hidden;
-  border: 1px solid rgba(19, 35, 31, 0.08);
-  border-radius: var(--radius-xl);
-  background:
-    radial-gradient(circle at top left, rgba(211, 35, 35, 0.12), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(255, 188, 77, 0.12), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
-  box-shadow: var(--shadow);
+  height: 85vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 0 24px;
 }
 
-.home-hero::after {
+.yelp-logo {
+  font-size: 6rem;
+  font-weight: 900;
+  margin-bottom: 32px;
+  color: white;
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.yelp-search-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  width: 100%;
+  max-width: 880px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.yelp-input-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.yelp-input-group:first-child::after {
   content: "";
   position: absolute;
-  right: -20px;
-  bottom: -10px;
-  width: min(44vw, 420px);
-  height: min(44vw, 420px);
-  background: url("./assets/Ridesharing.png") center center / contain no-repeat;
-  opacity: 0.12;
-  filter: saturate(1.05);
-  pointer-events: none;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
 }
 
-.home-hero-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  align-content: center;
-  gap: 16px;
-  max-width: 70ch;
-}
-
-.home-hero-copy h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.15rem, 4.2vw, 4rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  max-width: 11ch;
-  color: #3b302d;
-}
-
-.home-hero-text {
-  margin: 0;
-  max-width: 57ch;
-  color: var(--muted);
-  line-height: 1.72;
-  font-size: 1.02rem;
-}
-
-.home-hero-text-secondary {
-  max-width: 60ch;
-  color: #6a615c;
-}
-
-.home-hero-markers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.home-hero-markers span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(24, 52, 45, 0.1);
-  background: rgba(255, 255, 255, 0.78);
-  color: #3b302d;
-  font-size: 0.85rem;
+.yelp-label {
+  color: var(--text);
   font-weight: 800;
-  box-shadow: 0 8px 18px rgba(24, 52, 45, 0.04);
+  margin-right: 12px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.yelp-input {
+  border: none;
+  padding: 22px 0;
+  width: 100%;
+  font-size: 1.15rem;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.yelp-input::placeholder {
+  color: #999;
+}
+
+.yelp-search-button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 0 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.yelp-search-button:hover {
+  background: var(--accent-hover);
+}
+
+.yelp-categories {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.yelp-category-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.yelp-category-link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.yelp-category-link svg {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.home-services {
+  max-width: 1200px;
+  margin: -60px auto 60px;
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  padding: 0 24px;
+}
+
+.home-service-card {
+  background: var(--surface-strong);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  border: 1px solid var(--line);
+}
+
+.home-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.home-service-media img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.home-service-card:hover .home-service-media img {
+  transform: scale(1.05);
+}
+
+.home-service-card .label {
+  padding: 20px 20px 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.home-service-card h3 {
+  padding: 10px 20px 20px;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: #111;
+}
+
+.home-service-link {
+  display: block;
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: #fafafa;
+  transition: background 0.2s;
+}
+
+.home-service-card:hover .home-service-link {
+  background: var(--accent-soft);
 }
 
 .home-service-link {
@@ -281,7 +425,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 0 6px;
+  padding: 0;
 }
 
 .home-service-menu {
@@ -383,30 +527,28 @@ body::before {
 .home-service-pill {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 1px solid rgba(24, 52, 45, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--text);
   font-size: 0.92rem;
   font-weight: 700;
   font-family: inherit;
-  line-height: 1;
+  line-height: 1.2;
   text-decoration: none;
-  box-shadow: 0 10px 24px rgba(24, 52, 45, 0.06);
+  box-shadow: none;
 }
 
 .home-service-pill.is-live:hover,
 .home-service-pill.is-live:focus-visible {
-  border-color: rgba(211, 35, 35, 0.18);
-  background: #ffffff;
+  color: var(--accent);
 }
 
 .home-service-pill.is-soon {
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.58);
+  background: transparent;
 }
 
 .topbar,
@@ -811,7 +953,7 @@ body::before {
 
 .home-topbar {
   background: rgba(255, 255, 255, 0.95);
-  margin-bottom: 6px;
+  margin-bottom: 0;
   padding: 14px 18px;
 }
 
@@ -1543,14 +1685,90 @@ body::before {
   gap: 18px;
 }
 
-.ride-page-hero,
-.ride-info-card,
-.ride-tier-card,
-.ride-safety-card {
-  border: 1px solid rgba(27, 116, 255, 0.12);
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 14px 34px rgba(27, 116, 255, 0.08);
+.ride-choice-container {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ride-choice-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ride-choice-card:hover {
+  border-color: #1b74ff;
+  background: #f0f7ff;
+}
+
+.ride-choice-card.is-active {
+  border-color: #1b74ff;
+  border-width: 2px;
+  background: #f0f7ff;
+  box-shadow: var(--shadow-md);
+}
+
+.ride-badge-fastest {
+  background: #11856f;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ride-badge-cheapest {
+  background: #777;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Map Pulse Animation */
+.map-pulse {
+  width: 14px;
+  height: 14px;
+  background-color: #1b74ff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.map-pulse::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.driver-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #555;
+  background: #f0f0f0;
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
 .ride-page-hero {
@@ -3107,40 +3325,37 @@ body::before {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: 1.3fr auto auto;
-  gap: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
+  gap: 24px;
   margin: 24px 0 0;
-  padding: 22px 24px;
+  padding: 24px 32px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: var(--shadow);
 }
 
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.footer-brand p,
-.footer-note {
-  margin: 4px 0 0;
-  color: var(--muted);
-}
-
+.footer-social,
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 20px;
 }
 
+.footer-social a,
 .footer-links a {
   color: var(--text);
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover,
+.footer-links a:hover {
+  color: var(--accent);
 }
 
 .map-legend.is-swapping {
