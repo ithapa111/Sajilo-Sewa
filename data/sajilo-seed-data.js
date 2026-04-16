@@ -1,7 +1,7 @@
 window.SAJILO_SEED_DATA = {
   "platform": {
     "brand": {
-      "name": "Sajilo Sewa",
+      "name": "Sazilo Sewa",
       "tagline": "Move people, meals, and packages with one local platform",
       "currency": "USD",
       "defaultLocale": "en-US",
@@ -73,7 +73,7 @@ window.SAJILO_SEED_DATA = {
       {
         "id": "pay_wallet",
         "type": "wallet",
-        "label": "Sajilo Wallet",
+        "label": "Sazilo Wallet",
         "provider": "internal",
         "isDefault": false
       },
@@ -255,7 +255,7 @@ window.SAJILO_SEED_DATA = {
     "serviceTiers": [
       {
         "id": "tier_go",
-        "name": "Sajilo Go",
+        "name": "Sazilo Go",
         "capacity": 4,
         "baseFare": 2.5,
         "perMile": 1.35,
@@ -266,7 +266,7 @@ window.SAJILO_SEED_DATA = {
       },
       {
         "id": "tier_plus",
-        "name": "Sajilo Plus",
+        "name": "Sazilo Plus",
         "capacity": 6,
         "baseFare": 4.5,
         "perMile": 1.9,
@@ -277,7 +277,7 @@ window.SAJILO_SEED_DATA = {
       },
       {
         "id": "tier_exec",
-        "name": "Sajilo Exec",
+        "name": "Sazilo Exec",
         "capacity": 4,
         "baseFare": 8,
         "perMile": 3.1,

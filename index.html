@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sajilo Sewa</title>
+    <title>Sazilo Sewa</title>
     <meta
       name="description"
-      content="Sajilo Sewa is a clean multi-service gateway for ridesharing, food delivery, and courier delivery."
+      content="Sazilo Sewa is a clean multi-service gateway for ridesharing, food delivery, and courier delivery."
     />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,14 +18,14 @@
     <header class="home-header">
       <div class="home-topbar">
         <div class="brand-lockup">
-          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo logo" />
+          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sazilo logo" />
           <div>
-            <h1 style="margin: 0; font-family: inherit; font-size: 1.45rem; color: var(--text);">Sajilo Sewa</h1>
+            <img class="brand-name-logo" src="./assets/LogoName-header.png" alt="Sazilo Sewa" />
             <p class="eyebrow" style="margin: 0; font-size: 0.66rem; color: var(--muted);">Multi-service Platform</p>
           </div>
         </div>
         <div class="home-header-actions">
-          <a class="home-header-link" href="#business">Sajilo for Business</a>
+          <a class="home-header-link" href="#business">Sazilo for Business</a>
           <a class="home-header-link" href="#signin">Log In</a>
           <a class="button primary home-header-button" href="#signup">Sign Up</a>
         </div>
@@ -34,7 +34,7 @@
 
     <main class="home-main">
       <section class="home-hero">
-        <div class="yelp-logo">Sajilo</div>
+        <div class="yelp-logo">Sazilo</div>
         
         <div class="yelp-search-container">
           <div class="yelp-input-group">
@@ -50,23 +50,92 @@
           </button>
         </div>
 
-        <nav class="yelp-categories">
-          <a href="./food.html" class="yelp-category-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
-            Restaurants
-          </a>
-          <a href="./ride.html" class="yelp-category-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-            Rides
-          </a>
-          <a href="./courier.html" class="yelp-category-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3"></path><path d="M21 16v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"></path><path d="M4 12H2"></path><path d="M10 12H8"></path><path d="M16 12h-2"></path><path d="M22 12h-2"></path></svg>
-            Courier
-          </a>
-          <a href="#more" class="yelp-category-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-            More
-          </a>
+        <nav class="home-service-nav" aria-label="Other services">
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-live is-featured">Airport pickup</summary>
+            <div class="home-service-menu-panel">
+              <a href="./ride.html">Airport shuttles</a>
+              <a href="./ride.html">Town car service</a>
+              <a href="./ride.html">Limo</a>
+              <a href="./ride.html">Taxis</a>
+              <a href="./ride.html">Personal ride</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-live">Top restaurants</summary>
+            <div class="home-service-menu-panel">
+              <a href="./food.html">Nepali favorites</a>
+              <a href="./food.html">Indian curries</a>
+              <a href="./food.html">Momo spots</a>
+              <a href="./food.html">Biryani places</a>
+              <a href="./food.html">Pickup specials</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-live">Parcel delivery</summary>
+            <div class="home-service-menu-panel">
+              <a href="./courier.html">Same-day parcels</a>
+              <a href="./courier.html">Document delivery</a>
+              <a href="./courier.html">Fragile package care</a>
+              <a href="./courier.html">Scheduled dropoff</a>
+              <a href="./courier.html">Track courier live</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Groceries</summary>
+            <div class="home-service-menu-panel">
+              <a href="#groceries">Fresh produce</a>
+              <a href="#groceries">Daily essentials</a>
+              <a href="#groceries">Late-night snacks</a>
+              <a href="#groceries">Family-size baskets</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Pharmacy</summary>
+            <div class="home-service-menu-panel">
+              <a href="#pharmacy">Prescription pickup</a>
+              <a href="#pharmacy">Health essentials</a>
+              <a href="#pharmacy">Baby care</a>
+              <a href="#pharmacy">Wellness products</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Medical</summary>
+            <div class="home-service-menu-panel">
+              <a href="#medical">General doctor</a>
+              <a href="#medical">Dentist</a>
+              <a href="#medical">Pediatric care</a>
+              <a href="#medical">Eye specialist</a>
+              <a href="#medical">Clinic appointment</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Home cleaning</summary>
+            <div class="home-service-menu-panel">
+              <a href="#cleaning">Quick room refresh</a>
+              <a href="#cleaning">Deep cleaning</a>
+              <a href="#cleaning">Move-in service</a>
+              <a href="#cleaning">Weekend booking</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Pet care</summary>
+            <div class="home-service-menu-panel">
+              <a href="#petcare">Walk and drop-in</a>
+              <a href="#petcare">Vet pickup</a>
+              <a href="#petcare">Pet food delivery</a>
+              <a href="#petcare">Grooming ride</a>
+            </div>
+          </details>
+          <details class="home-service-menu">
+            <summary class="home-service-pill is-soon">Beauty</summary>
+            <div class="home-service-menu-panel">
+              <a href="#beauty">Salon booking</a>
+              <a href="#beauty">At-home makeup</a>
+              <a href="#beauty">Hair styling</a>
+              <a href="#beauty">Spa appointment</a>
+            </div>
+          </details>
         </nav>
       </section>
 
@@ -114,7 +183,7 @@
         <a href="#terms" style="color: var(--text); font-weight: 700; text-decoration: none;">Terms</a>
       </div>
       <div class="footer-note" style="color: var(--muted); font-size: 0.9rem;">
-        &copy; 2026 Sajilo Sewa. All rights reserved.
+        &copy; 2026 Sazilo Sewa. All rights reserved.
       </div>
     </footer>
   </body>
