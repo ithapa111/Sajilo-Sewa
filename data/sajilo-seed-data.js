@@ -2,7 +2,7 @@ window.SAJILO_SEED_DATA = {
   "platform": {
     "brand": {
       "name": "Sajilo Sewa",
-      "tagline": "Move people, meals, and packages with one local platform",
+    "tagline": "Easy service for the Nepalese community in the USA",
       "currency": "USD",
       "defaultLocale": "en-US",
       "timezone": "America/Chicago"

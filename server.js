@@ -21,6 +21,10 @@ function normalizeApiPath(pathname) {
   return API_ALIASES[pathname] || pathname;
 }
 
+function hasStoreMethod(name) {
+  return typeof store[name] === "function";
+}
+
 function sendJson(res, statusCode, payload) {
   res.writeHead(statusCode, {
     "Content-Type": "application/json; charset=utf-8",
@@ -162,6 +166,43 @@ async function handleApiRead(parsedUrl, auth) {
     };
   }
 
+  if (pathname === "/api/marketplace/categories") {
+    if (!hasStoreMethod("getMarketplaceCategories")) {
+      return { statusCode: 501, payload: { error: "Marketplace categories are not supported by the active storage driver" } };
+    }
+
+    return { statusCode: 200, payload: await store.getMarketplaceCategories() };
+  }
+
+  if (pathname === "/api/marketplace/businesses") {
+    if (!hasStoreMethod("getMarketplaceBusinesses")) {
+      return { statusCode: 501, payload: { error: "Marketplace search is not supported by the active storage driver" } };
+    }
+
+    return { statusCode: 200, payload: await store.getMarketplaceBusinesses(parsedUrl.query) };
+  }
+
+  const businessReviewsMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)\/reviews$/);
+  if (businessReviewsMatch) {
+    if (!hasStoreMethod("getMarketplaceReviews")) {
+      return { statusCode: 501, payload: { error: "Marketplace reviews are not supported by the active storage driver" } };
+    }
+
+    return { statusCode: 200, payload: await store.getMarketplaceReviews(decodeURIComponent(businessReviewsMatch[1])) };
+  }
+
+  const businessDetailMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)$/);
+  if (businessDetailMatch) {
+    if (!hasStoreMethod("getMarketplaceBusinessBySlug")) {
+      return { statusCode: 501, payload: { error: "Marketplace business details are not supported by the active storage driver" } };
+    }
+
+    const payload = await store.getMarketplaceBusinessBySlug(decodeURIComponent(businessDetailMatch[1]));
+    return payload
+      ? { statusCode: 200, payload }
+      : { statusCode: 404, payload: { error: "Business not found" } };
+  }
+
   if (pathname === "/api/platform") {
     return { statusCode: 200, payload: await store.getPlatform() };
   }
@@ -181,9 +222,29 @@ async function handleApiRead(parsedUrl, auth) {
   return null;
 }
 
-async function handleApiWrite(req, parsedUrl) {
+async function handleApiWrite(req, parsedUrl, auth) {
   const pathname = normalizeApiPath(parsedUrl.pathname);
   const payload = await readJsonBody(req);
+
+  if (pathname === "/api/auth/member/signup") {
+    if (typeof store.signup !== "function") {
+      return { statusCode: 501, payload: { error: "Signup is not supported by the active storage driver" } };
+    }
+
+    return store.signup({ ...payload, role: "member" });
+  }
+
+  if (pathname === "/api/auth/business/signup") {
+    if (typeof store.signup !== "function") {
+      return { statusCode: 501, payload: { error: "Signup is not supported by the active storage driver" } };
+    }
+
+    return store.signup({
+      ...payload,
+      fullName: payload.fullName || payload.contactName || payload.businessName,
+      role: "business_owner"
+    });
+  }
 
   if (pathname === "/api/auth/signup") {
     if (typeof store.signup !== "function") {
@@ -191,6 +252,22 @@ async function handleApiWrite(req, parsedUrl) {
     }
 
     return store.signup(payload);
+  }
+
+  if (pathname === "/api/auth/member/login") {
+    if (typeof store.login !== "function") {
+      return { statusCode: 501, payload: { error: "Login is not supported by the active storage driver" } };
+    }
+
+    return store.login(payload, ["member", "customer", "rider"]);
+  }
+
+  if (pathname === "/api/auth/business/login") {
+    if (typeof store.login !== "function") {
+      return { statusCode: 501, payload: { error: "Login is not supported by the active storage driver" } };
+    }
+
+    return store.login(payload, ["business_owner"]);
   }
 
   if (pathname === "/api/auth/login") {
@@ -213,25 +290,104 @@ async function handleApiWrite(req, parsedUrl) {
     return store.createCourierDelivery(payload);
   }
 
+  const reviewMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)\/reviews$/);
+  if (reviewMatch) {
+    if (!hasStoreMethod("createMarketplaceReview")) {
+      return { statusCode: 501, payload: { error: "Marketplace reviews are not supported by the active storage driver" } };
+    }
+
+    return store.createMarketplaceReview(decodeURIComponent(reviewMatch[1]), auth, payload);
+  }
+
+  const favoriteMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)\/favorite$/);
+  if (favoriteMatch) {
+    if (!hasStoreMethod("createMarketplaceFavorite")) {
+      return { statusCode: 501, payload: { error: "Marketplace favorites are not supported by the active storage driver" } };
+    }
+
+    return store.createMarketplaceFavorite(decodeURIComponent(favoriteMatch[1]), auth);
+  }
+
+  const draftMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)\/draft$/);
+  if (draftMatch) {
+    if (!hasStoreMethod("createBusinessProfileDraft")) {
+      return { statusCode: 501, payload: { error: "Business drafts are not supported by the active storage driver" } };
+    }
+
+    return store.createBusinessProfileDraft(decodeURIComponent(draftMatch[1]), auth, payload);
+  }
+
+  if (pathname === "/api/marketplace/service-requests") {
+    if (!hasStoreMethod("createMarketplaceServiceRequest")) {
+      return { statusCode: 501, payload: { error: "Marketplace service requests are not supported by the active storage driver" } };
+    }
+
+    return store.createMarketplaceServiceRequest(auth, payload);
+  }
+
+  if (pathname === "/api/marketplace/business-claims") {
+    if (!hasStoreMethod("createBusinessClaim")) {
+      return { statusCode: 501, payload: { error: "Business claims are not supported by the active storage driver" } };
+    }
+
+    return store.createBusinessClaim(auth, payload);
+  }
+
+  return { statusCode: 404, payload: { error: "Not found" } };
+}
+
+async function handleApiDelete(parsedUrl, auth) {
+  const pathname = normalizeApiPath(parsedUrl.pathname);
+  const favoriteMatch = pathname.match(/^\/api\/marketplace\/businesses\/([^/]+)\/favorite$/);
+
+  if (favoriteMatch) {
+    if (!hasStoreMethod("deleteMarketplaceFavorite")) {
+      return { statusCode: 501, payload: { error: "Marketplace favorites are not supported by the active storage driver" } };
+    }
+
+    return store.deleteMarketplaceFavorite(decodeURIComponent(favoriteMatch[1]), auth);
+  }
+
   return { statusCode: 404, payload: { error: "Not found" } };
 }
 
 function authorizeForPath(req, pathname) {
   const normalizedPath = normalizeApiPath(pathname);
-  if (normalizedPath === "/api/auth/signup" || normalizedPath === "/api/auth/login") {
+  if (
+    normalizedPath === "/api/auth/signup" ||
+    normalizedPath === "/api/auth/login" ||
+    normalizedPath === "/api/auth/member/signup" ||
+    normalizedPath === "/api/auth/member/login" ||
+    normalizedPath === "/api/auth/business/signup" ||
+    normalizedPath === "/api/auth/business/login"
+  ) {
     return Promise.resolve({ ok: true, auth: null });
   }
 
   if (normalizedPath === "/api/rideshare/requests") {
-    return authorize(req, store, ["admin", "rider"]);
+    return authorize(req, store, ["admin", "member", "rider"]);
   }
 
   if (normalizedPath === "/api/food-delivery/orders") {
-    return authorize(req, store, ["admin", "customer"]);
+    return authorize(req, store, ["admin", "member", "customer"]);
   }
 
   if (normalizedPath === "/api/courier/requests") {
-    return authorize(req, store, ["admin", "rider", "customer"]);
+    return authorize(req, store, ["admin", "member", "rider", "customer"]);
+  }
+
+  if (
+    normalizedPath === "/api/marketplace/service-requests" ||
+    /^\/api\/marketplace\/businesses\/[^/]+\/(reviews|favorite)$/.test(normalizedPath)
+  ) {
+    return authorize(req, store, ["admin", "member", "customer", "rider"]);
+  }
+
+  if (
+    normalizedPath === "/api/marketplace/business-claims" ||
+    /^\/api\/marketplace\/businesses\/[^/]+\/draft$/.test(normalizedPath)
+  ) {
+    return authorize(req, store, ["admin", "business_owner"]);
   }
 
   return authenticateRequestWithStore(req, store).then((auth) => ({ ok: true, auth }));
@@ -250,7 +406,13 @@ const server = http.createServer(async (req, res) => {
       }
 
       if (req.method === "POST") {
-        const writeResult = await handleApiWrite(req, parsedUrl);
+        const writeResult = await handleApiWrite(req, parsedUrl, authResult.auth);
+        sendJson(res, writeResult.statusCode, writeResult.payload);
+        return;
+      }
+
+      if (req.method === "DELETE") {
+        const writeResult = await handleApiDelete(parsedUrl, authResult.auth);
         sendJson(res, writeResult.statusCode, writeResult.payload);
         return;
       }

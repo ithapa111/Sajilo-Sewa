@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-development": {
+      "source": "samhvw8/dotfiles",
+      "sourceType": "github",
+      "computedHash": "bd428cc45f15e36e1fa3246feffac1a507346803c619dc250d46709f85d3c95e"
+    },
+    "ui-ux-pro-max": {
+      "source": "kimny1143/claude-code-template",
+      "sourceType": "github",
+      "computedHash": "b6f3a46da860714b6b7c733abc81d6ccb71018666ba46f478ebb5f43cefcf361"
+    }
+  }
+}

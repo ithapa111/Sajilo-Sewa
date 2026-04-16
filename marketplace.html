@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sajilo Sewa Marketplace</title>
+    <meta
+      name="description"
+      content="Sajilo Sewa helps the Nepalese community in the USA find trusted local restaurants, rides, courier help, and everyday services."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="marketplace-page-body">
+    <div class="page-shell marketplace-page-shell">
+      <header class="app-header">
+        <a class="app-brand" href="./index.html" aria-label="Sajilo Sewa home">
+          <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <div>
+            <p class="eyebrow">Easy Service</p>
+            <h1>Sajilo Sewa</h1>
+          </div>
+        </a>
+        <nav class="app-nav" aria-label="Primary">
+          <div class="app-nav-group">
+            <a class="app-link" href="./index.html">Home</a>
+            <a class="app-link is-active" href="./marketplace.html">Discover</a>
+            <a class="app-link" href="./food.html">Food</a>
+            <a class="app-link" href="./ride.html">Rides</a>
+            <a class="app-link" href="./courier.html">Courier</a>
+          </div>
+          <div class="app-nav-group app-nav-auth">
+            <a class="app-link" href="./account.html?type=member">Member Login</a>
+            <a class="app-link" href="./account.html?type=business">Business Login</a>
+            <a class="app-link app-cta" href="./account.html?type=business">List Business</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="marketplace-main">
+        <section class="marketplace-hero">
+          <div class="marketplace-hero-copy">
+            <p class="eyebrow">For the Nepalese community in the USA</p>
+            <h2>Find easy services near your city.</h2>
+            <p>
+              Browse restaurants, photographers, makeup artists, priests, social sewa, carpools, events, sports,
+              matchmaking threads, temples, community centers, legal help, and everyday services by list or map.
+            </p>
+          </div>
+          <div class="marketplace-hero-actions">
+            <a class="button primary" href="./account.html?type=member">Join as member</a>
+            <a class="button secondary" href="./account.html?type=business">List your business</a>
+          </div>
+        </section>
+
+        <section class="marketplace-community-services" aria-label="Community service categories">
+          <div class="marketplace-community-copy">
+            <p class="eyebrow">Community-first discovery</p>
+            <h2>More than a directory.</h2>
+            <p>
+              Sajilo Sewa can support commercial services, free volunteer help, public gatherings, and local groups in
+              one trusted place.
+            </p>
+          </div>
+          <div class="marketplace-community-grid">
+            <a href="./marketplace.html?category=photography">
+              <strong>Event photoshoots</strong>
+              <span>Birthday, wedding, pasni, puja, and ceremony coverage.</span>
+            </a>
+            <a href="./marketplace.html?category=beauty&q=ceremony">
+              <strong>Ceremony makeup</strong>
+              <span>Makeup artists, grooming, sari draping, and formal styling.</span>
+            </a>
+            <a href="./marketplace.html?category=social_sewa">
+              <strong>Free Social Sewa</strong>
+              <span>Language help, newcomer guidance, forms, and appointments.</span>
+            </a>
+            <a href="./marketplace.html?category=volunteering">
+              <strong>Volunteering</strong>
+              <span>Social sewa, events, youth mentoring, and community support.</span>
+            </a>
+            <a href="./marketplace.html?category=carpool">
+              <strong>Carpool help</strong>
+              <span>Newcomers, students, events, groceries, and temple visits.</span>
+            </a>
+            <a href="./marketplace.html?category=community_places">
+              <strong>Community places</strong>
+              <span>Centers, temples, places of worship, and cultural spaces.</span>
+            </a>
+            <a href="./marketplace.html?category=events">
+              <strong>Events and potlucks</strong>
+              <span>RSVPs, dish signup, volunteer planning, and local calendars.</span>
+            </a>
+            <a href="./marketplace.html?category=sports">
+              <strong>Sports matches</strong>
+              <span>Football, cricket, pickup games, and tournament planning.</span>
+            </a>
+            <a href="./marketplace.html?category=legal">
+              <strong>Lawyer services</strong>
+              <span>Immigration, family, business, traffic, and legal referrals.</span>
+            </a>
+            <a href="./marketplace.html?category=priests">
+              <strong>Priests and rituals</strong>
+              <span>Hindu marriage, bratabandha, puja, and ceremony guidance.</span>
+            </a>
+            <a href="./marketplace.html?category=matchmaking">
+              <strong>Matchmaking threads</strong>
+              <span>Adult, member-moderated introductions and family-led profiles.</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="marketplace-search-panel" aria-label="Search marketplace">
+          <div class="marketplace-search-grid">
+            <label class="marketplace-field">
+              <span>Search</span>
+              <input id="marketplace-query" type="search" placeholder="Momo, photoshoot, makeup, priest, carpool, lawyer..." />
+            </label>
+            <label class="marketplace-field">
+              <span>City or neighborhood</span>
+              <input id="marketplace-city" type="search" value="Chicago" placeholder="Chicago, Irving, Queens..." />
+            </label>
+            <label class="marketplace-field">
+              <span>Category</span>
+              <select id="marketplace-category">
+                <option value="">All categories</option>
+              </select>
+            </label>
+            <button id="marketplace-search-button" class="button primary marketplace-search-button" type="button">
+              Search
+            </button>
+          </div>
+          <div class="marketplace-filter-row" aria-label="Quick filters">
+            <button class="marketplace-filter is-active" type="button" data-filter="openNow">Open now</button>
+            <button class="marketplace-filter" type="button" data-filter="rating" data-value="4.5">4.5+</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Delivery">Delivery</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Booking">Booking</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Ride">Rides</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Free help">Free help</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Events">Events</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Carpool">Carpool</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Sports">Sports</button>
+            <button class="marketplace-filter" type="button" data-service-mode="Volunteer">Volunteer</button>
+          </div>
+        </section>
+
+        <section id="marketplace-location-prompt" class="marketplace-location-prompt" aria-live="polite">
+          <div class="marketplace-location-copy">
+            <span class="marketplace-location-icon" aria-hidden="true"></span>
+            <div>
+              <p class="eyebrow">Nearby discovery</p>
+              <h2>Use your location for a closer map.</h2>
+              <p id="marketplace-location-note">
+                Allow browser location to sort by distance and center the map around the nearest Sajilo Sewa city hub.
+              </p>
+            </div>
+          </div>
+          <div class="marketplace-location-actions">
+            <button id="marketplace-location-use" class="button primary" type="button">Use my location</button>
+            <button id="marketplace-location-skip" class="button secondary" type="button">Search manually</button>
+          </div>
+        </section>
+
+        <section class="marketplace-layout" aria-label="Marketplace results">
+          <div class="marketplace-results-panel">
+            <div class="marketplace-results-header">
+              <div>
+                <p class="eyebrow">Browse local</p>
+                <h2 id="marketplace-results-title">Community places near you</h2>
+              </div>
+              <div class="marketplace-view-toggle" aria-label="View mode">
+                <button id="marketplace-list-toggle" class="is-active" type="button">List</button>
+                <button id="marketplace-map-toggle" type="button">Map</button>
+              </div>
+            </div>
+            <div id="marketplace-summary" class="marketplace-summary"></div>
+            <div id="marketplace-results" class="marketplace-results-list"></div>
+          </div>
+
+          <aside id="marketplace-map-panel" class="marketplace-map-panel" aria-label="Map view">
+            <div class="marketplace-map-toolbar">
+              <div>
+                <p class="label">Map view</p>
+                <strong id="marketplace-map-title">Chicago</strong>
+              </div>
+              <button id="marketplace-near-me" class="button secondary marketplace-near-me" type="button">Near me</button>
+            </div>
+            <div id="marketplace-map" class="marketplace-map" role="region" aria-label="Interactive map of marketplace results">
+              <div class="marketplace-map-grid"></div>
+              <div class="marketplace-map-base" aria-hidden="true">
+                <span class="marketplace-map-water"></span>
+                <span class="marketplace-map-park is-park-one">Park</span>
+                <span class="marketplace-map-park is-park-two">Community field</span>
+                <span class="marketplace-map-road is-road-one"></span>
+                <span class="marketplace-map-road is-road-two"></span>
+                <span class="marketplace-map-road is-road-three"></span>
+                <span class="marketplace-map-road is-road-four"></span>
+                <span class="marketplace-map-transit is-transit-one"></span>
+                <span class="marketplace-map-transit is-transit-two"></span>
+                <span class="marketplace-map-zone is-zone-one">Downtown</span>
+                <span class="marketplace-map-zone is-zone-two">Community hub</span>
+                <span class="marketplace-map-zone is-zone-three">Restaurants</span>
+              </div>
+              <div id="marketplace-user-location" class="marketplace-user-location" hidden>
+                <span aria-hidden="true"></span>
+                <strong>You</strong>
+              </div>
+              <div id="marketplace-map-pins" class="marketplace-map-pins"></div>
+              <div class="marketplace-map-legend" aria-hidden="true">
+                <span><i class="is-place"></i>Places</span>
+                <span><i class="is-you"></i>You</span>
+              </div>
+              <div class="marketplace-map-controls" aria-label="Map controls">
+                <button id="marketplace-map-zoom-in" type="button" aria-label="Zoom in">+</button>
+                <button id="marketplace-map-zoom-out" type="button" aria-label="Zoom out">-</button>
+                <button id="marketplace-map-reset" type="button">Reset</button>
+              </div>
+              <div id="marketplace-map-preview" class="marketplace-map-preview"></div>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <a class="app-footer-brand" href="./index.html" aria-label="Sajilo Sewa home">
+          <img class="footer-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <span>
+            <strong>Sajilo Sewa</strong>
+            <small>Easy Service for the Nepalese community in the USA.</small>
+          </span>
+        </a>
+        <nav class="app-footer-links" aria-label="Footer">
+          <a href="./marketplace.html">Discover</a>
+          <a href="./food.html">Food</a>
+          <a href="./ride.html">Rides</a>
+          <a href="./courier.html">Courier</a>
+          <a href="./account.html?type=member">Member Login</a>
+          <a href="./account.html?type=business">Business Login</a>
+        </nav>
+      </footer>
+    </div>
+
+    <nav class="mobile-bottom-nav" aria-label="Mobile">
+      <a href="./index.html">Home</a>
+      <a class="is-active" href="./marketplace.html">Search</a>
+      <a href="./marketplace.html#marketplace-map-panel">Map</a>
+      <a href="./account.html?type=member">Saved</a>
+      <a href="./account.html">Account</a>
+    </nav>
+
+    <script src="./data/marketplace-data.js"></script>
+    <script type="module" src="./marketplace-page.js"></script>
+  </body>
+</html>

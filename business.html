@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sajilo Sewa Courier</title>
-    <meta
-      name="description"
-      content="Sajilo Sewa Courier keeps pickup, dropoff, package details, quotes, and courier status clean in one focused page."
-    />
+    <title>Sajilo Sewa Business Profile</title>
+    <meta name="description" content="Business profile on Sajilo Sewa, the Easy Service marketplace for the Nepalese community in the USA." />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="courier-page-body">
-    <div class="page-shell courier-page-shell">
+  <body class="business-page-body">
+    <div class="page-shell business-page-shell">
       <header class="app-header">
         <a class="app-brand" href="./index.html" aria-label="Sajilo Sewa home">
           <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
@@ -24,10 +21,10 @@
         <nav class="app-nav" aria-label="Primary">
           <div class="app-nav-group">
             <a class="app-link" href="./index.html">Home</a>
-            <a class="app-link" href="./marketplace.html">Discover</a>
+            <a class="app-link is-active" href="./marketplace.html">Discover</a>
             <a class="app-link" href="./food.html">Food</a>
             <a class="app-link" href="./ride.html">Rides</a>
-            <a class="app-link is-active" href="./courier.html">Courier</a>
+            <a class="app-link" href="./courier.html">Courier</a>
           </div>
           <div class="app-nav-group app-nav-auth">
             <a class="app-link" href="./account.html?type=member">Member Login</a>
@@ -37,25 +34,7 @@
         </nav>
       </header>
 
-      <main class="courier-page-main">
-        <section id="courier-page-hero" class="courier-page-hero"></section>
-
-        <section id="courier-booking" class="section courier-page-section">
-          <div class="section-heading">
-            <p class="eyebrow">Booking</p>
-            <h2>Simple courier information without extra noise</h2>
-          </div>
-          <div id="courier-booking-grid" class="courier-booking-grid"></div>
-        </section>
-
-        <section id="courier-status" class="section courier-page-section">
-          <div class="section-heading">
-            <p class="eyebrow">Status</p>
-            <h2>Clear courier tracking and pricing details</h2>
-          </div>
-          <div id="courier-status-grid" class="courier-status-grid"></div>
-        </section>
-      </main>
+      <main id="business-profile" class="business-profile"></main>
 
       <footer class="app-footer">
         <a class="app-footer-brand" href="./index.html" aria-label="Sajilo Sewa home">
@@ -75,6 +54,7 @@
         </nav>
       </footer>
     </div>
+
     <nav class="mobile-bottom-nav" aria-label="Mobile">
       <a href="./index.html">Home</a>
       <a class="is-active" href="./marketplace.html">Search</a>
@@ -82,7 +62,8 @@
       <a href="./account.html?type=member">Saved</a>
       <a href="./account.html">Account</a>
     </nav>
-    <script src="./data/sajilo-seed-data.js"></script>
-    <script type="module" src="./courier-page.js"></script>
+
+    <script src="./data/marketplace-data.js"></script>
+    <script type="module" src="./business-page.js"></script>
   </body>
 </html>

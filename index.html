@@ -6,7 +6,7 @@
     <title>Sajilo Sewa</title>
     <meta
       name="description"
-      content="Sajilo Sewa is a clean multi-service gateway for ridesharing, food delivery, and courier delivery."
+      content="Sajilo Sewa means Easy Service: a mobile-first marketplace for the Nepalese community in the USA to find trusted restaurants, rides, courier help, and local services."
     />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
@@ -14,129 +14,83 @@
   <body class="home-page-body">
     <div class="page-shell home-page-shell">
       <header class="home-header">
-        <div class="topbar home-topbar">
-          <div class="brand-lockup">
+        <div class="app-header">
+          <a class="app-brand" href="./index.html" aria-label="Sajilo Sewa home">
             <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
             <div>
-              <p class="eyebrow">Rides, food, and courier</p>
+              <p class="eyebrow">Easy Service</p>
               <h1>Sajilo Sewa</h1>
             </div>
-          </div>
-          <div class="home-header-actions" aria-label="Account actions">
-            <div class="home-location-chip" aria-label="Current city">Irving, Texas</div>
-            <a class="home-header-link" href="#signin">Sign in</a>
-            <a class="home-header-link" href="#business">Drive with us</a>
-            <a class="button primary home-header-button" href="#signup">Sign up</a>
-          </div>
+          </a>
+          <nav class="app-nav" aria-label="Primary">
+            <div class="app-nav-group">
+              <a class="app-link is-active" href="./index.html">Home</a>
+              <a class="app-link" href="./marketplace.html">Discover</a>
+              <a class="app-link" href="./food.html">Food</a>
+              <a class="app-link" href="./ride.html">Rides</a>
+              <a class="app-link" href="./courier.html">Courier</a>
+            </div>
+            <div class="app-nav-group app-nav-auth">
+              <a class="app-link" href="./account.html?type=member">Member Login</a>
+              <a class="app-link" href="./account.html?type=business">Business Login</a>
+              <a class="app-link app-cta" href="./account.html?type=business">List Business</a>
+            </div>
+          </nav>
         </div>
-        <nav class="home-service-nav" aria-label="Other services">
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-live is-featured">Airport pickup</summary>
-            <div class="home-service-menu-panel">
-              <a href="./ride.html">Airport shuttles</a>
-              <a href="./ride.html">Town car service</a>
-              <a href="./ride.html">Limo</a>
-              <a href="./ride.html">Taxis</a>
-              <a href="./ride.html">Personal ride</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-live">Top restaurants</summary>
-            <div class="home-service-menu-panel">
-              <a href="./food.html">Nepali favorites</a>
-              <a href="./food.html">Indian curries</a>
-              <a href="./food.html">Momo spots</a>
-              <a href="./food.html">Biryani places</a>
-              <a href="./food.html">Pickup specials</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-live">Parcel delivery</summary>
-            <div class="home-service-menu-panel">
-              <a href="./courier.html">Same-day parcels</a>
-              <a href="./courier.html">Document delivery</a>
-              <a href="./courier.html">Fragile package care</a>
-              <a href="./courier.html">Scheduled dropoff</a>
-              <a href="./courier.html">Track courier live</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Groceries</summary>
-            <div class="home-service-menu-panel">
-              <a href="#groceries">Fresh produce</a>
-              <a href="#groceries">Daily essentials</a>
-              <a href="#groceries">Late-night snacks</a>
-              <a href="#groceries">Family-size baskets</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Pharmacy</summary>
-            <div class="home-service-menu-panel">
-              <a href="#pharmacy">Prescription pickup</a>
-              <a href="#pharmacy">Health essentials</a>
-              <a href="#pharmacy">Baby care</a>
-              <a href="#pharmacy">Wellness products</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Medical</summary>
-            <div class="home-service-menu-panel">
-              <a href="#medical">General doctor</a>
-              <a href="#medical">Dentist</a>
-              <a href="#medical">Pediatric care</a>
-              <a href="#medical">Eye specialist</a>
-              <a href="#medical">Clinic appointment</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Home cleaning</summary>
-            <div class="home-service-menu-panel">
-              <a href="#cleaning">Quick room refresh</a>
-              <a href="#cleaning">Deep cleaning</a>
-              <a href="#cleaning">Move-in service</a>
-              <a href="#cleaning">Weekend booking</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Pet care</summary>
-            <div class="home-service-menu-panel">
-              <a href="#petcare">Walk and drop-in</a>
-              <a href="#petcare">Vet pickup</a>
-              <a href="#petcare">Pet food delivery</a>
-              <a href="#petcare">Grooming ride</a>
-            </div>
-          </details>
-          <details class="home-service-menu">
-            <summary class="home-service-pill is-soon">Beauty</summary>
-            <div class="home-service-menu-panel">
-              <a href="#beauty">Salon booking</a>
-              <a href="#beauty">At-home makeup</a>
-              <a href="#beauty">Hair styling</a>
-              <a href="#beauty">Spa appointment</a>
-            </div>
-          </details>
+        <nav class="home-service-nav" aria-label="Popular services">
+          <span class="home-service-nav-label">Explore</span>
+          <a class="home-service-pill is-featured" href="./marketplace.html?category=social_sewa">Free Social Sewa</a>
+          <a class="home-service-pill" href="./marketplace.html?category=volunteering">Volunteer</a>
+          <a class="home-service-pill" href="./marketplace.html?category=photography">Photoshoot</a>
+          <a class="home-service-pill" href="./marketplace.html?category=beauty&q=ceremony">Ceremony makeup</a>
+          <a class="home-service-pill" href="./marketplace.html?category=priests">Priests</a>
+          <a class="home-service-pill" href="./marketplace.html?category=events&q=potluck">Potluck planning</a>
+          <a class="home-service-pill" href="./marketplace.html?category=sports">Sports</a>
+          <a class="home-service-pill" href="./marketplace.html?category=carpool">Carpool</a>
+          <a class="home-service-pill" href="./marketplace.html?category=community_places">Centers and temples</a>
+          <a class="home-service-pill" href="./marketplace.html?category=matchmaking">Matchmaking</a>
+          <a class="home-service-pill" href="./marketplace.html?category=legal">Lawyer services</a>
+          <a class="home-service-pill" href="./marketplace.html?category=restaurants">Restaurants</a>
+          <a class="home-service-pill" href="./marketplace.html?category=rides">Airport pickup</a>
         </nav>
       </header>
 
       <main class="home-main">
         <section class="home-hero">
           <div class="home-hero-copy">
-            <p class="eyebrow">One local app, three fast services</p>
-            <h2>One app. Three ways to move your world.</h2>
+            <p class="eyebrow">Sajilo Sewa means Easy Service</p>
+            <h2>Easy services for the Nepalese community in the USA.</h2>
             <p class="home-hero-text">
-              Ride anywhere, order what you love, and send anything fast and effortless. Built for everyday life, it
-              connects people, food, and deliveries into one seamless experience.
+              Find trusted restaurants, photoshoots, ceremony makeup, priests, social sewa, carpools, sports, legal
+              help, and community places near your city.
             </p>
             <p class="home-hero-text home-hero-text-secondary">
-              Our vision is simple: remove friction from daily movement. No switching apps, no delays, just one
-              platform that brings speed, comfort, and reliability to everything you need, right when you need it.
+              Public browsing is open. Members can review, order, book, request services, and message businesses.
+              Business owners can claim listings and manage their community profile.
             </p>
+            <div class="home-hero-actions">
+              <a class="button primary" href="./marketplace.html">Browse local places</a>
+              <a class="button secondary" href="./account.html?type=member">Join as member</a>
+            </div>
             <div class="home-hero-markers" aria-label="Core services">
-              <span>Ride</span>
-              <span>Order</span>
-              <span>Deliver</span>
+              <span>Restaurants</span>
+              <span>Rides</span>
+              <span>Courier</span>
+              <span>Community help</span>
             </div>
           </div>
+        </section>
+
+        <section class="home-marketplace-band" aria-label="Marketplace search">
+          <div>
+            <p class="eyebrow">Map and list discovery</p>
+            <h2>Find places by city, category, and community trust.</h2>
+            <p>
+              Search Chicago, Irving, Queens, and more Nepalese community hubs for services, events, social sewa,
+              carpools, sports, priests, legal help, and trusted local places.
+            </p>
+          </div>
+          <a class="button primary" href="./marketplace.html">Open marketplace map</a>
         </section>
 
         <section class="home-services" aria-label="Services">
@@ -168,6 +122,31 @@
           </a>
         </section>
       </main>
+
+      <footer class="app-footer">
+        <a class="app-footer-brand" href="./index.html" aria-label="Sajilo Sewa home">
+          <img class="footer-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <span>
+            <strong>Sajilo Sewa</strong>
+            <small>Easy Service for the Nepalese community in the USA.</small>
+          </span>
+        </a>
+        <nav class="app-footer-links" aria-label="Footer">
+          <a href="./marketplace.html">Discover</a>
+          <a href="./food.html">Food</a>
+          <a href="./ride.html">Rides</a>
+          <a href="./courier.html">Courier</a>
+          <a href="./account.html?type=member">Member Login</a>
+          <a href="./account.html?type=business">Business Login</a>
+        </nav>
+      </footer>
     </div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile">
+      <a class="is-active" href="./index.html">Home</a>
+      <a href="./marketplace.html">Search</a>
+      <a href="./marketplace.html#marketplace-map-panel">Map</a>
+      <a href="./account.html?type=member">Saved</a>
+      <a href="./account.html">Account</a>
+    </nav>
   </body>
 </html>

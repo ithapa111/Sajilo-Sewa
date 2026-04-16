@@ -1,0 +1,1601 @@
+window.SAJILO_MARKETPLACE_DATA = {
+  "cities": [
+    {
+      "id": "city_chi",
+      "name": "Chicago",
+      "state": "IL",
+      "country": "USA",
+      "center": {
+        "lat": 41.8781,
+        "lng": -87.6298
+      },
+      "defaultZoom": 12,
+      "status": "active"
+    },
+    {
+      "id": "city_dal",
+      "name": "Dallas-Fort Worth",
+      "state": "TX",
+      "country": "USA",
+      "center": {
+        "lat": 32.8196,
+        "lng": -96.9454
+      },
+      "defaultZoom": 11,
+      "status": "active"
+    },
+    {
+      "id": "city_nyc",
+      "name": "New York City",
+      "state": "NY",
+      "country": "USA",
+      "center": {
+        "lat": 40.7421,
+        "lng": -73.9182
+      },
+      "defaultZoom": 12,
+      "status": "active"
+    }
+  ],
+  "categories": [
+    {
+      "id": "restaurants",
+      "name": "Restaurants",
+      "description": "Nepali, Indian, and South Asian food near the community",
+      "status": "active"
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "description": "Spices, produce, snacks, and daily essentials",
+      "status": "active"
+    },
+    {
+      "id": "beauty",
+      "name": "Beauty",
+      "description": "Salon, makeup, threading, and event-ready styling",
+      "status": "active"
+    },
+    {
+      "id": "medical",
+      "name": "Medical",
+      "description": "Clinics, dental care, wellness, and family health services",
+      "status": "active"
+    },
+    {
+      "id": "home_services",
+      "name": "Home Services",
+      "description": "Cleaning, repairs, moving help, and home support",
+      "status": "active"
+    },
+    {
+      "id": "courier",
+      "name": "Courier",
+      "description": "Local parcel, document, and same-day delivery help",
+      "status": "active"
+    },
+    {
+      "id": "rides",
+      "name": "Rides",
+      "description": "Airport pickup, family rides, and city transportation",
+      "status": "active"
+    },
+    {
+      "id": "photography",
+      "name": "Event Photoshoot",
+      "description": "Photographers and videographers for weddings, pujas, birthdays, and community programs",
+      "status": "active"
+    },
+    {
+      "id": "social_sewa",
+      "name": "Free Social Sewa",
+      "description": "Free language help, newcomer guidance, forms support, and settlement help",
+      "status": "active"
+    },
+    {
+      "id": "volunteering",
+      "name": "Volunteering",
+      "description": "Volunteer opportunities for youth, families, events, temples, social sewa, and community support",
+      "status": "active"
+    },
+    {
+      "id": "carpool",
+      "name": "Carpool",
+      "description": "Shared rides for newcomers, students, airport help, work commutes, and community events",
+      "status": "active"
+    },
+    {
+      "id": "community_places",
+      "name": "Community Centers",
+      "description": "Nepali community centers, temples, places of worship, and cultural gathering places",
+      "status": "active"
+    },
+    {
+      "id": "events",
+      "name": "Community Events",
+      "description": "Festivals, pujas, meetups, fundraisers, classes, and local announcements",
+      "status": "active"
+    },
+    {
+      "id": "youth_activities",
+      "name": "Youth Activities",
+      "description": "Youth meetups, public gatherings, study circles, volunteer groups, and social activities",
+      "status": "active"
+    },
+    {
+      "id": "fitness",
+      "name": "Health and Fitness",
+      "description": "Running groups, gym buddies, sports meetups, wellness walks, and active community groups",
+      "status": "active"
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "description": "Football, cricket, volleyball, pickup games, tournaments, and match planning",
+      "status": "active"
+    },
+    {
+      "id": "priests",
+      "name": "Priests and Rituals",
+      "description": "Pundits and priests for Hindu marriage, bratabandha, puja, griha pravesh, and rituals",
+      "status": "active"
+    },
+    {
+      "id": "matchmaking",
+      "name": "Matchmaking",
+      "description": "Adult community-moderated introduction threads and family-friendly matchmaking support",
+      "status": "active"
+    },
+    {
+      "id": "community_chat",
+      "name": "Community Chat",
+      "description": "Web-hosted local discussion rooms, live conversations, and recent issue forums",
+      "status": "active"
+    },
+    {
+      "id": "legal",
+      "name": "Lawyer Services",
+      "description": "Immigration, family, business, traffic, and general legal consultation referrals",
+      "status": "active"
+    }
+  ],
+  "businesses": [
+    {
+      "id": "biz_001",
+      "slug": "himalayan-momo-house-chicago",
+      "name": "Himalayan Momo House",
+      "categoryId": "restaurants",
+      "cityId": "city_chi",
+      "zoneId": "zone_loop",
+      "neighborhood": "Downtown Loop",
+      "address": "825 W Randolph St, Chicago, IL",
+      "lat": 41.8841,
+      "lng": -87.6472,
+      "phone": "+13125550101",
+      "website": "https://example.com/himalayan-momo-house",
+      "description": "Community favorite for jhol momo, chow mein, thakali plates, and quick pickup after work.",
+      "tags": [
+        "Nepali",
+        "Momo",
+        "Thakali",
+        "Delivery"
+      ],
+      "rating": 4.8,
+      "reviewCount": 128,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Delivery",
+        "Pickup",
+        "Dine-in"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Nepali-owned"
+      ],
+      "image": "./assets/Momo.1.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_001",
+      "hours": {
+        "mon": "11:00-22:00",
+        "tue": "11:00-22:00",
+        "wed": "11:00-22:00",
+        "thu": "11:00-22:00",
+        "fri": "11:00-23:00",
+        "sat": "11:00-23:00",
+        "sun": "12:00-21:00"
+      },
+      "topServices": [
+        {
+          "name": "Chicken jhol momo",
+          "priceLabel": "$13.75"
+        },
+        {
+          "name": "Thakali khana set",
+          "priceLabel": "$16.25"
+        },
+        {
+          "name": "Buff sekuwa plate",
+          "priceLabel": "$15.50"
+        }
+      ]
+    },
+    {
+      "id": "biz_002",
+      "slug": "everest-thakali-kitchen-chicago",
+      "name": "Everest Thakali Kitchen",
+      "categoryId": "restaurants",
+      "cityId": "city_chi",
+      "zoneId": "zone_west",
+      "neighborhood": "West Corridor",
+      "address": "1128 W Taylor St, Chicago, IL",
+      "lat": 41.8694,
+      "lng": -87.6552,
+      "phone": "+13125550102",
+      "website": "https://example.com/everest-thakali",
+      "description": "Warm thakali plates, family-style curry trays, and dine-in meals for community gatherings.",
+      "tags": [
+        "Nepali",
+        "Thali",
+        "Family meals",
+        "Reservations"
+      ],
+      "rating": 4.9,
+      "reviewCount": 412,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Delivery",
+        "Pickup",
+        "Dine-in",
+        "Reservations"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Nepali-owned",
+        "Verified order reviews"
+      ],
+      "image": "./assets/Chowein.1.webp",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_002",
+      "hours": {
+        "mon": "11:00-21:30",
+        "tue": "11:00-21:30",
+        "wed": "11:00-21:30",
+        "thu": "11:00-21:30",
+        "fri": "11:00-22:30",
+        "sat": "11:00-22:30",
+        "sun": "12:00-21:00"
+      },
+      "topServices": [
+        {
+          "name": "Thakali khana set",
+          "priceLabel": "$16.25"
+        },
+        {
+          "name": "Family curry tray",
+          "priceLabel": "From $34"
+        },
+        {
+          "name": "Weekend reservation",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_003",
+      "slug": "sajilo-grocery-irving",
+      "name": "Sajilo Grocery Irving",
+      "categoryId": "groceries",
+      "cityId": "city_dal",
+      "zoneId": "zone_irving",
+      "neighborhood": "Irving",
+      "address": "3317 Belt Line Rd, Irving, TX",
+      "lat": 32.8568,
+      "lng": -96.9964,
+      "phone": "+19725550110",
+      "website": "https://example.com/sajilo-grocery",
+      "description": "Nepali spices, rice, lentils, frozen momo, puja supplies, snacks, and family essentials.",
+      "tags": [
+        "Nepali groceries",
+        "Spices",
+        "Frozen momo",
+        "Pickup"
+      ],
+      "rating": 4.7,
+      "reviewCount": 86,
+      "priceLevel": 1,
+      "isOpen": true,
+      "serviceModes": [
+        "Pickup",
+        "Local delivery"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Nepali-owned"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_003",
+      "hours": {
+        "mon": "10:00-21:00",
+        "tue": "10:00-21:00",
+        "wed": "10:00-21:00",
+        "thu": "10:00-21:00",
+        "fri": "10:00-21:30",
+        "sat": "10:00-21:30",
+        "sun": "11:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Weekly grocery basket",
+          "priceLabel": "From $29"
+        },
+        {
+          "name": "Frozen momo pack",
+          "priceLabel": "$12"
+        },
+        {
+          "name": "Festival supplies",
+          "priceLabel": "Varies"
+        }
+      ]
+    },
+    {
+      "id": "biz_004",
+      "slug": "namaste-beauty-studio-irving",
+      "name": "Namaste Beauty Studio",
+      "categoryId": "beauty",
+      "cityId": "city_dal",
+      "zoneId": "zone_irving",
+      "neighborhood": "Irving",
+      "address": "4040 N MacArthur Blvd, Irving, TX",
+      "lat": 32.8623,
+      "lng": -96.9593,
+      "phone": "+19725550111",
+      "website": "https://example.com/namaste-beauty",
+      "description": "Threading, bridal makeup, sari draping, hair styling, and event-ready beauty appointments.",
+      "tags": [
+        "Threading",
+        "Bridal makeup",
+        "Appointments",
+        "Events"
+      ],
+      "rating": 4.8,
+      "reviewCount": 64,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Booking",
+        "Walk-in"
+      ],
+      "trustBadges": [
+        "Community verified"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_004",
+      "hours": {
+        "mon": "10:00-19:00",
+        "tue": "10:00-19:00",
+        "wed": "10:00-19:00",
+        "thu": "10:00-19:00",
+        "fri": "10:00-20:00",
+        "sat": "09:00-20:00",
+        "sun": "11:00-17:00"
+      },
+      "topServices": [
+        {
+          "name": "Eyebrow threading",
+          "priceLabel": "$12"
+        },
+        {
+          "name": "Event makeup",
+          "priceLabel": "From $85"
+        },
+        {
+          "name": "Sari draping",
+          "priceLabel": "$35"
+        }
+      ]
+    },
+    {
+      "id": "biz_005",
+      "slug": "queens-momo-and-chat",
+      "name": "Queens Momo and Chat",
+      "categoryId": "restaurants",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "7402 37th Ave, Queens, NY",
+      "lat": 40.7499,
+      "lng": -73.8915,
+      "phone": "+17185550120",
+      "website": "https://example.com/queens-momo-chat",
+      "description": "Fast momo, chaat, chow mein, and chai near the heart of the Queens Nepali community.",
+      "tags": [
+        "Nepali",
+        "Momo",
+        "Chaat",
+        "Chai"
+      ],
+      "rating": 4.6,
+      "reviewCount": 221,
+      "priceLevel": 1,
+      "isOpen": true,
+      "serviceModes": [
+        "Delivery",
+        "Pickup",
+        "Dine-in"
+      ],
+      "trustBadges": [
+        "Popular with members",
+        "Verified order reviews"
+      ],
+      "image": "./assets/Momo.1.jpg",
+      "status": "published",
+      "verificationStatus": "verified_orders",
+      "ownerUserId": "biz_owner_005",
+      "hours": {
+        "mon": "11:00-22:00",
+        "tue": "11:00-22:00",
+        "wed": "11:00-22:00",
+        "thu": "11:00-22:00",
+        "fri": "11:00-23:00",
+        "sat": "11:00-23:00",
+        "sun": "11:00-21:00"
+      },
+      "topServices": [
+        {
+          "name": "C momo",
+          "priceLabel": "$14.25"
+        },
+        {
+          "name": "Aloo tikki chaat",
+          "priceLabel": "$10.25"
+        },
+        {
+          "name": "Masala chai",
+          "priceLabel": "$3.50"
+        }
+      ]
+    },
+    {
+      "id": "biz_006",
+      "slug": "dfw-sajilo-rides",
+      "name": "DFW Sajilo Rides",
+      "categoryId": "rides",
+      "cityId": "city_dal",
+      "zoneId": "zone_dfw_airport",
+      "neighborhood": "DFW Airport",
+      "address": "2400 Aviation Dr, DFW Airport, TX",
+      "lat": 32.8998,
+      "lng": -97.0403,
+      "phone": "+19725550112",
+      "website": "https://example.com/dfw-sajilo-rides",
+      "description": "Airport pickup, family rides, and scheduled local transportation with community drivers.",
+      "tags": [
+        "Airport pickup",
+        "Family rides",
+        "Scheduled rides"
+      ],
+      "rating": 4.7,
+      "reviewCount": 52,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Ride request",
+        "Scheduled pickup"
+      ],
+      "trustBadges": [
+        "Community verified"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_006",
+      "hours": {
+        "mon": "06:00-23:00",
+        "tue": "06:00-23:00",
+        "wed": "06:00-23:00",
+        "thu": "06:00-23:00",
+        "fri": "06:00-00:00",
+        "sat": "06:00-00:00",
+        "sun": "07:00-22:00"
+      },
+      "topServices": [
+        {
+          "name": "Airport pickup",
+          "priceLabel": "From $28"
+        },
+        {
+          "name": "Family van ride",
+          "priceLabel": "From $42"
+        },
+        {
+          "name": "Scheduled ride",
+          "priceLabel": "Quote"
+        }
+      ]
+    },
+    {
+      "id": "biz_007",
+      "slug": "chicago-sajilo-courier",
+      "name": "Chicago Sajilo Courier",
+      "categoryId": "courier",
+      "cityId": "city_chi",
+      "zoneId": "zone_loop",
+      "neighborhood": "Downtown Loop",
+      "address": "233 S Wacker Dr, Chicago, IL",
+      "lat": 41.8789,
+      "lng": -87.6359,
+      "phone": "+13125550113",
+      "website": "https://example.com/chicago-sajilo-courier",
+      "description": "Same-day parcel, document, and food gift delivery across Chicago neighborhoods.",
+      "tags": [
+        "Courier",
+        "Same-day",
+        "Documents",
+        "Parcels"
+      ],
+      "rating": 4.5,
+      "reviewCount": 38,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Courier request",
+        "Scheduled dropoff"
+      ],
+      "trustBadges": [
+        "Community verified"
+      ],
+      "image": "./assets/courier.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_007",
+      "hours": {
+        "mon": "08:00-21:00",
+        "tue": "08:00-21:00",
+        "wed": "08:00-21:00",
+        "thu": "08:00-21:00",
+        "fri": "08:00-22:00",
+        "sat": "09:00-22:00",
+        "sun": "09:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Document delivery",
+          "priceLabel": "From $12"
+        },
+        {
+          "name": "Small parcel",
+          "priceLabel": "From $15"
+        },
+        {
+          "name": "Scheduled courier",
+          "priceLabel": "Quote"
+        }
+      ]
+    },
+    {
+      "id": "biz_008",
+      "slug": "family-care-clinic-queens",
+      "name": "Family Care Clinic Queens",
+      "categoryId": "medical",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "7220 Roosevelt Ave, Queens, NY",
+      "lat": 40.7464,
+      "lng": -73.8937,
+      "phone": "+17185550121",
+      "website": "https://example.com/family-care-queens",
+      "description": "Family health appointments, wellness visits, and referral support for community members.",
+      "tags": [
+        "Clinic",
+        "Family care",
+        "Appointments",
+        "Wellness"
+      ],
+      "rating": 4.4,
+      "reviewCount": 31,
+      "priceLevel": 2,
+      "isOpen": false,
+      "serviceModes": [
+        "Booking",
+        "Phone consult"
+      ],
+      "trustBadges": [
+        "Community verified"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_008",
+      "hours": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "09:00-17:00",
+        "sat": "10:00-14:00",
+        "sun": "closed"
+      },
+      "topServices": [
+        {
+          "name": "Wellness visit",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Family appointment",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Referral support",
+          "priceLabel": "Call"
+        }
+      ]
+    },
+    {
+      "id": "biz_009",
+      "slug": "sajilo-event-photo-chicago",
+      "name": "Sajilo Event Photo Chicago",
+      "categoryId": "photography",
+      "cityId": "city_chi",
+      "zoneId": "zone_north",
+      "neighborhood": "North Side",
+      "address": "2550 W Devon Ave, Chicago, IL",
+      "lat": 41.9972,
+      "lng": -87.6911,
+      "phone": "+13125550131",
+      "website": "https://example.com/sajilo-event-photo",
+      "description": "Event photography and short highlight videos for weddings, pasni, bratabandha, pujas, birthdays, and community programs.",
+      "tags": [
+        "Photoshoot",
+        "Wedding",
+        "Puja",
+        "Video"
+      ],
+      "rating": 4.8,
+      "reviewCount": 42,
+      "priceLevel": 3,
+      "isOpen": true,
+      "serviceModes": [
+        "Photo shoot",
+        "Booking",
+        "Event coverage"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Nepali-speaking"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_009",
+      "hours": {
+        "mon": "10:00-18:00",
+        "tue": "10:00-18:00",
+        "wed": "10:00-18:00",
+        "thu": "10:00-18:00",
+        "fri": "10:00-20:00",
+        "sat": "08:00-22:00",
+        "sun": "08:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Event photoshoot",
+          "priceLabel": "From $250"
+        },
+        {
+          "name": "Highlight video",
+          "priceLabel": "From $400"
+        },
+        {
+          "name": "Family portrait session",
+          "priceLabel": "From $120"
+        }
+      ]
+    },
+    {
+      "id": "biz_010",
+      "slug": "sajilo-social-sewa-desk-chicago",
+      "name": "Sajilo Social Sewa Desk",
+      "categoryId": "social_sewa",
+      "cityId": "city_chi",
+      "zoneId": "zone_loop",
+      "neighborhood": "Downtown Loop",
+      "address": "Community volunteer desk, Chicago, IL",
+      "lat": 41.8819,
+      "lng": -87.6291,
+      "phone": "+13125550132",
+      "website": "https://example.com/sajilo-social-sewa",
+      "description": "Free volunteer help for Nepali speakers who need language support, newcomer guidance, appointment help, or basic forms support.",
+      "tags": [
+        "Free help",
+        "Language support",
+        "New to America",
+        "Forms"
+      ],
+      "rating": 4.9,
+      "reviewCount": 73,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Free help",
+        "Language support",
+        "Appointment support"
+      ],
+      "trustBadges": [
+        "Volunteer-led",
+        "Free community sewa",
+        "Nepali-speaking"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_001",
+      "hours": {
+        "mon": "17:00-20:00",
+        "tue": "17:00-20:00",
+        "wed": "17:00-20:00",
+        "thu": "17:00-20:00",
+        "fri": "17:00-20:00",
+        "sat": "10:00-15:00",
+        "sun": "12:00-15:00"
+      },
+      "topServices": [
+        {
+          "name": "Language help call",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Newcomer checklist",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Appointment support",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_011",
+      "slug": "chicago-nepali-carpool-circle",
+      "name": "Chicago Nepali Carpool Circle",
+      "categoryId": "carpool",
+      "cityId": "city_chi",
+      "zoneId": "zone_west",
+      "neighborhood": "West Corridor",
+      "address": "Chicago community carpool board",
+      "lat": 41.8782,
+      "lng": -87.6605,
+      "phone": "+13125550133",
+      "website": "https://example.com/chicago-nepali-carpool",
+      "description": "Community carpool board for newcomers, students, work commutes, temple visits, grocery trips, and local events.",
+      "tags": [
+        "Carpool",
+        "Newcomers",
+        "Students",
+        "Shared rides"
+      ],
+      "rating": 4.6,
+      "reviewCount": 39,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Carpool",
+        "Ride request",
+        "Community match"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Community verified"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_002",
+      "hours": {
+        "mon": "06:00-22:00",
+        "tue": "06:00-22:00",
+        "wed": "06:00-22:00",
+        "thu": "06:00-22:00",
+        "fri": "06:00-23:00",
+        "sat": "07:00-23:00",
+        "sun": "07:00-22:00"
+      },
+      "topServices": [
+        {
+          "name": "Airport newcomer pickup",
+          "priceLabel": "Shared cost"
+        },
+        {
+          "name": "Temple event carpool",
+          "priceLabel": "Shared cost"
+        },
+        {
+          "name": "Student commute board",
+          "priceLabel": "Free post"
+        }
+      ]
+    },
+    {
+      "id": "biz_012",
+      "slug": "nepali-community-center-irving",
+      "name": "Nepali Community Center Irving",
+      "categoryId": "community_places",
+      "cityId": "city_dal",
+      "zoneId": "zone_irving",
+      "neighborhood": "Irving",
+      "address": "1501 W Irving Blvd, Irving, TX",
+      "lat": 32.8141,
+      "lng": -96.9647,
+      "phone": "+19725550141",
+      "website": "https://example.com/nepali-community-center-irving",
+      "description": "Local community center for cultural programs, classes, worship gatherings, youth activities, and family support events.",
+      "tags": [
+        "Community center",
+        "Temple",
+        "Classes",
+        "Events"
+      ],
+      "rating": 4.7,
+      "reviewCount": 118,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Community place",
+        "Events",
+        "Volunteer"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Family friendly"
+      ],
+      "image": "./assets/courier.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_003",
+      "hours": {
+        "mon": "10:00-18:00",
+        "tue": "10:00-18:00",
+        "wed": "10:00-18:00",
+        "thu": "10:00-18:00",
+        "fri": "10:00-20:00",
+        "sat": "09:00-21:00",
+        "sun": "09:00-19:00"
+      },
+      "topServices": [
+        {
+          "name": "Community hall info",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Youth class calendar",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Volunteer signup",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_013",
+      "slug": "dfw-nepali-community-events",
+      "name": "DFW Nepali Community Events",
+      "categoryId": "events",
+      "cityId": "city_dal",
+      "zoneId": "zone_irving",
+      "neighborhood": "Irving",
+      "address": "Irving community event board",
+      "lat": 32.8292,
+      "lng": -96.9441,
+      "phone": "+19725550142",
+      "website": "https://example.com/dfw-nepali-events",
+      "description": "Community calendar for Dashain, Tihar, pujas, fundraiser dinners, public meetups, youth programs, and cultural classes.",
+      "tags": [
+        "Events",
+        "Dashain",
+        "Tihar",
+        "Meetup"
+      ],
+      "rating": 4.8,
+      "reviewCount": 94,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Events",
+        "RSVP",
+        "Volunteer"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Member moderated"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_004",
+      "hours": {
+        "mon": "09:00-18:00",
+        "tue": "09:00-18:00",
+        "wed": "09:00-18:00",
+        "thu": "09:00-18:00",
+        "fri": "09:00-20:00",
+        "sat": "08:00-22:00",
+        "sun": "08:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Community event listing",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "RSVP collection",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Volunteer coordination",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_014",
+      "slug": "queens-youth-meetup-circle",
+      "name": "Queens Youth Meetup Circle",
+      "categoryId": "youth_activities",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "Jackson Heights youth meetup board",
+      "lat": 40.7484,
+      "lng": -73.8918,
+      "phone": "+17185550145",
+      "website": "https://example.com/queens-youth-meetup",
+      "description": "Youth-led meetups for making friends, volunteering, public discussions, study groups, and weekend community gatherings.",
+      "tags": [
+        "Youth",
+        "Meetup",
+        "Volunteer",
+        "Make friends"
+      ],
+      "rating": 4.7,
+      "reviewCount": 57,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Meetup",
+        "Youth activities",
+        "Volunteer"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Youth friendly"
+      ],
+      "image": "./assets/Momo.1.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_005",
+      "hours": {
+        "mon": "16:00-20:00",
+        "tue": "16:00-20:00",
+        "wed": "16:00-20:00",
+        "thu": "16:00-20:00",
+        "fri": "16:00-22:00",
+        "sat": "10:00-22:00",
+        "sun": "10:00-18:00"
+      },
+      "topServices": [
+        {
+          "name": "Weekend social meetup",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Study and career circle",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Volunteer group",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_015",
+      "slug": "sajilo-run-and-gym-chicago",
+      "name": "Sajilo Run and Gym Circle",
+      "categoryId": "fitness",
+      "cityId": "city_chi",
+      "zoneId": "zone_north",
+      "neighborhood": "North Side",
+      "address": "Montrose Lakefront Trail, Chicago, IL",
+      "lat": 41.9643,
+      "lng": -87.6384,
+      "phone": "+13125550134",
+      "website": "https://example.com/sajilo-run-gym",
+      "description": "Find a walking, running, soccer, or gym buddy from the community and join healthy group activities nearby.",
+      "tags": [
+        "Running",
+        "Gym buddy",
+        "Health",
+        "Fitness"
+      ],
+      "rating": 4.6,
+      "reviewCount": 46,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Fitness",
+        "Meetup",
+        "Running group"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Beginner friendly"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_006",
+      "hours": {
+        "mon": "06:00-20:00",
+        "tue": "06:00-20:00",
+        "wed": "06:00-20:00",
+        "thu": "06:00-20:00",
+        "fri": "06:00-20:00",
+        "sat": "07:00-18:00",
+        "sun": "07:00-16:00"
+      },
+      "topServices": [
+        {
+          "name": "Saturday run group",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Gym buddy match",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Soccer meetup",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_016",
+      "slug": "sajilo-live-community-chat",
+      "name": "Sajilo Live Community Chat",
+      "categoryId": "community_chat",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "Web-hosted community chat",
+      "lat": 40.7512,
+      "lng": -73.891,
+      "phone": "+17185550146",
+      "website": "https://example.com/sajilo-live-chat",
+      "description": "Web-hosted local chat and live conversation rooms for recent community issues, announcements, jobs, housing, and newcomer questions.",
+      "tags": [
+        "Live chat",
+        "Recent issues",
+        "Announcements",
+        "Community forum"
+      ],
+      "rating": 4.5,
+      "reviewCount": 34,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Live chat",
+        "Community forum",
+        "Announcements"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Local rooms"
+      ],
+      "image": "./assets/courier.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_007",
+      "hours": {
+        "mon": "08:00-23:00",
+        "tue": "08:00-23:00",
+        "wed": "08:00-23:00",
+        "thu": "08:00-23:00",
+        "fri": "08:00-00:00",
+        "sat": "08:00-00:00",
+        "sun": "08:00-22:00"
+      },
+      "topServices": [
+        {
+          "name": "Local live conversation",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Issue discussion room",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Community announcement",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_017",
+      "slug": "nepali-legal-help-network-queens",
+      "name": "Nepali Legal Help Network",
+      "categoryId": "legal",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "7330 37th Ave, Queens, NY",
+      "lat": 40.7491,
+      "lng": -73.8926,
+      "phone": "+17185550147",
+      "website": "https://example.com/nepali-legal-help",
+      "description": "Referral network for immigration, family, traffic, landlord, small business, and general legal consultations with Nepali language support.",
+      "tags": [
+        "Lawyer",
+        "Immigration",
+        "Family law",
+        "Legal consult"
+      ],
+      "rating": 4.6,
+      "reviewCount": 63,
+      "priceLevel": 3,
+      "isOpen": true,
+      "serviceModes": [
+        "Legal consult",
+        "Booking",
+        "Language support"
+      ],
+      "trustBadges": [
+        "Community referred",
+        "Nepali-speaking"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_017",
+      "hours": {
+        "mon": "09:00-18:00",
+        "tue": "09:00-18:00",
+        "wed": "09:00-18:00",
+        "thu": "09:00-18:00",
+        "fri": "09:00-17:00",
+        "sat": "10:00-14:00",
+        "sun": "closed"
+      },
+      "topServices": [
+        {
+          "name": "Immigration consultation",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Small business legal review",
+          "priceLabel": "Quote"
+        },
+        {
+          "name": "Nepali language intake",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_018",
+      "slug": "nepali-ceremony-makeup-artists-dfw",
+      "name": "Nepali Ceremony Makeup Artists DFW",
+      "categoryId": "beauty",
+      "cityId": "city_dal",
+      "zoneId": "zone_irving",
+      "neighborhood": "Irving",
+      "address": "Irving ceremony beauty network",
+      "lat": 32.8428,
+      "lng": -96.9598,
+      "phone": "+19725550148",
+      "website": "https://example.com/dfw-ceremony-makeup",
+      "description": "Find Nepali makeup artists and grooming support for weddings, bratabandha, pasni, pujas, engagement shoots, and formal ceremonies.",
+      "tags": [
+        "Makeup artist",
+        "Ceremony",
+        "Wedding",
+        "Male grooming"
+      ],
+      "rating": 4.8,
+      "reviewCount": 51,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Booking",
+        "Ceremony makeup",
+        "Home visit"
+      ],
+      "trustBadges": [
+        "Community verified",
+        "Nepali-speaking"
+      ],
+      "image": "./assets/food-delivery.jfif",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "biz_owner_018",
+      "hours": {
+        "mon": "10:00-19:00",
+        "tue": "10:00-19:00",
+        "wed": "10:00-19:00",
+        "thu": "10:00-19:00",
+        "fri": "10:00-21:00",
+        "sat": "07:00-22:00",
+        "sun": "07:00-18:00"
+      },
+      "topServices": [
+        {
+          "name": "Bridal makeup",
+          "priceLabel": "From $180"
+        },
+        {
+          "name": "Ceremony party makeup",
+          "priceLabel": "From $75"
+        },
+        {
+          "name": "Groom styling",
+          "priceLabel": "From $55"
+        }
+      ]
+    },
+    {
+      "id": "biz_019",
+      "slug": "sajilo-potluck-event-planning-chicago",
+      "name": "Sajilo Potluck Event Planning",
+      "categoryId": "events",
+      "cityId": "city_chi",
+      "zoneId": "zone_north",
+      "neighborhood": "North Side",
+      "address": "Chicago community potluck board",
+      "lat": 41.9389,
+      "lng": -87.6544,
+      "phone": "+13125550149",
+      "website": "https://example.com/sajilo-potluck-planning",
+      "description": "Plan a Nepali potluck, picnic, birthday gathering, temple lunch, or community meetup with RSVP, dish signup, volunteer, and venue coordination.",
+      "tags": [
+        "Potluck",
+        "Event planning",
+        "Birthday",
+        "Community meetup"
+      ],
+      "rating": 4.7,
+      "reviewCount": 44,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Events",
+        "Potluck planning",
+        "RSVP"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Community verified"
+      ],
+      "image": "./assets/Momo.1.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_008",
+      "hours": {
+        "mon": "09:00-20:00",
+        "tue": "09:00-20:00",
+        "wed": "09:00-20:00",
+        "thu": "09:00-20:00",
+        "fri": "09:00-21:00",
+        "sat": "08:00-22:00",
+        "sun": "08:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Potluck signup page",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Volunteer coordination",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Venue and catering checklist",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_020",
+      "slug": "nepali-football-cricket-club-queens",
+      "name": "Nepali Football and Cricket Club",
+      "categoryId": "sports",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "Queens pickup sports board",
+      "lat": 40.7568,
+      "lng": -73.8845,
+      "phone": "+17185550150",
+      "website": "https://example.com/nepali-football-cricket",
+      "description": "Organize or join Nepali football, cricket, volleyball, and pickup sports matches with local players and community teams.",
+      "tags": [
+        "Football",
+        "Cricket",
+        "Pickup match",
+        "Tournament"
+      ],
+      "rating": 4.7,
+      "reviewCount": 67,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Sports",
+        "Meetup",
+        "Match planning"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Youth friendly"
+      ],
+      "image": "./assets/Ridesharing.png",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_009",
+      "hours": {
+        "mon": "16:00-21:00",
+        "tue": "16:00-21:00",
+        "wed": "16:00-21:00",
+        "thu": "16:00-21:00",
+        "fri": "16:00-22:00",
+        "sat": "08:00-22:00",
+        "sun": "08:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Cricket pickup match",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Football team finder",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Tournament planning",
+          "priceLabel": "Free"
+        }
+      ]
+    },
+    {
+      "id": "biz_021",
+      "slug": "nepali-priest-ritual-services-chicago",
+      "name": "Nepali Priest and Ritual Services",
+      "categoryId": "priests",
+      "cityId": "city_chi",
+      "zoneId": "zone_north",
+      "neighborhood": "North Side",
+      "address": "Chicago priest and pundit network",
+      "lat": 41.9984,
+      "lng": -87.6894,
+      "phone": "+13125550151",
+      "website": "https://example.com/nepali-priest-rituals",
+      "description": "Book Nepali-speaking priests and pundits for Hindu marriage, bratabandha, puja, griha pravesh, naamkaran, pasni, and ceremony guidance.",
+      "tags": [
+        "Priest",
+        "Hindu marriage",
+        "Bratabandha",
+        "Puja"
+      ],
+      "rating": 4.9,
+      "reviewCount": 82,
+      "priceLevel": 2,
+      "isOpen": true,
+      "serviceModes": [
+        "Priest booking",
+        "Ritual service",
+        "Ceremony planning"
+      ],
+      "trustBadges": [
+        "Community referred",
+        "Nepali-speaking"
+      ],
+      "image": "./assets/courier.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_010",
+      "hours": {
+        "mon": "08:00-20:00",
+        "tue": "08:00-20:00",
+        "wed": "08:00-20:00",
+        "thu": "08:00-20:00",
+        "fri": "08:00-21:00",
+        "sat": "06:00-22:00",
+        "sun": "06:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Hindu marriage ceremony",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Bratabandha ceremony",
+          "priceLabel": "Call"
+        },
+        {
+          "name": "Griha pravesh puja",
+          "priceLabel": "Call"
+        }
+      ]
+    },
+    {
+      "id": "biz_022",
+      "slug": "sajilo-community-matchmaking-threads",
+      "name": "Sajilo Community Matchmaking Threads",
+      "categoryId": "matchmaking",
+      "cityId": "city_nyc",
+      "zoneId": "zone_queens",
+      "neighborhood": "Jackson Heights",
+      "address": "Member-moderated adult introduction board",
+      "lat": 40.7524,
+      "lng": -73.8888,
+      "phone": "+17185550152",
+      "website": "https://example.com/sajilo-matchmaking",
+      "description": "Adult community-moderated matchmaking threads for introductions, family-led profiles, cultural preferences, and safe conversation requests.",
+      "tags": [
+        "Matchmaking",
+        "Adult introductions",
+        "Family-led",
+        "Moderated"
+      ],
+      "rating": 4.4,
+      "reviewCount": 28,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Matchmaking",
+        "Community thread",
+        "Member chat"
+      ],
+      "trustBadges": [
+        "Adults only",
+        "Member moderated",
+        "Privacy first"
+      ],
+      "image": "./assets/Momo.1.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_011",
+      "hours": {
+        "mon": "08:00-22:00",
+        "tue": "08:00-22:00",
+        "wed": "08:00-22:00",
+        "thu": "08:00-22:00",
+        "fri": "08:00-23:00",
+        "sat": "08:00-23:00",
+        "sun": "09:00-21:00"
+      },
+      "topServices": [
+        {
+          "name": "Adult intro thread",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Family-led profile post",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Private conversation request",
+          "priceLabel": "Member only"
+        }
+      ]
+    },
+    {
+      "id": "biz_023",
+      "slug": "sajilo-volunteer-opportunities-chicago",
+      "name": "Sajilo Volunteer Opportunities",
+      "categoryId": "volunteering",
+      "cityId": "city_chi",
+      "zoneId": "zone_loop",
+      "neighborhood": "Downtown Loop",
+      "address": "Chicago community volunteer board",
+      "lat": 41.8836,
+      "lng": -87.6324,
+      "phone": "+13125550153",
+      "website": "https://example.com/sajilo-volunteer-opportunities",
+      "description": "Find volunteer opportunities for social sewa, language help, temple events, sports tournaments, youth activities, newcomer support, and community programs.",
+      "tags": [
+        "Volunteer",
+        "Social sewa",
+        "Youth",
+        "Community support"
+      ],
+      "rating": 4.8,
+      "reviewCount": 58,
+      "priceLevel": 0,
+      "isOpen": true,
+      "serviceModes": [
+        "Volunteer",
+        "Community sewa",
+        "Youth activities"
+      ],
+      "trustBadges": [
+        "Member moderated",
+        "Volunteer-led",
+        "Community verified"
+      ],
+      "image": "./assets/courier.jpg",
+      "status": "published",
+      "verificationStatus": "community_verified",
+      "ownerUserId": "community_admin_012",
+      "hours": {
+        "mon": "09:00-20:00",
+        "tue": "09:00-20:00",
+        "wed": "09:00-20:00",
+        "thu": "09:00-20:00",
+        "fri": "09:00-21:00",
+        "sat": "08:00-22:00",
+        "sun": "08:00-20:00"
+      },
+      "topServices": [
+        {
+          "name": "Event volunteer signup",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Language support volunteer",
+          "priceLabel": "Free"
+        },
+        {
+          "name": "Youth mentor opportunity",
+          "priceLabel": "Free"
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_001",
+      "businessId": "biz_001",
+      "userId": "member_001",
+      "rating": 5,
+      "title": "Feels like a community spot",
+      "body": "Fast pickup, warm momo, and the staff remembered our spice preference.",
+      "verificationSource": "community_member",
+      "status": "published",
+      "createdAt": "2026-03-12T18:30:00.000Z"
+    },
+    {
+      "id": "rev_002",
+      "businessId": "biz_002",
+      "userId": "member_002",
+      "rating": 5,
+      "title": "Best thakali set nearby",
+      "body": "Great for family dinner and the reservation flow was easy.",
+      "verificationSource": "verified_order",
+      "status": "published",
+      "createdAt": "2026-03-24T01:15:00.000Z"
+    },
+    {
+      "id": "rev_003",
+      "businessId": "biz_003",
+      "userId": "member_003",
+      "rating": 4,
+      "title": "Good Nepali grocery basics",
+      "body": "Helpful for spices, frozen momo, and weekend festival supplies.",
+      "verificationSource": "community_member",
+      "status": "published",
+      "createdAt": "2026-04-02T16:05:00.000Z"
+    }
+  ],
+  "favorites": [],
+  "serviceRequests": [],
+  "businessClaims": [],
+  "businessProfileDrafts": []
+};

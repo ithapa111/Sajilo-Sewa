@@ -13,19 +13,27 @@
   </head>
   <body class="food-page-body">
     <div class="page-shell food-page-shell">
-      <header class="topbar food-topbar">
-        <div class="brand-lockup">
+      <header class="app-header">
+        <a class="app-brand" href="./index.html" aria-label="Sajilo Sewa home">
           <img class="brand-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
           <div>
-            <p class="eyebrow">Nepali and Indian food ordering</p>
-            <h1>Sajilo Sewa Food</h1>
+            <p class="eyebrow">Easy Service</p>
+            <h1>Sajilo Sewa</h1>
           </div>
-        </div>
-        <nav class="topnav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="#discover">Discover</a>
-          <a href="#results">Restaurants</a>
-          <a href="#favorites">Favorites</a>
+        </a>
+        <nav class="app-nav" aria-label="Primary">
+          <div class="app-nav-group">
+            <a class="app-link" href="./index.html">Home</a>
+            <a class="app-link" href="./marketplace.html">Discover</a>
+            <a class="app-link is-active" href="./food.html">Food</a>
+            <a class="app-link" href="./ride.html">Rides</a>
+            <a class="app-link" href="./courier.html">Courier</a>
+          </div>
+          <div class="app-nav-group app-nav-auth">
+            <a class="app-link" href="./account.html?type=member">Member Login</a>
+            <a class="app-link" href="./account.html?type=business">Business Login</a>
+            <a class="app-link app-cta" href="./account.html?type=business">List Business</a>
+          </div>
         </nav>
       </header>
 
@@ -203,7 +211,32 @@
           </div>
         </section>
       </main>
+
+      <footer class="app-footer">
+        <a class="app-footer-brand" href="./index.html" aria-label="Sajilo Sewa home">
+          <img class="footer-logo" src="./assets/logo-mark.svg" alt="Sajilo Sewa logo" />
+          <span>
+            <strong>Sajilo Sewa</strong>
+            <small>Easy Service for the Nepalese community in the USA.</small>
+          </span>
+        </a>
+        <nav class="app-footer-links" aria-label="Footer">
+          <a href="./marketplace.html">Discover</a>
+          <a href="./food.html">Food</a>
+          <a href="./ride.html">Rides</a>
+          <a href="./courier.html">Courier</a>
+          <a href="./account.html?type=member">Member Login</a>
+          <a href="./account.html?type=business">Business Login</a>
+        </nav>
+      </footer>
     </div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile">
+      <a href="./index.html">Home</a>
+      <a class="is-active" href="./marketplace.html">Search</a>
+      <a href="./marketplace.html#marketplace-map-panel">Map</a>
+      <a href="./account.html?type=member">Saved</a>
+      <a href="./account.html">Account</a>
+    </nav>
     <script src="./data/sajilo-seed-data.js"></script>
     <script type="module" src="./food-page.js"></script>
   </body>
