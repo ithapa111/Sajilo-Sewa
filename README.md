@@ -1,14 +1,19 @@
-# Sajilo Sewa
+# Sazilo Sewa
 
-Sajilo Sewa is a multi-service platform demo that brings three product lines into one app:
+Sazilo Sewa means "Easy Service." This project is a mobile-first marketplace for the Nepalese community in the USA that brings local discovery and three service lines into one app:
 
+- Yelp-style browsing for local community restaurants, services, events, and groups
 - ridesharing
 - food ordering
 - courier delivery
 
 The current app includes:
 
-- a polished landing page with mobile-friendly service navigation and distinct ridesharing, food delivery, and courier sections
+- a polished landing page focused on Nepalese community discovery
+- a marketplace search page with list and map-style browsing
+- separate member and business login flows
+- public browsing with member-gated reviews, favorites, and service requests
+- community categories for photoshoots, ceremony makeup, priests, free social sewa, volunteering, carpools, community centers, events, sports, adult matchmaking threads, and lawyer services
 - service-specific API paths and request flows
 - operational dashboards, live map views, and themed request forms
 - JSON and PostgreSQL storage options for seeded platform data
@@ -18,7 +23,11 @@ The content is inspired by modern mobility and delivery product flows, but it do
 ## Files
 
 - `index.html`: app entry point
+- `marketplace.html`: community marketplace search with map/list results
+- `business.html`: public business profile page
+- `account.html`: member and business login flows
 - `styles.css`: visual system and responsive layout
+- `data/marketplace-data.json`: marketplace seed data for businesses, categories, reviews, and map coordinates
 - `data/sajilo-seed-data.json`: seed-ready reference data for the app
 - `data/sajilo-seed-data.js`: browser-ready seed data for direct HTML loading
 - `docs/reference-model.md`: explanation of the important entities and how to use them
@@ -45,7 +54,7 @@ To run the full API-backed app:
 
 ## Deploy On Render
 
-This repository includes [`render.yaml`](C:\Users\Indra\OneDrive\Desktop\Sajilo-Sewa\render.yaml) for a quick demo deployment as a Render web service.
+This repository includes `render.yaml` for a quick demo deployment as a Render web service.
 
 1. Push the repository to GitHub.
 2. In Render, create a new Blueprint and connect this repository.
@@ -74,8 +83,21 @@ Service-specific APIs are separated so each product line is easier to understand
 - `GET /api/services`
 - `GET /api/auth/config`
 - `GET /api/auth/me`
+- `POST /api/auth/member/signup`
+- `POST /api/auth/member/login`
+- `POST /api/auth/business/signup`
+- `POST /api/auth/business/login`
 - `POST /api/auth/signup`
 - `POST /api/auth/login`
+- `GET /api/marketplace/categories`
+- `GET /api/marketplace/businesses`
+- `GET /api/marketplace/businesses/:slug`
+- `GET /api/marketplace/businesses/:id/reviews`
+- `POST /api/marketplace/businesses/:id/reviews`
+- `POST /api/marketplace/businesses/:id/favorite`
+- `DELETE /api/marketplace/businesses/:id/favorite`
+- `POST /api/marketplace/business-claims`
+- `POST /api/marketplace/service-requests`
 - `GET /api/overview`
 - `GET /api/platform`
 - `GET /api/rideshare/overview`

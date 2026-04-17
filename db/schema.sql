@@ -252,3 +252,130 @@ CREATE TABLE courier_deliveries (
   quoted_price NUMERIC(10, 2) NOT NULL,
   scheduled_at TIMESTAMPTZ NOT NULL
 );
+
+CREATE TABLE business_categories (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT,
+  status TEXT NOT NULL DEFAULT 'active'
+);
+
+CREATE TABLE marketplace_businesses (
+  id TEXT PRIMARY KEY,
+  slug TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  owner_user_id TEXT REFERENCES platform_users(id),
+  category_id TEXT NOT NULL REFERENCES business_categories(id),
+  city_id TEXT NOT NULL REFERENCES cities(id),
+  zone_id TEXT REFERENCES zones(id),
+  neighborhood TEXT,
+  address TEXT NOT NULL,
+  lat NUMERIC(9, 6) NOT NULL,
+  lng NUMERIC(9, 6) NOT NULL,
+  phone TEXT,
+  website TEXT,
+  description TEXT,
+  rating NUMERIC(3, 2) NOT NULL DEFAULT 0,
+  review_count INTEGER NOT NULL DEFAULT 0,
+  price_level INTEGER NOT NULL DEFAULT 2,
+  is_open BOOLEAN NOT NULL DEFAULT FALSE,
+  image_url TEXT,
+  verification_status TEXT NOT NULL DEFAULT 'pending_review',
+  status TEXT NOT NULL DEFAULT 'draft',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE business_tags (
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  tag TEXT NOT NULL,
+  PRIMARY KEY (business_id, tag)
+);
+
+CREATE TABLE business_trust_badges (
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  badge TEXT NOT NULL,
+  PRIMARY KEY (business_id, badge)
+);
+
+CREATE TABLE business_service_modes (
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  service_mode TEXT NOT NULL,
+  PRIMARY KEY (business_id, service_mode)
+);
+
+CREATE TABLE business_hours (
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  weekday TEXT NOT NULL,
+  hours_label TEXT NOT NULL,
+  PRIMARY KEY (business_id, weekday)
+);
+
+CREATE TABLE business_services (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  description TEXT,
+  price_label TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE business_photos (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  image_url TEXT NOT NULL,
+  alt_text TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE marketplace_reviews (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  user_id TEXT NOT NULL REFERENCES platform_users(id),
+  rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  title TEXT,
+  body TEXT,
+  verification_source TEXT NOT NULL DEFAULT 'community_member',
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE marketplace_favorites (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  user_id TEXT NOT NULL REFERENCES platform_users(id),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (business_id, user_id)
+);
+
+CREATE TABLE marketplace_service_requests (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  user_id TEXT NOT NULL REFERENCES platform_users(id),
+  request_type TEXT NOT NULL,
+  details TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'new',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE business_claims (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  requester_user_id TEXT NOT NULL REFERENCES platform_users(id),
+  business_name TEXT NOT NULL,
+  contact_name TEXT NOT NULL,
+  contact_email TEXT NOT NULL,
+  evidence TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  reviewed_by TEXT REFERENCES platform_users(id),
+  reviewed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE business_profile_drafts (
+  id TEXT PRIMARY KEY,
+  business_id TEXT NOT NULL REFERENCES marketplace_businesses(id) ON DELETE CASCADE,
+  requester_user_id TEXT NOT NULL REFERENCES platform_users(id),
+  changes_json JSONB NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending_review',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
