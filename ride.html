@@ -17,6 +17,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   </head>
   <body class="ride-page-body">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Premium Header -->
     <header class="home-header" style="position: relative; background: #fff; border-bottom: 1px solid var(--line);">
       <div class="home-topbar">
@@ -39,7 +40,8 @@
       </div>
     </header>
 
-    <main id="ride-main-container" class="ride-page-main" style="max-width: 1400px; margin: 0 auto; padding: 0 24px;">
+    <main id="main-content" class="ride-page-main" style="max-width: 1400px; margin: 0 auto; padding: 0 24px;" tabindex="-1">
+      <div id="ride-main-container">
       
       <!-- Uber/Lyft Style Map Dashboard -->
       <section class="ride-dashboard" style="display: grid; grid-template-columns: 420px 1fr; gap: 0; margin: 30px 0; background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--line); min-height: 700px;">
@@ -94,9 +96,10 @@
         </div>
       </section>
 
+      </div>
     </main>
 
-    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;">
+    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;" aria-label="Footer">
       <div class="footer-social ride-footer-social" style="display: flex; gap: 20px;">
         <a href="#facebook" aria-label="Facebook" style="color: var(--text); text-decoration: none;">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">

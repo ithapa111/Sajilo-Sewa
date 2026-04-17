@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="food-page-body">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Premium Header -->
     <header class="home-header" style="position: relative; background: #fff; border-bottom: 1px solid var(--line);">
       <div class="home-topbar">
@@ -36,7 +37,7 @@
       </div>
     </header>
 
-    <main class="food-page-main" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+    <main id="main-content" class="food-page-main" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;" tabindex="-1">
       
       <!-- Food Specific Hero -->
       <section class="food-hero-refined" style="padding: 60px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
@@ -46,19 +47,19 @@
           <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 32px;">Browse the best local Nepali and Indian restaurants in Chicago. From spicy Momos to comforting Thali, find your next favorite meal.</p>
           
           <!-- Integrated Search -->
-          <div class="yelp-search-container" style="box-shadow: var(--shadow-md); border: 1px solid var(--line); margin-bottom: 24px;">
+          <form class="yelp-search-container" style="box-shadow: var(--shadow-md); border: 1px solid var(--line); margin-bottom: 24px;" role="search" aria-label="Restaurant search">
             <div class="yelp-input-group">
-              <span class="yelp-label">Find</span>
+              <label class="yelp-label" for="food-restaurant-search">Find</label>
               <input id="food-restaurant-search" class="yelp-input" type="text" placeholder="momo, biryani, tandoori..." />
             </div>
             <div class="yelp-input-group">
-              <span class="yelp-label">Near</span>
+              <label class="yelp-label" for="food-location-search">Near</label>
               <input id="food-location-search" class="yelp-input" type="text" value="Chicago, IL" />
             </div>
-            <button id="food-location-button" class="yelp-search-button">
+            <button id="food-location-button" class="yelp-search-button" type="button" aria-label="Search restaurants">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
-          </div>
+          </form>
           
           <div class="food-service-modes" style="display: flex; gap: 12px;">
             <span class="food-service-mode is-active" style="cursor: pointer; padding: 8px 16px; border-radius: 20px; font-weight: 700; background: var(--accent); color: white;">Delivery</span>
@@ -159,7 +160,7 @@
 
     </main>
 
-    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;">
+    <footer class="site-footer" style="margin-top: 0; border-radius: 0; border-left: 0; border-right: 0;" aria-label="Footer">
       <div class="footer-social ride-footer-social" style="display: flex; gap: 20px;">
         <a href="#facebook" aria-label="Facebook" style="color: var(--text); text-decoration: none;">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">

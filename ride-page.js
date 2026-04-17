@@ -169,6 +169,9 @@ function renderRideStatusBanner(status, message) {
   if (!banner) {
     banner = document.createElement("div");
     banner.id = "ride-status-banner";
+    banner.setAttribute("role", "status");
+    banner.setAttribute("aria-live", "polite");
+    banner.setAttribute("aria-atomic", "true");
     container.insertBefore(banner, container.firstChild);
   }
 
@@ -324,6 +327,7 @@ function renderRidePage(data = rideState.data) {
           <div style="background: linear-gradient(180deg, #f5f8fc, #eef4fb); padding: 14px; border-radius: 14px; display: flex; align-items: flex-start; gap: 12px; border: 1px solid #d9e6f5;">
             <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 2px;"></div>
             <div style="flex: 1;">
+              <label class="sr-only" for="ride-destination-input">Enter destination address</label>
               <input id="ride-destination-input" type="text" placeholder="Enter destination" value="${rideEscapeHtml(rideState.destinationInput)}" style="width: 100%; border: 0; background: transparent; padding: 0; font: inherit; font-weight: 700; color: #111; outline: none;" />
               ${rideState.dropoff ? `<span style="font-size: 0.72rem; color: #7b8b9e; display: block; margin-top: 6px;">LAT ${rideFormatCoordinate(rideState.dropoff.lat)} | LNG ${rideFormatCoordinate(rideState.dropoff.lng)}</span>` : ""}
             </div>

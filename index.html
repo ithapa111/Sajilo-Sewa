@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="home-page-body">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="home-header">
       <div class="home-topbar">
         <div class="brand-lockup">
@@ -34,23 +35,24 @@
       </div>
     </header>
 
-    <main class="home-main">
+    <main id="main-content" class="home-main" tabindex="-1">
       <section class="home-hero">
         <div class="yelp-logo">Sazilo</div>
 
-        <div class="yelp-search-container">
+        <form class="yelp-search-container" role="search" aria-label="Service search">
           <div class="yelp-input-group">
-            <span class="yelp-label">Find</span>
-            <input class="yelp-input" type="text" placeholder="restaurant, rides, courier..." />
+            <label class="yelp-label" for="home-find-input">Find</label>
+            <input id="home-find-input" class="yelp-input" type="text" placeholder="restaurant, rides, courier..." aria-describedby="home-find-help" />
+            <span id="home-find-help" class="sr-only">Search for services such as restaurants, rides, or courier delivery.</span>
           </div>
           <div class="yelp-input-group">
-            <span class="yelp-label">Near</span>
-            <input class="yelp-input" type="text" value="Chicago, IL" />
+            <label class="yelp-label" for="home-near-input">Near</label>
+            <input id="home-near-input" class="yelp-input" type="text" value="Chicago, IL" />
           </div>
-          <button class="yelp-search-button">
+          <button class="yelp-search-button" type="submit" aria-label="Search services">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
-        </div>
+        </form>
       </section>
 
       <section class="home-services">
@@ -83,7 +85,7 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" aria-label="Footer">
       <div class="footer-social ride-footer-social" style="display: flex; gap: 20px;">
         <a href="#facebook" aria-label="Facebook" style="color: var(--text); text-decoration: none;">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
