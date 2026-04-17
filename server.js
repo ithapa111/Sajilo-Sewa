@@ -66,6 +66,23 @@ function readJsonBody(req) {
   });
 }
 
+async function fetchJson(targetUrl, options = {}) {
+  const response = await fetch(targetUrl, {
+    headers: {
+      "User-Agent": "Sajilo-Sewa/1.0",
+      Accept: "application/json",
+      ...(options.headers || {})
+    },
+    ...options
+  });
+
+  if (!response.ok) {
+    throw new Error(`Upstream request failed with ${response.status}`);
+  }
+
+  return response.json();
+}
+
 function serveFile(res, filePath) {
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     sendText(res, 404, "Not found");
@@ -178,6 +195,80 @@ async function handleApiRead(parsedUrl, auth) {
 
   if (pathname === "/api/courier/overview") {
     return { statusCode: 200, payload: await store.getCourier() };
+  }
+
+  if (pathname === "/api/location/reverse") {
+    const { lat, lng } = parsedUrl.query || {};
+
+    if (!lat || !lng) {
+      return { statusCode: 400, payload: { error: "lat and lng are required" } };
+    }
+
+    const payload = await fetchJson(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lng)}`
+    );
+
+    return {
+      statusCode: 200,
+      payload: {
+        address: payload.display_name || `${lat}, ${lng}`,
+        lat: Number(lat),
+        lng: Number(lng)
+      }
+    };
+  }
+
+  if (pathname === "/api/location/search") {
+    const { q } = parsedUrl.query || {};
+
+    if (!q) {
+      return { statusCode: 400, payload: { error: "q is required" } };
+    }
+
+    const payload = await fetchJson(
+      `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q=${encodeURIComponent(q)}`
+    );
+
+    if (!payload[0]) {
+      return { statusCode: 404, payload: { error: "No destination found" } };
+    }
+
+    return {
+      statusCode: 200,
+      payload: {
+        address: payload[0].display_name,
+        lat: Number(payload[0].lat),
+        lng: Number(payload[0].lon)
+      }
+    };
+  }
+
+  if (pathname === "/api/rideshare/route") {
+    const { pickupLat, pickupLng, dropoffLat, dropoffLng } = parsedUrl.query || {};
+
+    if (!pickupLat || !pickupLng || !dropoffLat || !dropoffLng) {
+      return {
+        statusCode: 400,
+        payload: { error: "pickupLat, pickupLng, dropoffLat and dropoffLng are required" }
+      };
+    }
+
+    const payload = await fetchJson(
+      `https://router.project-osrm.org/route/v1/driving/${encodeURIComponent(pickupLng)},${encodeURIComponent(pickupLat)};${encodeURIComponent(dropoffLng)},${encodeURIComponent(dropoffLat)}?overview=full&geometries=geojson`
+    );
+
+    if (!payload.routes?.[0]) {
+      return { statusCode: 404, payload: { error: "No drivable route found" } };
+    }
+
+    return {
+      statusCode: 200,
+      payload: {
+        distanceMeters: payload.routes[0].distance,
+        durationSeconds: payload.routes[0].duration,
+        geometry: payload.routes[0].geometry
+      }
+    };
   }
 
   return null;

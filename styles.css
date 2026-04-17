@@ -1966,6 +1966,721 @@ body::before {
   border-radius: 6px;
 }
 
+.ride-map-telemetry {
+  background: transparent;
+  box-shadow: none;
+}
+
+.ride-map-telemetry-card {
+  display: grid;
+  gap: 3px;
+  min-width: 152px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(7, 15, 28, 0.9);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.ride-map-telemetry-card span,
+.ride-map-float-metric span,
+.ride-digital-metric span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.64);
+}
+
+.ride-map-telemetry-card strong,
+.ride-map-float-metric strong,
+.ride-digital-metric strong {
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.ride-map-telemetry-card small,
+.ride-map-float-metric small,
+.ride-digital-metric small {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.72);
+}
+
+.ride-map-modebar {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+.ride-mode-chip {
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(7, 15, 28, 0.14);
+  background: rgba(255,255,255,0.92);
+  color: #1c2e43;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.ride-mode-chip.is-active {
+  background: #0f2138;
+  color: white;
+  border-color: #0f2138;
+}
+
+.ride-map-float-metric {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+}
+
+.ride-digital-metric {
+  display: grid;
+  gap: 3px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0d1a2a, #14243a);
+  color: white;
+  border: 1px solid rgba(18, 116, 255, 0.16);
+}
+
+.ride-digital-metric span {
+  color: rgba(255,255,255,0.62);
+}
+
+.ride-digital-metric small {
+  color: rgba(255,255,255,0.72);
+}
+
+.ride-system-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f6f9fd;
+  border: 1px solid #dfe8f3;
+}
+
+.ride-system-row span {
+  font-size: 0.84rem;
+  color: #5f7187;
+}
+
+.ride-system-row strong {
+  font-size: 0.9rem;
+  color: #0f2138;
+}
+
+.ride-message-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f8fbff, #edf4fd);
+  border: 1px solid #dde8f5;
+}
+
+.ride-message-feed {
+  display: grid;
+  gap: 8px;
+}
+
+.ride-message-bubble {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #dde8f5;
+}
+
+.ride-message-bubble.is-user {
+  background: #0f2138;
+  border-color: #0f2138;
+}
+
+.ride-message-bubble span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #5f7187;
+}
+
+.ride-message-bubble strong {
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: #13253b;
+}
+
+.ride-message-bubble.is-user span,
+.ride-message-bubble.is-user strong {
+  color: white;
+}
+
+.ride-message-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.ride-message-form input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d7e2ef;
+  border-radius: 12px;
+  font: inherit;
+  color: #13253b;
+  background: white;
+}
+
+@media (max-width: 820px) {
+  .ride-dashboard {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+
+  #ride-selection-sidebar {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line);
+    padding: 22px !important;
+  }
+
+  #ride-map-view {
+    min-height: 360px;
+  }
+
+  .ride-page-body .home-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #ride-booking,
+  #ride-safety {
+    padding: 36px 0 !important;
+  }
+
+  #ride-tiers {
+    margin: 0 !important;
+    padding: 36px 0 !important;
+    border-radius: 28px !important;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 641px) {
+  .ride-page-main {
+    padding: 0 18px !important;
+    gap: 16px;
+  }
+
+  .ride-dashboard {
+    grid-template-columns: minmax(320px, 360px) minmax(0, 1fr) !important;
+    margin: 20px 0 !important;
+    min-height: 560px !important;
+  }
+
+  #ride-selection-sidebar {
+    padding: 22px !important;
+  }
+
+  #ride-map-view {
+    min-height: 560px;
+  }
+
+  #ride-booking,
+  #ride-tiers,
+  #ride-safety {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  #ride-tiers {
+    margin: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    border-radius: 28px !important;
+  }
+
+  #ride-booking-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+
+  #ride-booking-grid > article:nth-child(3),
+  #ride-tier-grid,
+  #ride-safety {
+    display: none !important;
+  }
+
+  .ride-map-float {
+    min-width: 280px !important;
+    max-width: min(360px, calc(100% - 36px));
+    right: 18px !important;
+    bottom: 18px !important;
+    padding: 16px !important;
+  }
+
+  .ride-map-float > div:last-child {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .ride-digital-metric {
+    padding: 10px;
+  }
+
+  .ride-choice-card {
+    padding: 14px;
+  }
+
+  .ride-page-body .site-footer {
+    padding: 18px 22px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 833px) {
+  .ride-dashboard {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+
+  #ride-selection-sidebar {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line);
+    padding: 20px !important;
+  }
+
+  #ride-map-view {
+    min-height: 420px;
+  }
+
+  #ride-booking-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #ride-booking-grid > article:nth-child(3),
+  #ride-tier-grid,
+  #ride-safety {
+    display: none !important;
+  }
+}
+
+@media (min-width: 834px) and (max-width: 1024px) {
+  .ride-page-main {
+    padding: 0 20px !important;
+  }
+
+  .ride-dashboard {
+    grid-template-columns: minmax(300px, 340px) minmax(0, 1fr) !important;
+    min-height: 560px !important;
+  }
+
+  #ride-selection-sidebar {
+    padding: 20px !important;
+  }
+
+  #ride-map-view {
+    min-height: 560px;
+  }
+
+  #ride-booking-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #ride-booking-grid > article:nth-child(3),
+  #ride-tier-grid,
+  #ride-safety {
+    display: none !important;
+  }
+
+  .ride-map-float {
+    max-width: min(340px, calc(100% - 32px));
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .ride-page-main {
+    padding: 0 24px !important;
+  }
+
+  .ride-dashboard {
+    grid-template-columns: minmax(340px, 390px) minmax(0, 1fr) !important;
+    min-height: 620px !important;
+  }
+
+  #ride-map-view {
+    min-height: 620px;
+  }
+
+  #ride-booking-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #ride-booking-grid > article:nth-child(3),
+  #ride-tier-grid,
+  #ride-safety {
+    display: none !important;
+  }
+
+  .ride-map-float {
+    max-width: min(380px, calc(100% - 40px));
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1366px) and (orientation: landscape) {
+  .ride-dashboard {
+    min-height: 520px !important;
+  }
+
+  #ride-map-view {
+    min-height: 520px;
+  }
+
+  #ride-selection-sidebar {
+    padding: 18px !important;
+  }
+
+  .ride-map-float {
+    right: 16px !important;
+    bottom: 16px !important;
+    max-width: min(360px, calc(100% - 32px));
+  }
+
+  .ride-map-float > div:last-child {
+    gap: 8px !important;
+  }
+
+  .ride-digital-metric,
+  .ride-map-float-metric {
+    padding: 10px !important;
+  }
+
+  #ride-booking,
+  #ride-tiers,
+  #ride-safety {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .ride-dashboard {
+    grid-template-columns: minmax(320px, 360px) minmax(0, 1fr) !important;
+  }
+
+  #ride-booking-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .ride-page-main {
+    padding: 0 14px !important;
+    gap: 14px;
+  }
+
+  .ride-page-body {
+    overflow-x: hidden;
+  }
+
+  .ride-page-body .home-topbar {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .ride-page-body .brand-lockup {
+    min-width: 0;
+  }
+
+  .ride-page-body .brand-lockup > a {
+    min-width: 0;
+  }
+
+  .ride-page-body .brand-name-logo {
+    max-width: 128px;
+  }
+
+  .ride-page-body .home-header-link,
+  .ride-page-body .home-header-button {
+    min-height: 44px;
+  }
+
+  .ride-dashboard {
+    margin: 16px 0 !important;
+    border-radius: 18px !important;
+  }
+
+  #ride-selection-sidebar {
+    padding: 16px !important;
+  }
+
+  #ride-selection-sidebar input,
+  #ride-selection-sidebar button,
+  #ride-selection-sidebar .button {
+    min-height: 44px;
+  }
+
+  #ride-map-view {
+    min-height: 280px;
+  }
+
+  .ride-map-float {
+    left: 12px;
+    right: 12px !important;
+    bottom: 12px !important;
+    min-width: 0 !important;
+    width: auto;
+    padding: 14px !important;
+    gap: 10px !important;
+  }
+
+  .ride-map-float > div:first-child {
+    gap: 10px !important;
+  }
+
+  .ride-map-float > div:last-child {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .ride-map-float strong,
+  .ride-map-float span,
+  .ride-choice-card strong,
+  .ride-choice-card span,
+  #ride-booking-grid strong,
+  #ride-booking-grid span {
+    word-break: break-word;
+  }
+
+  .ride-map-float-metric,
+  .ride-digital-metric {
+    padding: 10px;
+  }
+
+  .ride-map-modebar {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    gap: 6px;
+  }
+
+  .ride-mode-chip {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 0.76rem;
+  }
+
+  .ride-map-float-metric strong,
+  .ride-digital-metric strong,
+  .ride-map-telemetry-card strong {
+    font-size: 0.92rem;
+  }
+
+  #ride-booking > div:first-child h2,
+  #ride-tiers > div:first-child h2,
+  #ride-safety > div:first-child h2 {
+    font-size: 1.45rem !important;
+    line-height: 1.15;
+  }
+
+  #ride-booking > div:first-child p,
+  #ride-tiers > div:first-child p,
+  #ride-safety > div:first-child p {
+    font-size: 0.95rem !important;
+  }
+
+  #ride-booking-grid,
+  #ride-tier-grid,
+  #ride-safety-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  #ride-booking-grid > article:nth-child(3),
+  #ride-tier-grid,
+  #ride-safety {
+    display: none !important;
+  }
+
+  #ride-booking-grid > article,
+  #ride-selection-sidebar > div,
+  #ride-selection-sidebar form > div {
+    min-width: 0;
+  }
+
+  .ride-message-form {
+    grid-template-columns: 1fr;
+  }
+
+  .ride-choice-card {
+    padding: 14px;
+  }
+
+  .ride-choice-card strong {
+    line-height: 1.15;
+  }
+
+  .ride-map-telemetry-card {
+    min-width: 126px;
+    padding: 10px 12px;
+  }
+
+  .leaflet-top.leaflet-right {
+    transform: scale(0.92);
+    transform-origin: top right;
+  }
+}
+
+@media (max-width: 420px) {
+  .ride-page-main {
+    padding: 0 10px !important;
+  }
+
+  .ride-page-body .home-topbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .ride-dashboard {
+    border-radius: 16px !important;
+  }
+
+  #ride-selection-sidebar {
+    padding: 14px !important;
+  }
+
+  #ride-map-view {
+    min-height: 250px;
+  }
+
+  .ride-map-float {
+    padding: 12px !important;
+  }
+
+  .ride-map-float > div:first-child {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .ride-map-modebar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .ride-map-float img {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .ride-map-float-metric span,
+  .ride-digital-metric span,
+  .ride-map-telemetry-card span {
+    font-size: 0.62rem;
+  }
+
+  .ride-map-float-metric strong,
+  .ride-digital-metric strong,
+  .ride-map-telemetry-card strong {
+    font-size: 0.84rem;
+  }
+
+  .ride-system-row {
+    padding: 10px 12px;
+  }
+
+  #ride-selection-sidebar h2,
+  #ride-booking h2,
+  #ride-tiers h2,
+  #ride-safety h2 {
+    font-size: 1.28rem !important;
+  }
+
+  #ride-selection-sidebar .label,
+  #ride-booking .label {
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .ride-page-main {
+    padding: 0 8px !important;
+  }
+
+  #ride-selection-sidebar {
+    padding: 12px !important;
+  }
+
+  .ride-choice-card {
+    padding: 12px;
+  }
+
+  .ride-choice-card > div:first-child {
+    gap: 10px !important;
+  }
+
+  .ride-map-float {
+    left: 8px;
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+
+  .ride-map-float > div:last-child {
+    gap: 6px !important;
+  }
+}
+
+@media (max-height: 760px) and (orientation: landscape) {
+  #ride-map-view {
+    min-height: 220px;
+  }
+
+  .ride-map-float {
+    left: auto;
+    right: 14px !important;
+    bottom: 14px !important;
+    max-width: min(340px, calc(100% - 28px));
+  }
+}
+
+@supports (padding: max(0px)) {
+  @media (max-width: 640px) {
+    .ride-page-main {
+      padding-left: max(14px, env(safe-area-inset-left)) !important;
+      padding-right: max(14px, env(safe-area-inset-right)) !important;
+      padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    }
+
+    .ride-page-body .home-topbar {
+      padding-left: max(14px, env(safe-area-inset-left));
+      padding-right: max(14px, env(safe-area-inset-right));
+    }
+
+    .ride-map-float {
+      left: max(12px, env(safe-area-inset-left)) !important;
+      right: max(12px, env(safe-area-inset-right)) !important;
+      bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    }
+  }
+}
+
 .ride-page-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
@@ -3550,6 +4265,21 @@ body::before {
 
 .footer-social a:hover,
 .footer-links a:hover {
+  color: var(--accent);
+}
+
+.ride-footer-social a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ride-footer-social a svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.ride-footer-social a:hover {
   color: var(--accent);
 }
 
