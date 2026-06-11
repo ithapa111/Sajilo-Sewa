@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Tooltip, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -23,17 +23,76 @@ const LIVE_ETA_MINUTES = {
   tier_exec: 6
 };
 
+const FALLBACK_RIDE_DATA = {
+  rideshare: {
+    serviceTiers: [
+      { id: 'tier_go', name: 'Sazilo Go', capacity: 4, baseFare: 4, bookingFee: 1.5, perMile: 1.4, perMinute: 0.28, minimumFare: 8 },
+      { id: 'tier_plus', name: 'Sazilo Plus', capacity: 6, baseFare: 6, bookingFee: 2, perMile: 1.9, perMinute: 0.34, minimumFare: 12 },
+      { id: 'tier_exec', name: 'Sazilo Exec', capacity: 4, baseFare: 10, bookingFee: 3, perMile: 2.6, perMinute: 0.48, minimumFare: 18 },
+    ],
+    vehicles: [{ color: 'Black', make: 'Toyota Camry', plateNumber: 'SZL 2048' }],
+  },
+  users: {
+    drivers: [{ id: 'driver_local', fullName: 'Ramesh Adhikari', rating: 4.9 }],
+  },
+};
+
+const FALLBACK_DESTINATIONS = [
+  { address: 'O Hare International Airport, Chicago, IL', lat: 41.9742, lng: -87.9073 },
+  { address: 'Downtown Chicago, IL', lat: 41.8781, lng: -87.6298 },
+  { address: 'Devon Avenue, Chicago, IL', lat: 41.9978, lng: -87.6991 },
+  { address: 'Naperville, IL', lat: 41.7508, lng: -88.1535 },
+];
+
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
-// Component to handle map view updates
 function ChangeView({ bounds }) {
   const map = useMap();
-  if (bounds) map.fitBounds(bounds, { padding: [50, 50] });
+  useEffect(() => {
+    if (bounds) {
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [bounds, map]);
+
   return null;
 }
+
+const getFallbackDestination = (query) => {
+  const normalized = query.trim().toLowerCase();
+
+  return (
+    FALLBACK_DESTINATIONS.find((destination) => destination.address.toLowerCase().includes(normalized)) || {
+      address: query,
+      lat: 41.9108,
+      lng: -87.6505,
+    }
+  );
+};
+
+const calculateFallbackRoute = (from, to) => {
+  const toRadians = (value) => (value * Math.PI) / 180;
+  const earthRadiusMeters = 6371000;
+  const latDelta = toRadians(to.lat - from.lat);
+  const lngDelta = toRadians(to.lng - from.lng);
+  const a =
+    Math.sin(latDelta / 2) ** 2 +
+    Math.cos(toRadians(from.lat)) * Math.cos(toRadians(to.lat)) * Math.sin(lngDelta / 2) ** 2;
+  const distanceMeters = 2 * earthRadiusMeters * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return {
+    distanceMeters,
+    durationSeconds: Math.max(600, Math.round((distanceMeters / 1000 / 30) * 3600)),
+    geometry: {
+      coordinates: [
+        [from.lng, from.lat],
+        [to.lng, to.lat],
+      ],
+    },
+  };
+};
 
 const RidePage = () => {
   const [data, setData] = useState(null);
@@ -44,8 +103,6 @@ const RidePage = () => {
   const [destinationInput, setDestinationInput] = useState('');
   const [status, setStatus] = useState({ type: 'ready', message: 'Detecting location...' });
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState([{ from: "driver", text: "I am nearby. Share an exact entrance if needed." }]);
-  const [messageDraft, setMessageDraft] = useState('');
 
   useEffect(() => {
     fetch('/api/seed')
@@ -55,6 +112,11 @@ const RidePage = () => {
         if (seed.rideshare?.serviceTiers?.[0]) {
           setSelectedTierId(seed.rideshare.serviceTiers[0].id);
         }
+      })
+      .catch(() => {
+        setData(FALLBACK_RIDE_DATA);
+        setSelectedTierId(FALLBACK_RIDE_DATA.rideshare.serviceTiers[0].id);
+        setStatus({ type: 'ready', message: 'Ride options are ready. Where to?' });
       });
     
     initializeLocation();
@@ -90,11 +152,24 @@ const RidePage = () => {
     setStatus({ type: 'searching', message: 'Calculating your trip...' });
 
     try {
-      const geoRes = await fetch(`/api/location/search?q=${encodeURIComponent(destinationInput)}`);
-      const dest = await geoRes.json();
+      let dest;
+      let routeData;
+
+      try {
+        const geoRes = await fetch(`/api/location/search?q=${encodeURIComponent(destinationInput)}`);
+        if (!geoRes.ok) throw new Error('Location lookup failed');
+        dest = await geoRes.json();
+      } catch {
+        dest = getFallbackDestination(destinationInput);
+      }
       
-      const routeRes = await fetch(`/api/rideshare/route?pickupLat=${pickup.lat}&pickupLng=${pickup.lng}&dropoffLat=${dest.lat}&dropoffLng=${dest.lng}`);
-      const routeData = await routeRes.json();
+      try {
+        const routeRes = await fetch(`/api/rideshare/route?pickupLat=${pickup.lat}&pickupLng=${pickup.lng}&dropoffLat=${dest.lat}&dropoffLng=${dest.lng}`);
+        if (!routeRes.ok) throw new Error('Route lookup failed');
+        routeData = await routeRes.json();
+      } catch {
+        routeData = calculateFallbackRoute(pickup, dest);
+      }
 
       setDropoff(dest);
       setRoute(routeData);
@@ -133,7 +208,6 @@ const RidePage = () => {
   return (
     <div className="ride-page-container">
       <div className="ride-grid">
-        {/* Left Sidebar */}
         <aside className="ride-sidebar">
           <div className="location-inputs">
             <h2>Where to?</h2>
@@ -176,7 +250,7 @@ const RidePage = () => {
                   >
                     <div className="tier-info">
                       <strong>{tier.name}</strong>
-                      <span>{m.etaMinutes} min away • {tier.capacity} seats</span>
+                      <span>{m.etaMinutes} min away / {tier.capacity} seats</span>
                     </div>
                     <div className="tier-price">
                       {route ? currencyFormatter.format(m.fare) : '--'}
@@ -196,7 +270,6 @@ const RidePage = () => {
           </button>
         </aside>
 
-        {/* Map View */}
         <main className="ride-map-area">
           <MapContainer 
             center={[pickup.lat, pickup.lng]} 
@@ -237,12 +310,12 @@ const RidePage = () => {
                 <img src={`https://i.pravatar.cc/100?u=${activeDriver.id}`} alt="Driver" />
                 <div>
                   <strong>{activeDriver.fullName}</strong>
-                  <span>{activeVehicle.color} {activeVehicle.make} • {activeVehicle.plateNumber}</span>
+                  <span>{activeVehicle.color} {activeVehicle.make} / {activeVehicle.plateNumber}</span>
                 </div>
               </div>
               <div className="driver-stats">
                 <div><span>ETA</span><strong>{metrics.etaMinutes}m</strong></div>
-                <div><span>RATE</span><strong>★{activeDriver.rating}</strong></div>
+                <div><span>RATE</span><strong>{activeDriver.rating}</strong></div>
               </div>
             </div>
           )}

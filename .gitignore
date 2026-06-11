@@ -1,2 +1,6 @@
 server.log
 server-error.log
+node_modules/
+dist/
+*.log
+data/auth-users.json

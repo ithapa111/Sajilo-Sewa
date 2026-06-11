@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 
 const BusinessPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const user = typeof window !== 'undefined' ? localStorage.getItem('sajilo_token') : null;
   
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,7 +33,7 @@ const BusinessPage = () => {
 
   const handleSave = async () => {
     if (!user) {
-      navigate(`/account?type=member&next=${encodeURIComponent(window.location.pathname)}`);
+      navigate(`/community-services?next=${encodeURIComponent(window.location.pathname)}`);
       return;
     }
 
@@ -52,7 +51,7 @@ const BusinessPage = () => {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      navigate(`/account?type=member&next=${encodeURIComponent(window.location.pathname)}`);
+      navigate(`/community-services?next=${encodeURIComponent(window.location.pathname)}`);
       return;
     }
 
@@ -103,7 +102,7 @@ const BusinessPage = () => {
           <span className="eyebrow-tag">{business.categoryName || 'Local Service'}</span>
           <h1>{business.name}</h1>
           <div className="rating-row">
-            <span className="stars">{'★'.repeat(Math.round(business.rating))}</span>
+            <span className="stars">{'*'.repeat(Math.round(business.rating))}</span>
             <strong>{Number(business.rating).toFixed(1)}</strong>
             <span>({Number(business.reviewCount || 0) + reviews.length} reviews)</span>
           </div>
@@ -122,7 +121,7 @@ const BusinessPage = () => {
         <button className={`button secondary ${isSaved ? 'is-active' : ''}`} onClick={handleSave}>
           {isSaved ? 'Saved' : 'Save'}
         </button>
-        <Link to="/account?type=business" className="button secondary">Claim Business</Link>
+        <Link to="/community-services" className="button secondary">Claim Business</Link>
       </nav>
 
       <div className="business-grid">
@@ -141,7 +140,7 @@ const BusinessPage = () => {
           <section className="reviews-section">
             <div className="section-header">
               <h2>What members say</h2>
-              <p className="subtitle">Real experiences from the community</p>
+              <p className="subtitle">Reviews from people nearby</p>
             </div>
 
             <form className="review-form" onSubmit={handleReviewSubmit}>
@@ -161,7 +160,7 @@ const BusinessPage = () => {
                 />
               </div>
               <textarea 
-                placeholder="Share your community experience..." 
+                placeholder="Share what happened..."
                 value={reviewForm.body}
                 onChange={(e) => setReviewForm({...reviewForm, body: e.target.value})}
                 required
@@ -174,7 +173,7 @@ const BusinessPage = () => {
               {reviews.map((r, i) => (
                 <article key={i} className="review-card">
                   <div className="review-header">
-                    <span className="stars">{'★'.repeat(r.rating)}</span>
+                    <span className="stars">{'*'.repeat(r.rating)}</span>
                     <span className="source">{r.verificationSource?.replaceAll('_', ' ') || 'member'}</span>
                   </div>
                   <h4>{r.title}</h4>

@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 
 export const CommunityDashboardContext = createContext(null);
 
-export const useCommunityDashboard = () => {
+export function useCommunityDashboard() {
   const context = useContext(CommunityDashboardContext);
 
   if (!context) {
@@ -10,4 +10,4 @@ export const useCommunityDashboard = () => {
   }
 
   return context;
-};
+}

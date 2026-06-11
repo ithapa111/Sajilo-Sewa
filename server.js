@@ -1,14 +1,19 @@
-const http = require("http");
-const fs = require("fs");
-const os = require("os");
-const path = require("path");
-const url = require("url");
-const { authorize, authenticateRequestWithStore, getAuthConfig } = require("./lib/auth");
-const { createStore } = require("./lib/store");
+import http from "http";
+import fs from "fs";
+import os from "os";
+import path from "path";
+import url from "url";
+import { fileURLToPath } from "url";
+import { authorize, authenticateRequestWithStore, getAuthConfig } from "./lib/auth.js";
+import { createStore } from "./lib/store.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
+const PUBLIC_ROOT = fs.existsSync(path.join(ROOT, "dist")) ? path.join(ROOT, "dist") : ROOT;
 const store = createStore(ROOT);
 const API_ALIASES = {
   "/api/rides": "/api/rideshare/overview",
@@ -116,9 +121,9 @@ function serveFile(res, filePath) {
 
 function resolveStaticPath(pathname) {
   const cleanPath = pathname === "/" ? "/index.html" : pathname;
-  const resolved = path.normalize(path.join(ROOT, cleanPath));
+  const resolved = path.normalize(path.join(PUBLIC_ROOT, cleanPath));
 
-  if (!resolved.startsWith(ROOT)) {
+  if (!resolved.startsWith(PUBLIC_ROOT)) {
     return null;
   }
 
@@ -522,6 +527,16 @@ const server = http.createServer(async (req, res) => {
 
     if (!filePath) {
       sendText(res, 400, "Invalid path");
+      return;
+    }
+
+    if (fs.existsSync(filePath) && !fs.statSync(filePath).isDirectory()) {
+      serveFile(res, filePath);
+      return;
+    }
+
+    if (PUBLIC_ROOT !== ROOT && !path.extname(parsedUrl.pathname)) {
+      serveFile(res, path.join(PUBLIC_ROOT, "index.html"));
       return;
     }
 

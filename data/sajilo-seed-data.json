@@ -216,7 +216,11 @@
         "fullName": "Maya Thompson",
         "phone": "+1-312-555-0101",
         "email": "maya@example.com",
-        "favoriteCuisineTags": ["Nepali", "Burgers", "Thai"],
+        "favoriteCuisineTags": [
+          "Nepali",
+          "Burgers",
+          "Thai"
+        ],
         "defaultPaymentMethodId": "pay_card_visa"
       },
       {
@@ -224,7 +228,10 @@
         "fullName": "Elena Cruz",
         "phone": "+1-312-555-0301",
         "email": "elena@example.com",
-        "favoriteCuisineTags": ["Pizza", "Indian"],
+        "favoriteCuisineTags": [
+          "Pizza",
+          "Indian"
+        ],
         "defaultPaymentMethodId": "pay_wallet"
       }
     ],
@@ -248,6 +255,19 @@
         "onlineStatus": "online",
         "currentZoneId": "zone_north",
         "completedDeliveries": 1244
+      }
+    ],
+    "members": [
+      {
+        "id": "member_001",
+        "fullName": "abcd",
+        "phone": null,
+        "email": "abc@gmail.com",
+        "rating": null,
+        "currentZoneId": null,
+        "communityRole": "member",
+        "favoriteCuisineTags": [],
+        "defaultPaymentMethodId": "pay_card_visa"
       }
     ]
   },
@@ -296,7 +316,10 @@
         "year": 2022,
         "color": "Silver",
         "plateNumber": "SJL-2041",
-        "tierIds": ["tier_go", "tier_plus"]
+        "tierIds": [
+          "tier_go",
+          "tier_plus"
+        ]
       },
       {
         "id": "veh_002",
@@ -306,7 +329,9 @@
         "year": 2023,
         "color": "Black",
         "plateNumber": "SJL-1187",
-        "tierIds": ["tier_plus"]
+        "tierIds": [
+          "tier_plus"
+        ]
       }
     ],
     "surgeRules": [
@@ -445,7 +470,9 @@
         "paymentMethodId": "pay_wallet",
         "riderRating": null,
         "driverRating": null,
-        "safetyFeaturesUsed": ["share_trip"]
+        "safetyFeaturesUsed": [
+          "share_trip"
+        ]
       }
     ],
     "safetyEvents": [
@@ -474,7 +501,11 @@
       {
         "id": "rest_001",
         "name": "Himal Street Kitchen",
-        "cuisineTags": ["Nepali", "Momo", "Noodles"],
+        "cuisineTags": [
+          "Nepali",
+          "Momo",
+          "Noodles"
+        ],
         "rating": 4.7,
         "priceLevel": 2,
         "address": "825 W Randolph St, Chicago, IL",
@@ -495,7 +526,11 @@
       {
         "id": "rest_002",
         "name": "Lakeview Burger House",
-        "cuisineTags": ["Burgers", "Fries", "Shakes"],
+        "cuisineTags": [
+          "Burgers",
+          "Fries",
+          "Shakes"
+        ],
         "rating": 4.5,
         "priceLevel": 2,
         "address": "2932 N Broadway, Chicago, IL",
@@ -544,7 +579,9 @@
         "price": 12.5,
         "isPopular": true,
         "isAvailable": true,
-        "modifierGroupIds": ["mod_001"]
+        "modifierGroupIds": [
+          "mod_001"
+        ]
       },
       {
         "id": "item_002",
@@ -555,7 +592,9 @@
         "price": 13.25,
         "isPopular": false,
         "isAvailable": true,
-        "modifierGroupIds": ["mod_002"]
+        "modifierGroupIds": [
+          "mod_002"
+        ]
       },
       {
         "id": "item_003",
@@ -566,7 +605,9 @@
         "price": 14.75,
         "isPopular": true,
         "isAvailable": true,
-        "modifierGroupIds": ["mod_003"]
+        "modifierGroupIds": [
+          "mod_003"
+        ]
       }
     ],
     "modifierGroups": [
@@ -651,13 +692,17 @@
           {
             "itemId": "item_001",
             "quantity": 2,
-            "selectedModifiers": ["mod_001_opt_2"],
+            "selectedModifiers": [
+              "mod_001_opt_2"
+            ],
             "lineTotal": 25
           },
           {
             "itemId": "item_002",
             "quantity": 1,
-            "selectedModifiers": ["mod_002_opt_1"],
+            "selectedModifiers": [
+              "mod_002_opt_1"
+            ],
             "lineTotal": 16.25
           }
         ],
@@ -710,7 +755,10 @@
           {
             "itemId": "item_003",
             "quantity": 2,
-            "selectedModifiers": ["mod_003_opt_1", "mod_003_opt_3"],
+            "selectedModifiers": [
+              "mod_003_opt_1",
+              "mod_003_opt_3"
+            ],
             "lineTotal": 37
           }
         ],

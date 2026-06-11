@@ -1,4 +1,4 @@
-import { navItems, sidebarCards } from '../../data/communityDashboardData';
+import { sidebarActionCards, sidebarNavItems } from '../../data/communityDashboardData';
 import { useCommunityDashboard } from '../../context/CommunityDashboardContext';
 
 const CommunitySidebar = () => {
@@ -7,69 +7,71 @@ const CommunitySidebar = () => {
   return (
     <aside className="order-2 lg:order-1">
       <div className="space-y-4 lg:sticky lg:top-24">
-        <div className="hidden rounded-[28px] border border-slate-200/80 bg-white/90 p-4 shadow-soft lg:block">
-          <div className="mb-3 px-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Navigation</p>
-          </div>
+        <nav aria-label="Community sections" className="rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-soft">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-700">Quick navigation</p>
+          <h2 className="mt-2 text-lg font-semibold text-slate-950">Jump to what you need</h2>
 
-          <nav className="space-y-1.5">
-            {navItems.map((item) => {
+          <div className="mt-4 space-y-2">
+            {sidebarNavItems.map((item) => {
               const isActive = activeNav === item.label;
 
               return (
                 <button
-                  key={item.label}
-                  className={`flex w-full items-center justify-between rounded-2xl px-3 py-3 text-left transition ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`flex w-full items-center justify-between rounded-[20px] px-4 py-3 text-left text-sm font-semibold transition ${
                     isActive
-                      ? 'bg-brand-50 text-brand-700 shadow-[inset_0_0_0_1px_rgba(109,40,217,0.12)]'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      ? 'bg-slate-950 text-white'
+                      : 'border border-slate-200 bg-white text-slate-700 hover:border-brand-300 hover:text-brand-700'
                   }`}
-                  type="button"
+                  key={item.label}
                   onClick={() => handleNavSelect(item)}
+                  type="button"
                 >
-                  <span className="flex items-center gap-3">
-                    <span className={`inline-flex h-9 w-9 items-center justify-center rounded-2xl text-[11px] font-bold ${isActive ? 'bg-white text-brand-700' : 'bg-slate-100 text-slate-500'}`}>
-                      {item.badge}
-                    </span>
-                    <span className="text-sm font-medium">{item.label}</span>
+                  <span>{item.label}</span>
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] ${
+                      isActive ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
+                    }`}
+                  >
+                    {item.badge}
                   </span>
-                  <span className={`h-2.5 w-2.5 rounded-full ${isActive ? 'bg-brand-500' : 'bg-transparent'}`} />
                 </button>
               );
             })}
-          </nav>
-        </div>
+          </div>
+        </nav>
 
-        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-          {sidebarCards.map((card) => (
-            <div key={card.title} className="rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-soft">
-              <div className="mb-4 inline-flex rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-600">
-                {card.kind}
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900">{card.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-500">{card.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <button
-                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-600"
-                  type="button"
-                  onClick={() => handleSidebarCardAction(card)}
-                >
-                  {card.cta}
-                </button>
+        <section className="rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-soft">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-700">Sidebar actions</p>
+          <h2 className="mt-2 text-lg font-semibold text-slate-950">Useful next steps</h2>
 
-                {card.secondaryCta ? (
+          <div className="mt-4 space-y-4">
+            {sidebarActionCards.map((card) => (
+              <article className="rounded-[24px] border border-slate-200 bg-slate-50/80 p-4" key={card.title}>
+                <h3 className="text-base font-semibold text-slate-950">{card.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{card.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
                   <button
-                    className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-brand-200 hover:text-brand-600"
+                    className="inline-flex items-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+                    onClick={() => handleSidebarCardAction(card)}
                     type="button"
-                    onClick={() => handleSidebarCardAction(card, 'secondary')}
                   >
-                    {card.secondaryCta}
+                    {card.cta}
                   </button>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
+                  {card.secondaryCta ? (
+                    <button
+                      className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-300 hover:text-brand-700"
+                      onClick={() => handleSidebarCardAction(card, 'secondary')}
+                      type="button"
+                    >
+                      {card.secondaryCta}
+                    </button>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </aside>
   );

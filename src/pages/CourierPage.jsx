@@ -1,20 +1,35 @@
 import { useState, useEffect } from 'react';
 
 const COURIER_TIERS = [
-  { id: 'priority', name: 'Sazilo Priority', speed: '1-2 Hours', price: '$15.00', icon: '⚡', desc: 'DHL-style high-speed delivery for urgent documents.' },
-  { id: 'ground', name: 'Sazilo Ground', speed: 'Same Day', price: '$8.50', icon: '🚚', desc: 'UPS-style reliable local parcel delivery.' },
-  { id: 'express', name: 'Sazilo Express', speed: 'By 5:00 PM', price: '$12.00', icon: '📦', desc: 'FedEx-style guaranteed end-of-day delivery.' }
+  { id: 'priority', name: 'Sazilo Priority', speed: '1-2 Hours', price: '$15.00', icon: 'PR', desc: 'DHL-style high-speed delivery for urgent documents.' },
+  { id: 'ground', name: 'Sazilo Ground', speed: 'Same Day', price: '$8.50', icon: 'GD', desc: 'UPS-style reliable local parcel delivery.' },
+  { id: 'express', name: 'Sazilo Express', speed: 'By 5:00 PM', price: '$12.00', icon: 'EX', desc: 'FedEx-style guaranteed end-of-day delivery.' }
 ];
+
+const FALLBACK_COURIER_DATA = {
+  courierDelivery: {
+    deliveries: [
+      {
+        pickupAddress: '1200 Heritage Ln, Irving, TX',
+        dropoffAddress: '8800 Valley View Ln, Irving, TX',
+      },
+    ],
+  },
+  users: {
+    couriers: [{ id: 'courier_local', fullName: 'Ankit Sharma' }],
+  },
+};
 
 const CourierPage = () => {
   const [data, setData] = useState(null);
   const [trackingId, setTrackingId] = useState('SZL-9982-XQ');
-  const [activeTab, setActiveTab] = useState('track'); // 'track' or 'ship'
+  const [activeTab, setActiveTab] = useState('track');
 
   useEffect(() => {
     fetch('/api/seed')
       .then(res => res.json())
-      .then(seed => setData(seed));
+      .then(seed => setData(seed))
+      .catch(() => setData(FALLBACK_COURIER_DATA));
   }, []);
 
   const delivery = data?.courierDelivery?.deliveries?.[0];
@@ -22,13 +37,12 @@ const CourierPage = () => {
 
   return (
     <div className="courier-container">
-      {/* Logistics Hero */}
       <section className="courier-hero">
         <div className="hero-overlay">
           <div className="hero-inner">
-            <span className="service-badge">Global Standards, Local Touch</span>
-            <h1>Local Logistics, Reimagined.</h1>
-            <p>Precise delivery solutions for businesses and individuals.</p>
+            <span className="service-badge">Fast local delivery</span>
+            <h1>Send packages across town with less guesswork.</h1>
+            <p>Track documents, parcels, and errands from pickup to drop-off.</p>
             
             <div className="logistics-tabs">
               <button className={activeTab === 'track' ? 'active' : ''} onClick={() => setActiveTab('track')}>Track</button>
@@ -49,7 +63,6 @@ const CourierPage = () => {
       </section>
 
       <div className="courier-grid">
-        {/* Main Tracking Dashboard (Left) */}
         <main className="tracking-dashboard">
           <div className="dashboard-card">
             <div className="card-header">
@@ -65,7 +78,7 @@ const CourierPage = () => {
                 <div className="bullet"></div>
                 <div className="content">
                   <strong>Shipment Picked Up</strong>
-                  <span>Irving Hub • 09:42 AM</span>
+                  <span>Irving Hub / 09:42 AM</span>
                 </div>
               </div>
               <div className="step active">
@@ -119,7 +132,6 @@ const CourierPage = () => {
           </div>
         </main>
 
-        {/* Precise Info Sidebar (Right) */}
         <aside className="courier-sidebar">
           <div className="spec-card">
             <h3>Shipment Specs</h3>
@@ -146,7 +158,7 @@ const CourierPage = () => {
               <img src={`https://i.pravatar.cc/100?u=${courier?.id || 'courier'}`} alt="Courier" />
               <div>
                 <strong>{courier?.fullName || 'Ankit Sharma'}</strong>
-                <span>★ 4.9 Professional Courier</span>
+                <span>4.9 Professional Courier</span>
               </div>
             </div>
             <button className="button secondary full-width">Message Courier</button>
